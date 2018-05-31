@@ -35,7 +35,7 @@ def test_stationarity(timeseries, name):
 # Load data and parse date
 dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
 dateparse2 = lambda dates: pd.datetime.strptime(dates, '%d/%m/%Y')
-dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%y')
+dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
 
 data_CAC = pd.read_csv('data/indices/^FCHI.csv', parse_dates=['Date'], index_col='Date', date_parser=dateparse)
 ts_CAC = data_CAC['Close']
@@ -64,7 +64,7 @@ ts_STOXX = ts_STOXX[~ts_STOXX.isnull()]
 
 data_FTSE = pd.read_csv('data/indices/^FTSE.csv', parse_dates=['Date'], index_col='Date', date_parser=dateparse3)
 ts_FTSE = data_FTSE[' Close']
-ts_FTSE = ts_FTSE.ix['2018-01-02':'1998-01-02']
+ts_FTSE = ts_FTSE.ix['1998-01-02':'2018-01-02']
 ts_FTSE = ts_FTSE[~ts_FTSE.isnull()]
 
 data_HSI = pd.read_csv('data/indices/^HSI.csv', parse_dates=['Date'], index_col='Date', date_parser=dateparse)
@@ -79,7 +79,7 @@ gspc, = plt.plot(ts_GSPC, label='S&P 500')
 n225, = plt.plot(ts_N225, label='Nikkei 225')
 stoxx, = plt.plot(ts_STOXX, label='STOXX 50')
 ftse, = plt.plot(ts_FTSE, label='FTSE 100')
-hsi, = plt.plot(ts_FTSE, label='HKSE')
+hsi, = plt.plot(ts_HSI, label='HKSE')
 plt.legend(handles=[cac, dax, gspc, n225, stoxx, ftse, hsi])
 plt.show()
 
@@ -99,7 +99,7 @@ gspc, = plt.plot(ts_GSPC, label='S&P 500')
 n225, = plt.plot(ts_N225, label='Nikkei 225')
 stoxx, = plt.plot(ts_STOXX, label='STOXX 50')
 ftse, = plt.plot(ts_FTSE, label='FTSE 100')
-hsi, = plt.plot(ts_FTSE, label='HKSE')
+hsi, = plt.plot(ts_HSI, label='HKSE')
 plt.legend(handles=[cac, dax, gspc, n225, stoxx, ftse, hsi])
 plt.show()
 
