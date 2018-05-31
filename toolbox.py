@@ -2,10 +2,34 @@ __author__ = "Patrick Buhagiar"
 
 import matplotlib.pylab as plt
 import pandas as pd
+import numpy as np
 from matplotlib.pylab import rcParams
 
 rcParams['figure.figsize'] = 14, 5
 from statsmodels.tsa.stattools import adfuller
+
+
+def load_indices(start, end):
+    """
+    Predefined function that loads all the indices from CSV into a python dictionary.
+
+    :param start: the start date
+    :param end: the end date
+    :return: a python dictionary of all the indices
+    """
+    dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
+    dateparse2 = lambda dates: pd.datetime.strptime(dates, '%d/%m/%Y')
+    dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
+    ts_CAC = extract_index('data/indices/^FCHI.csv', start, end, dateparse)
+    ts_DAX = extract_index('data/indices/^GDAXI.csv', start, end, dateparse)
+    ts_GSPC = extract_index('data/indices/^GSPC.csv', start, end, dateparse2)
+    ts_N225 = extract_index('data/indices/^N225.csv', start, end, dateparse)
+    ts_STOXX = extract_index('data/indices/^STOXX50E.csv', start, end, dateparse2)
+    ts_FTSE = extract_index('data/indices/^FTSE.csv', start, end, dateparse3)
+    ts_HSI = extract_index('data/indices/^HSI.csv', start, end, dateparse)
+    return {"CAC": ts_CAC, "DAX": ts_DAX, "S&P500": ts_GSPC, "NIKKEI": ts_N225, "STOXX": ts_STOXX,
+            "FTSE": ts_FTSE,
+            "HKSE": ts_HSI}
 
 
 def extract_index(filename, start, end, date_parse):
@@ -20,10 +44,37 @@ def extract_index(filename, start, end, date_parse):
     :return: The indices as a time series
     """
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
+    # Fill missing dates and values
+    all_days = pd.date_range(start,end, freq='D')
+    data = data.reindex(all_days)
+    data = data.fillna(method='ffill')
     ts = data['Close']
-    ts = ts.ix[start:end]
-    ts = ts[~ts.isnull()]
     return ts
+
+
+def plot(indices, title):
+    """
+    Plots all the indices on the same plot.
+
+    :param indices: the indices to be plotted
+    :param title: the title of the plot
+    :return: nothing
+    """
+    for k, v in indices.iteritems():
+        plt.plot(v, label=k)
+    plt.legend(loc='best')
+    plt.title(title)
+    plt.show()
+
+
+def normalise(indices):
+    """
+    Normalises all the indices into the range between 0 and 1.
+
+    :param indices: the indices to be normalise.
+    :return: normalised indices dictionary.
+    """
+    return {k: v / max(v) for k, v in indices.items()}
 
 
 def test_stationarity(time_series, name, plot=True, print_dft=True, time=365):
@@ -68,3 +119,27 @@ def test_stationarity(time_series, name, plot=True, print_dft=True, time=365):
         plt.show()
 
     return df_output[0] < df_output[5]
+
+
+def log_transform(indices):
+    return {k: np.log(v) for k, v in indices.items()}
+
+
+def rolling_moving_averages(indices, time):
+    return {k: v.rolling(time).mean() for k, v in indices.items()}
+
+
+def log_moving_averages_diff(log_indices, moving_averages):
+    diff = {}
+    for k, v in log_indices.iteritems():
+        diff[k] = v - moving_averages[k]
+        diff[k].dropna(inplace=True)
+    return diff
+
+
+def differencing(indices):
+    diff = {}
+    for k, v in indices.iteritems():
+        diff[k] = v - v.shift()
+        diff[k].dropna(inplace=True)
+    return diff
