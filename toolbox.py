@@ -1,8 +1,8 @@
 __author__ = "Patrick Buhagiar"
 
 import matplotlib.pylab as plt
-import pandas as pd
 import numpy as np
+import pandas as pd
 from matplotlib.pylab import rcParams
 
 rcParams['figure.figsize'] = 14, 5
@@ -45,7 +45,7 @@ def extract_index(filename, start, end, date_parse):
     """
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
     # Fill missing dates and values
-    all_days = pd.date_range(start,end, freq='D')
+    all_days = pd.date_range(start, end, freq='D')
     data = data.reindex(all_days)
     data = data.fillna(method='ffill')
     ts = data['Close']
@@ -122,14 +122,34 @@ def test_stationarity(time_series, name, plot=True, print_dft=True, time=365):
 
 
 def log_transform(indices):
+    """
+    Calculate the log of each value.
+
+    :param indices: the indices
+    :return: dictionary of log values
+    """
     return {k: np.log(v) for k, v in indices.items()}
 
 
 def rolling_moving_averages(indices, time):
+    """
+    Calculate the rolling mean of each index
+
+    :param indices: the indices
+    :param time: the length of time
+    :return: dictionary of rolling means
+    """
     return {k: v.rolling(time).mean() for k, v in indices.items()}
 
 
 def log_moving_averages_diff(log_indices, moving_averages):
+    """
+    THe difference between log values and moving averages
+
+    :param log_indices: the log indices
+    :param moving_averages: the moving averages
+    :return: dictionary of this difference
+    """
     diff = {}
     for k, v in log_indices.iteritems():
         diff[k] = v - moving_averages[k]
@@ -138,8 +158,39 @@ def log_moving_averages_diff(log_indices, moving_averages):
 
 
 def differencing(indices):
+    """
+    Remove trends and seasonality by shifting the time series and taking the difference.
+
+    :param indices: indices to be shifted
+    :return: dictionary of the differences
+    """
     diff = {}
     for k, v in indices.iteritems():
         diff[k] = v - v.shift()
         diff[k].dropna(inplace=True)
     return diff
+
+
+def full_scatter_plot(indices):
+    """
+    Plot a scatter plot for every combination of the time series. this will result in a grid of n x n scatter plots, 
+    where n is the length of the time series dictionary.
+    
+    :param indices: the dictionary of indices
+    :return: 
+    """
+    i = 1
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for k, v in indices.iteritems():
+        for k2, v in indices.iteritems():
+            a = fig.add_subplot(indices.__len__(), indices.__len__(), i)
+            a.scatter(indices[k], indices[k2])
+            a.spines['top'].set_color('none')
+            a.spines['bottom'].set_color('none')
+            a.spines['left'].set_color('none')
+            a.spines['right'].set_color('none')
+            a.tick_params(labelcolor='w', top=False, bottom=False, left=False, right=False)
+            a.set_title(k + " vs " + k2)
+            i += 1
+    plt.show()

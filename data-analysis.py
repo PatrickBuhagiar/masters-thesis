@@ -2,10 +2,9 @@ __author__ = "Patrick Buhagiar"
 
 import pandas as pd
 from matplotlib.pylab import rcParams
-from matplotlib.pyplot import scatter
 
 from toolbox import normalise, plot, load_indices, test_stationarity, log_transform, rolling_moving_averages, \
-    log_moving_averages_diff, differencing
+    log_moving_averages_diff, differencing, full_scatter_plot
 
 rcParams['figure.figsize'] = 14, 5
 
@@ -34,3 +33,6 @@ for k, v in ts_log_shift.iteritems():
     stationary[k] = test_stationarity(v, k, False)
 
 print stationary
+
+# Plot a scatter plot for every combination of stock pairs
+full_scatter_plot(ts_log_shift)
