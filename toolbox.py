@@ -52,6 +52,37 @@ def extract_index(filename, start, end, date_parse):
     return ts
 
 
+def extract_macroeconomic_data(filename, start_index, start, end, type="Q"):
+    data = pd.read_csv(filename, index_col='Date')[start_index:]
+    d = {'Date': [], 'Value': []}
+
+    for index, row in data.iterrows():
+        if type == "Q":
+            d['Date'].append(convert_quarterly_to_date(index))
+        d['Value'].append(row['Value'])
+
+    ts = pd.DataFrame(d)
+    ts = ts.set_index('Date')
+    all_days = pd.date_range(d['Date'][0], d['Date'][-1], freq='D')
+    ts = ts.reindex(all_days)
+    ts = ts.fillna(method='ffill')
+    filtered_day_range = pd.date_range(start, end, freq='D')
+    ts = ts.reindex(filtered_day_range)
+    return ts
+
+
+def convert_quarterly_to_date(date):
+    year, quarter = date.replace(" ", "").split("Q")
+    if quarter == "1":
+        return pd.datetime(int(year), 1, 1)
+    elif quarter == "2":
+        return pd.datetime(int(year), 4, 1)
+    elif quarter == "3":
+        return pd.datetime(int(year), 7, 1)
+    else:
+        return pd.datetime(int(year), 10, 1)
+
+
 def plot(indices, title):
     """
     Plots all the indices on the same plot.
