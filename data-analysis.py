@@ -3,8 +3,7 @@ __author__ = "Patrick Buhagiar"
 import pandas as pd
 from matplotlib.pylab import rcParams
 
-from toolbox import normalise, plot, load_indices, test_stationarity, log_transform, rolling_moving_averages, \
-    log_moving_averages_diff, differencing, full_scatter_plot
+from toolbox import plot, load_indices, test_stationarity, full_scatter_plot, make_indices_stationary
 
 rcParams['figure.figsize'] = 14, 5
 
@@ -16,18 +15,7 @@ end = pd.datetime(2018, 01, 02)
 ts_indices = load_indices(start, end)
 plot(ts_indices, "Plot of All Indices")
 
-# Normalise and plot data
-ts_indices_normalised = normalise(ts_indices)
-plot(ts_indices_normalised, "Plot of All Normalised Indices")
-
-# Let's make the data stationary
-ts_log_indices = log_transform(ts_indices_normalised)
-ts_moving_averages = rolling_moving_averages(ts_log_indices, 365)
-ts_log_moving_averages_diff = log_moving_averages_diff(ts_log_indices, ts_moving_averages)
-
-# It has been found that differencing is a very good way for this data to be converted into stationary
-ts_log_shift = differencing(ts_log_indices)
-
+ts_log_shift = make_indices_stationary(ts_indices)
 stationary = {}
 for k, v in ts_log_shift.iteritems():
     stationary[k] = test_stationarity(v, k, False)

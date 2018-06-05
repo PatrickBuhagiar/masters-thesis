@@ -72,7 +72,7 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
             d['Date'].append(convert_quarterly_to_date(index))
         elif type == 'D':
             d['Date'].append(pd.to_datetime(index))
-        d['Value'].append(row['Value'])
+        d['Value'].append(float(row['Value']))
 
     ts = pd.DataFrame(d)
     ts = ts.set_index('Date')
@@ -277,3 +277,24 @@ def full_scatter_plot(indices):
             a.set_title(k + " vs " + k2)
             i += 1
     plt.show()
+
+
+def make_indices_stationary(indices, doplot=False):
+    """
+    Make indices stationary
+    :param indices: the indices
+    :param doplot: set to True if you want to plot
+    :return: stationary indices
+    """
+    # Normalise and plot data
+    ts_indices_normalised = normalise(indices)
+    if doplot:
+        plot(ts_indices_normalised, "Plot of All Normalised Indices")
+
+    # Let's make the data stationary
+    ts_log_indices = log_transform(ts_indices_normalised)
+    ts_moving_averages = rolling_moving_averages(ts_log_indices, 365)
+    ts_log_moving_averages_diff = log_moving_averages_diff(ts_log_indices, ts_moving_averages)
+
+    # It has been found that differencing is a very good way for this data to be converted into stationary
+    return differencing(ts_log_indices)
