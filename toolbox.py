@@ -3,6 +3,7 @@ __author__ = "Patrick Buhagiar"
 import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
+import re
 from matplotlib.pylab import rcParams
 
 rcParams['figure.figsize'] = 14, 5
@@ -52,13 +53,12 @@ def extract_index(filename, start, end, date_parse):
     return ts
 
 
-def extract_macroeconomic_data(filename, start_index, start, end, type="Q"):
+def extract_macroeconomic_data(filename, start_index, start, end):
     data = pd.read_csv(filename, index_col='Date')[start_index:]
     d = {'Date': [], 'Value': []}
 
     for index, row in data.iterrows():
-        if type == "Q":
-            d['Date'].append(convert_quarterly_to_date(index))
+        d['Date'].append(convert_quarterly_to_date(index))
         d['Value'].append(row['Value'])
 
     ts = pd.DataFrame(d)
@@ -72,15 +72,44 @@ def extract_macroeconomic_data(filename, start_index, start, end, type="Q"):
 
 
 def convert_quarterly_to_date(date):
-    year, quarter = date.replace(" ", "").split("Q")
-    if quarter == "1":
-        return pd.datetime(int(year), 1, 1)
-    elif quarter == "2":
-        return pd.datetime(int(year), 4, 1)
-    elif quarter == "3":
-        return pd.datetime(int(year), 7, 1)
+    if date.__contains__("Q"):
+        year, quarter = date.replace(" ", "").split("Q")
+        if quarter == "1":
+            return pd.datetime(int(year), 1, 1)
+        elif quarter == "2":
+            return pd.datetime(int(year), 4, 1)
+        elif quarter == "3":
+            return pd.datetime(int(year), 7, 1)
+        else:
+            return pd.datetime(int(year), 10, 1)
     else:
-        return pd.datetime(int(year), 10, 1)
+        year, month = date.split(" ")
+        int_month = 0
+        if month == "JAN":
+            int_month = 1
+        elif month == "FEB":
+            int_month = 2
+        elif month == "MAR":
+            int_month = 3
+        elif month == "APR":
+            int_month = 4
+        elif month == "MAY":
+            int_month = 5
+        elif month == "JUN":
+            int_month = 6
+        elif month == "JUL":
+            int_month = 7
+        elif month == "AUG":
+            int_month = 8
+        elif month == "SEP":
+            int_month = 9
+        elif month == "OCT":
+            int_month = 10
+        elif month == "NOV":
+            int_month = 11
+        elif month == "DEC":
+            int_month = 12
+        return pd.datetime(int(year), int_month, 1)
 
 
 def plot(indices, title):
