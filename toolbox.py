@@ -3,7 +3,6 @@ __author__ = "Patrick Buhagiar"
 import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
-import re
 from matplotlib.pylab import rcParams
 
 rcParams['figure.figsize'] = 14, 5
@@ -54,6 +53,17 @@ def extract_index(filename, start, end, date_parse):
 
 
 def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
+    """
+    Extracts macroeconomic data from a csv file and filters out into a date range.
+
+    :param filename: The name of the csv file
+    :param start_index: the start index of the csv file (therefore skip the first n values). In some cases, initial values of csv files are unwanted
+    :param start: The start date
+    :param end: The end date
+    :param type: 'D' for dates, otherwise default is 'Q' which means quarterly, but technically can parse monthly data too
+
+    :return: Daily macroeconomic data as a time series
+    """
     data = pd.read_csv(filename, index_col='Date')[start_index:]
     d = {'Date': [], 'Value': []}
 
@@ -76,6 +86,15 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
 
 
 def convert_quarterly_to_date(date):
+    """
+    Covert a given date String into a pandas datetime
+
+    :param date: A date as a string. this can be in the following formats:
+            - 2018Q1
+            - 2018 JAN
+
+    :return: a datetime
+    """
     if date.__contains__("Q"):
         year, quarter = date.replace(" ", "").split("Q")
         if quarter == "1":
