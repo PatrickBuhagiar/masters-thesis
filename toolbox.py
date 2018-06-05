@@ -53,12 +53,15 @@ def extract_index(filename, start, end, date_parse):
     return ts
 
 
-def extract_macroeconomic_data(filename, start_index, start, end):
+def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     data = pd.read_csv(filename, index_col='Date')[start_index:]
     d = {'Date': [], 'Value': []}
 
     for index, row in data.iterrows():
-        d['Date'].append(convert_quarterly_to_date(index))
+        if type == 'Q':
+            d['Date'].append(convert_quarterly_to_date(index))
+        elif type == 'D':
+            d['Date'].append(pd.to_datetime(index))
         d['Value'].append(row['Value'])
 
     ts = pd.DataFrame(d)
@@ -68,6 +71,7 @@ def extract_macroeconomic_data(filename, start_index, start, end):
     ts = ts.fillna(method='ffill')
     filtered_day_range = pd.date_range(start, end, freq='D')
     ts = ts.reindex(filtered_day_range)
+    ts = ts.dropna()
     return ts
 
 
