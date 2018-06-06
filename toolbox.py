@@ -281,7 +281,7 @@ def full_scatter_plot(indices):
 
 def make_indices_stationary(indices, doplot=False):
     """
-    Make indices stationary
+    Make indices dictionary stationary
     :param indices: the indices
     :param doplot: set to True if you want to plot
     :return: stationary indices
@@ -298,3 +298,16 @@ def make_indices_stationary(indices, doplot=False):
 
     # It has been found that differencing is a very good way for this data to be converted into stationary
     return differencing(ts_log_indices)
+
+
+def make_time_series_stationary(ts):
+    """
+    Make a specific time series stationary
+    :param ts: the time series
+    :return: stationary time series
+    """
+    ts_normalised_gdp = ts / max(ts)
+    ts_log = np.log(ts_normalised_gdp)
+    diff = ts_log - ts_log.shift()
+    diff.dropna(inplace=True)
+    return diff
