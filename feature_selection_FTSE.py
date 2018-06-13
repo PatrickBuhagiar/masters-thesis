@@ -48,7 +48,7 @@ stationary = {"Balance of Trade": test_stationarity(ts_trdblc, "Balance of Trade
 for k, v in ts_indices.iteritems():
     stationary[k] = test_stationarity(v, k, False)
 
-print stationary
+print(stationary)
 
 # Gather all data into a single data frame
 columns = ['GB_TRADE_BLNC', 'GB_GDP', 'GB_INFL', 'GB_INTR', 'GB_UNEMP', 'CAC', 'DAX', 'HKSE', 'NIKKEI',
@@ -77,7 +77,7 @@ rfe = RFE(model, 4)
 fit = rfe.fit(X, Y)
 
 print("Num Features: %d") % fit.n_features_
-print columns[:-1]
+print(columns[:-1])
 print("Selected Features: %s") % fit.support_
 print("Feature Ranking: %s") % fit.ranking_
 
@@ -96,6 +96,6 @@ print (model.feature_importances_)
 # PCA
 pca = PCA(n_components=3)
 fit = pca.fit(X)
-print fit.explained_variance_ratio_
-print fit.components_
+print(fit.explained_variance_ratio_)
+print(fit.components_)
 

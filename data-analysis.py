@@ -8,8 +8,8 @@ from toolbox import plot, load_indices, test_stationarity, full_scatter_plot, ma
 rcParams['figure.figsize'] = 14, 5
 
 # Define start and end dates here
-start = pd.datetime(1998, 01, 02)
-end = pd.datetime(2018, 01, 02)
+start = pd.datetime(1998, 0o1, 0o2)
+end = pd.datetime(2018, 0o1, 0o2)
 
 # Load data and plot data
 ts_indices = load_indices(start, end)
@@ -20,7 +20,7 @@ stationary = {}
 for k, v in ts_log_shift.iteritems():
     stationary[k] = test_stationarity(v, k, False)
 
-print stationary
+print(stationary)
 
 # Plot a scatter plot for every combination of stock pairs
 full_scatter_plot(ts_log_shift)

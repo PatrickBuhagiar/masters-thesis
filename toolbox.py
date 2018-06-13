@@ -188,8 +188,8 @@ def test_stationarity(time_series, name, plot=True, print_dft=True, time=365):
 
     if print_dft:
         # Perform Dickey-Fuller test
-        print '\nResults of Dickey-Fuller Test for ' + name + ':'
-        print df_output
+        print('\nResults of Dickey-Fuller Test for ' + name + ':')
+        print(df_output)
 
     if plot:
         # Plot rolling statistics:
