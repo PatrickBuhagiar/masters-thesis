@@ -78,7 +78,7 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     ts = ts.set_index('Date')
     all_days = pd.date_range(d['Date'][0], d['Date'][-1], freq='D')
     ts = ts.reindex(all_days)
-    ts = ts.fillna(method='ffill')
+    ts = ts.interpolate()
     filtered_day_range = pd.date_range(start, end, freq='D')
     ts = ts.reindex(filtered_day_range)
     ts = ts.dropna()

@@ -1,10 +1,13 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sklearn.ensemble import ExtraTreesRegressor
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.decomposition import PCA
 
 from toolbox import extract_macroeconomic_data, load_indices, make_indices_stationary, make_time_series_stationary, \
     test_stationarity
-from sklearn.feature_selection import RFE
-from sklearn.linear_model import LogisticRegression
 
 # Load Data
 start = pd.datetime(2007, 2, 2)
@@ -18,10 +21,10 @@ indices = load_indices(start, end)
 
 
 def f(x):
-    if x > 0:
+    if x >= 0:
         return 1
     elif x < 0:
-        return - 1
+        return 0
     else:
         return 0
 
@@ -30,7 +33,7 @@ discrete_FTSE = map(lambda x: f(x), (indices['FTSE'] - indices['FTSE'].shift().f
 
 # Make data stationary
 ts_indices = make_indices_stationary(indices)
-ts_trdblc = make_time_series_stationary(GB_Balance_of_Trade.iloc[:,0])
+ts_trdblc = make_time_series_stationary(GB_Balance_of_Trade.iloc[:, 0])
 ts_gdp = make_time_series_stationary(GB_Gdp.iloc[:, 0])
 ts_infl = make_time_series_stationary(GB_Inflation.iloc[:, 0])
 ts_unemp = make_time_series_stationary(GB_Unemployment.iloc[:, 0])
@@ -77,3 +80,22 @@ print("Num Features: %d") % fit.n_features_
 print columns[:-1]
 print("Selected Features: %s") % fit.support_
 print("Feature Ranking: %s") % fit.ranking_
+
+# Perform Feature Importance
+
+model = ExtraTreesRegressor()
+Y = array[:, 11]
+model.fit(X, Y)
+print (model.feature_importances_)
+
+model = ExtraTreesClassifier()
+Y = np.asarray(discrete_FTSE)
+model.fit(X, Y)
+print (model.feature_importances_)
+
+# PCA
+pca = PCA(n_components=3)
+fit = pca.fit(X)
+print fit.explained_variance_ratio_
+print fit.components_
+
