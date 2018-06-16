@@ -294,7 +294,7 @@ def make_indices_stationary(indices, doplot=False):
     # Let's make the data stationary
     ts_log_indices = log_transform(ts_indices_normalised)
     ts_moving_averages = rolling_moving_averages(ts_log_indices, 365)
-    ts_log_moving_averages_diff = log_moving_averages_diff(ts_log_indices, ts_moving_averages)
+    # ts_log_moving_averages_diff = log_moving_averages_diff(ts_log_indices, ts_moving_averages)
 
     # It has been found that differencing is a very good way for this data to be converted into stationary
     return differencing(ts_log_indices)

@@ -1,16 +1,10 @@
+import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import ExtraTreesRegressor
-from sklearn.feature_selection import RFE
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.decomposition import PCA
-import matplotlib.pylab as plt
-from pandas.plotting import autocorrelation_plot, scatter_matrix
 import tensorflow as tf
+from pandas.plotting import autocorrelation_plot, scatter_matrix
 
-from toolbox import extract_macroeconomic_data, load_indices, make_indices_stationary, make_time_series_stationary, \
-    test_stationarity
+from toolbox import load_indices
 
 # Load Data
 start = pd.datetime(2012, 2, 2)
@@ -35,7 +29,9 @@ df['S&P500'] = indices['S&P500']
 df['STOXX'] = indices['STOXX']
 df['FTSE'] = indices['FTSE']
 
+out = open("log.txt", "a")
 print(df.describe())
+out.write(df.describe())
 
 df.plot()
 plt.show()
@@ -415,3 +411,4 @@ feed_dict = {
 }
 
 tf_confusion_metrics(model, actual_classes, sess1, feed_dict)
+out.close()
