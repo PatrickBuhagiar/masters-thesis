@@ -46,8 +46,8 @@ def extract_index(filename, start, end, date_parse):
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
     # Fill missing dates and values
     all_days = pd.date_range(start, end, freq='D')
-    data = data.reindex(all_days)
     data = data.fillna(method='ffill')
+    data = data.reindex(all_days)
     ts = data['Close']
     return ts
 
