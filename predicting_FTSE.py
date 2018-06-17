@@ -9,18 +9,8 @@ from toolbox import load_indices
 # Load Data
 start = pd.datetime(2012, 2, 2)
 end = pd.datetime(2017, 2, 2)
-# GB_Balance_of_Trade = extract_macroeconomic_data("data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv", 222, start, end)
-# GB_Gdp = extract_macroeconomic_data("data/macroeconomics/GB/GB_GDP.csv", 222, start, end)
-# GB_Inflation = extract_macroeconomic_data("data/macroeconomics/GB/GB_INFLATION.csv", 69, start, end)
-# GB_Interest = extract_macroeconomic_data("data/macroeconomics/GB/GB_INTRST.csv", 1, start, end, 'D')
-# GB_Unemployment = extract_macroeconomic_data("data/macroeconomics/GB/GB_UNEMPLOYMENT.csv", 350, start, end)
 indices = load_indices(start, end)
 df = pd.DataFrame(index=indices['FTSE'].index)
-# df['GB_TRADE_BLNC'] = GB_Balance_of_Trade
-# df['GB_GDP'] = GB_Gdp
-# df['GB_INFL'] = GB_Inflation
-# df['GB_INTR'] = GB_Interest
-# df['GB_UNEMP'] = GB_Unemployment
 df['CAC'] = indices['CAC']
 df['DAX'] = indices['DAX']
 df['HKSE'] = indices['HKSE']
@@ -36,11 +26,6 @@ out.write(df.describe())
 df.plot()
 plt.show()
 
-# df['GB_TRADE_BLNC_scaled'] = df['GB_TRADE_BLNC'] / max(df['GB_TRADE_BLNC'])
-# df['GB_GDP_scaled'] = df['GB_GDP'] / max(df['GB_GDP'])
-# df['GB_INFL_scaled'] = df['GB_INFL'] / max(df['GB_INFL'])
-# df['GB_INTR_scaled'] = df['GB_INTR'] / max(df['GB_INTR'])
-# df['GB_UNEMP_scaled'] = df['GB_UNEMP'] / max(df['GB_UNEMP'])
 df['CAC_scaled'] = df['CAC'] / max(df['CAC'])
 df['DAX_scaled'] = df['DAX'] / max(df['DAX'])
 df['HKSE_scaled'] = df['HKSE'] / max(df['HKSE'])
@@ -49,11 +34,7 @@ df['S&P500_scaled'] = df['S&P500'] / max(df['S&P500'])
 df['STOXX_scaled'] = df['STOXX'] / max(df['STOXX'])
 df['FTSE_scaled'] = df['FTSE'] / max(df['FTSE'])
 
-_ = pd.concat([  # df['GB_TRADE_BLNC_scaled'],
-    # df['GB_GDP_scaled'],
-    # df['GB_INFL_scaled'],
-    # df['GB_INTR_scaled'],
-    # df['GB_UNEMP_scaled'],
+_ = pd.concat([
     df['CAC_scaled'],
     df['DAX_scaled'],
     df['HKSE_scaled'],
@@ -65,11 +46,6 @@ plt.show()
 
 fig = plt.figure()
 
-# _ = autocorrelation_plot(df['GB_TRADE_BLNC_scaled'], label="Trade Balance")
-# _ = autocorrelation_plot(df['GB_GDP_scaled'], label="GDP")
-# _ = autocorrelation_plot(df['GB_INFL_scaled'], label="INFLATION")
-# _ = autocorrelation_plot(df['GB_INTR_scaled'], label="INTEREST")
-# _ = autocorrelation_plot(df['GB_UNEMP_scaled'], label="UNEMPLOYMENT")
 _ = autocorrelation_plot(df['CAC_scaled'], label="CAC")
 _ = autocorrelation_plot(df['DAX_scaled'], label="DAX")
 _ = autocorrelation_plot(df['HKSE_scaled'], label="HKSE")
@@ -81,11 +57,7 @@ _ = plt.legend(loc='upper right')
 
 plt.show()
 
-_ = scatter_matrix(pd.concat([  # df['GB_TRADE_BLNC_scaled'],
-    # df['GB_GDP_scaled'],
-    # df['GB_INFL_scaled'],
-    # df['GB_INTR_scaled'],
-    # df['GB_UNEMP_scaled'],
+_ = scatter_matrix(pd.concat([
     df['CAC_scaled'],
     df['DAX_scaled'],
     df['HKSE_scaled'],
@@ -289,7 +261,6 @@ def tf_confusion_metrics(model, actual_classes, session, feed_dict):
         )
 
     tpr = float(tp) / (float(tp) + float(fn))
-    fpr = float(fp) / (float(tp) + float(fn))
 
     accuracy = (float(tp) + float(tn)) / (float(tp) + float(fn) + float(tn))
 
