@@ -109,13 +109,10 @@ def get_model(start, end):
             }, ignore_index=True
         )
 
-    print(training_test_data.describe())
-
     predictors_tf = training_test_data[training_test_data.columns[2:]]
     classes_tf = training_test_data[training_test_data.columns[:2]]
 
     training_set_size = int(len(training_test_data) * 0.8)  # 80/20 sep of training/testing
-    test_set_size = len(training_test_data) - training_set_size
 
     training_predictors_tf = predictors_tf[:training_set_size]
     training_classes_tf = classes_tf[:training_set_size]
