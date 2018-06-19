@@ -2,6 +2,7 @@ import pandas as pd
 from stock_model import get_model
 from joblib import Parallel, delayed
 import multiprocessing
+from concurrent.futures import ThreadPoolExecutor, wait, as_completed
 
 start_year = 2006
 end_year = 2014
@@ -10,7 +11,10 @@ n_cpus = multiprocessing.cpu_count()
 models = {}
 classes = {}
 sessions = {}
-feed_dicts = {}
+test_dicts = {}
+
+pool = ThreadPoolExecutor(4)
+futures = []
 
 
 def process(start):
@@ -20,11 +24,7 @@ def process(start):
     models[start.__str__()] = model
     classes[start.__str__()] = actual_classes
     sessions[start.__str__()] = sess
-    feed_dicts[start.__str__()] = test_dict
-    print(models)
-    print(classes)
-    print(sessions)
-    print(feed_dicts)
+    test_dicts[start.__str__()] = test_dict
 
 
 def generate_dates(start, end, month):
@@ -38,10 +38,18 @@ def generate_dates(start, end, month):
 def get_models(start, end):
     dates = generate_dates(start, end, month)
     print(dates)
-    Parallel(n_jobs=4)(delayed(process)(date) for date in dates)
+
+    for date in dates:
+        futures.append(pool.submit(process, date))
+
+    wait(futures)
+    print("PRINTING STUFF")
+    print("Models", models)
+    print("Classes", classes)
+    print("Sessions", sessions)
+    print("Test", test_dicts)
 
 
 if __name__ == '__main__':
     print(n_cpus)
     get_models(start_year, end_year)
-
