@@ -4,7 +4,7 @@ from joblib import Parallel, delayed
 import multiprocessing
 
 start_year = 2006
-end_year = 2016
+end_year = 2014
 month = [1, 4, 7, 10]
 n_cpus = multiprocessing.cpu_count()
 models = {}
@@ -14,13 +14,17 @@ feed_dicts = {}
 
 
 def process(start):
-    end = start + pd.DateOffset(years=2)
+    end = start + pd.DateOffset(years=3)
     print("Working on", start, "to", end)
-    model, actual_classes, sess, feed_dict = get_model(start, end)
+    model, actual_classes, sess, test_dict = get_model(start, end)
     models[start.__str__()] = model
     classes[start.__str__()] = actual_classes
     sessions[start.__str__()] = sess
-    feed_dicts[start.__str__()] = feed_dict
+    feed_dicts[start.__str__()] = test_dict
+    print(models)
+    print(classes)
+    print(sessions)
+    print(feed_dicts)
 
 
 def generate_dates(start, end, month):
@@ -40,7 +44,4 @@ def get_models(start, end):
 if __name__ == '__main__':
     print(n_cpus)
     get_models(start_year, end_year)
-    print(models)
-    print(classes)
-    print(sessions)
-    print(feed_dicts)
+
