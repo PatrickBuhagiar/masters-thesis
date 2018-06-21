@@ -19,9 +19,7 @@ df['S&P500'] = indices['S&P500']
 df['STOXX'] = indices['STOXX']
 df['FTSE'] = indices['FTSE']
 
-out = open("log.txt", "a")
 print(df.describe())
-out.write(df.describe())
 
 df.plot()
 plt.show()
@@ -206,15 +204,15 @@ print(test_predictors_tf.describe())
 
 
 def tf_confusion_metrics(model, actual_classes, session, feed_dict):
-    predictions = tf.argmax(model, 1)
+    predictions = tf.argmax(model, 1) # model is a 2 x 1456 matrix, which are the predictions made by the model. argmax returns the index with the highest value, i.e. which did it predict correctly
     actuals = tf.argmax(actual_classes, 1)
 
-    ones_like_actuals = tf.ones_like(actuals)
+    ones_like_actuals = tf.ones_like(actuals) # returns a tensor with the same shape and type as actuals with all elements set to 1
     zeros_like_actuals = tf.zeros_like(actuals)
     ones_like_predictions = tf.ones_like(predictions)
     zeros_like_predictions = tf.zeros_like(predictions)
 
-    tp_op = tf.reduce_sum(
+    tp_op = tf.reduce_sum( # computes the sum of elements across a dimension
         tf.cast(
             tf.logical_and(
                 tf.equal(actuals, ones_like_actuals),
@@ -262,12 +260,12 @@ def tf_confusion_metrics(model, actual_classes, session, feed_dict):
 
     tpr = float(tp) / (float(tp) + float(fn))
 
-    accuracy = (float(tp) + float(tn)) / (float(tp) + float(fn) + float(tn))
+    accuracy = (float(tp) + float(tn)) / (float(tp) + float(fp) + float(fn) + float(tn))
 
     recall = tpr
     precision = float(tp) / (float(tp) + float(fp))
 
-    f1_score = (2 * (precision * recall)) / (precision + recall)
+    f1_score = (2 * (precision *     recall) / (precision + recall))
 
     print('Precision = ', precision)
     print('Recall = ', recall)
@@ -282,7 +280,7 @@ num_predictors = len(training_predictors_tf.columns)
 num_classes = len(training_classes_tf.columns)
 
 # Define placeholders for the data we feed into the process - feature data and actual classes.
-feature_data = tf.placeholder("float", [None, num_predictors])
+feature_data = tf.placeholder("float", [None, num_predictors]) # We use NONE because that dimension changes between training and testing (1456 vs 365)
 actual_classes = tf.placeholder("float", [None, num_classes])
 
 # Define a matrix of weights and initialize it with some small random values
@@ -337,10 +335,10 @@ num_classes = len(training_classes_tf.columns)
 feature_data = tf.placeholder("float", [None, num_predictors])
 actual_classes = tf.placeholder("float", [None, num_classes])
 
-weights1 = tf.Variable(tf.truncated_normal([num_predictors, 50], stddev=0.0001))
-biases1 = tf.Variable(tf.ones([50]))
+weights1 = tf.Variable(tf.truncated_normal([num_predictors, 44], stddev=0.0001))
+biases1 = tf.Variable(tf.ones([44]))
 
-weights2 = tf.Variable(tf.truncated_normal([50, num_predictors + 1], stddev=0.0001))
+weights2 = tf.Variable(tf.truncated_normal([44, num_predictors + 1], stddev=0.0001))
 biases2 = tf.Variable(tf.ones([num_predictors + 1]))
 
 weights3 = tf.Variable(tf.truncated_normal([num_predictors + 1, num_classes], stddev=0.0001))
@@ -382,4 +380,3 @@ feed_dict = {
 }
 
 tf_confusion_metrics(model, actual_classes, sess1, feed_dict)
-out.close()
