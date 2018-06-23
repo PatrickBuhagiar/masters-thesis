@@ -21,5 +21,3 @@ stationary = {"Balance of Trade": test_stationarity(GB_Balance_of_Trade.iloc[:, 
               "Inflation Rate": test_stationarity(ts_infl, "Inflation Rate", False),
               "Interest Rate": test_stationarity(ts_intr, "Interest Rate", False),
               "Unemployment Rate": test_stationarity(ts_unemp, "Unemployment Rate", False)}
-
-print stationary
