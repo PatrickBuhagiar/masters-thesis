@@ -212,7 +212,7 @@ def run_model(n_hidden_nodes):
             }
         )
         if i % 5000 == 0:
-            print("node", n_nodes, "iter", i, sess.run(
+            print("node", n_hidden_nodes, "iter", i, sess.run(
                 accuracy,
                 feed_dict={
                     feature_data: training_predictors_tf.values,
@@ -226,18 +226,15 @@ def run_model(n_hidden_nodes):
     return tf_confusion_metrics(model, actual_classes, sess, feed_dict)
 
 
+node_indices = []
 accuracies = []
 f1scores = []
 
-for n_nodes in range(1, 101):
+for n_nodes in range(1, 100):
     if n_nodes % 5 == 0:
         f1_score, accuracy = run_model(n_nodes)
+        node_indices.append(n_nodes)
         accuracies.append(accuracy)
         f1scores.append(f1_score)
 
-x, = plt.plot(accuracies, label="Accuracy")
-y, = plt.plot(f1scores, label="F1")
-plt.legend(handles=[x, y])
-plt.show()
-np.savetxt("accuracies.csv", accuracies, delimiter=",")
-np.savetxt("f1.csv", f1scores, delimiter=",")
+np.savetxt("result_5-100.csv", np.array([node_indices, accuracies, f1scores]), delimiter=",")
