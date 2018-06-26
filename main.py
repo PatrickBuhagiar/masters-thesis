@@ -8,7 +8,7 @@ from stock_model import build_model
 
 # static data
 start_year = 1998
-end_year = 2011
+end_year = 2000
 month = [1, 4, 7, 10]
 n_cpus = multiprocessing.cpu_count()
 
@@ -35,20 +35,20 @@ def process(start):
 
     # If model already exists in db, check accuracy and replace if new model is better.
     posts = db.posts
-    if posts.find_one({'date': start.date().__str__()}) is not None:
-        stored_accuracy = posts.find_one({'date': start.date().__str__()})['accuracy']
+    post = {'_id': start.date().__str__(),
+            'test_data': test_dict,
+            'train_data': train_dict,
+            'f1_score': f1_score,
+            'accuracy': accuracy}
+    if posts.find_one({'_id': start.date().__str__()}) is not None:
+        stored_accuracy = posts.find_one({'_id': start.date().__str__()})['accuracy']
         if stored_accuracy > accuracy:
             print("no need to replace data for", start.date().__str__())
             print("existing stored accuracy", stored_accuracy, "vs", accuracy)
             return
     # All model variables are stored in session
     saver.save(sess, "models/" + start.date().__str__())
-    post = {'date': start.__str__(),
-            'test_data': test_dict,
-            'train_data': train_dict,
-            'f1_score': f1_score,
-            'accuracy': accuracy}
-    posts.insert_one(post)
+    posts.update_one({'_id': start.date().__str__()}, {'$set': post}, upsert=True)
     print("Storing!")
 
 
