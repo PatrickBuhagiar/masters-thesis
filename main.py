@@ -1,33 +1,64 @@
-import pandas as pd
-from stock_model import get_model
-from joblib import Parallel, delayed
 import multiprocessing
-from concurrent.futures import ThreadPoolExecutor, wait, as_completed
+from concurrent.futures import ThreadPoolExecutor, wait
 
-start_year = 2006
-end_year = 2014
+import pandas as pd
+from pymongo import MongoClient
+
+from stock_model import build_model
+
+# static data
+start_year = 1998
+end_year = 2011
 month = [1, 4, 7, 10]
 n_cpus = multiprocessing.cpu_count()
-models = {}
-classes = {}
-sessions = {}
-test_dicts = {}
 
+# Concurrency stuff
 pool = ThreadPoolExecutor(4)
 futures = []
 
+# MongoDB
+client = MongoClient('localhost', 27017)
+db = client['thesis']
+
 
 def process(start):
+    """
+    This is a parallelisable process that builds and stores the model into MongoDB.
+
+    :param start: the start date. The end date is an offset of 3 years
+    :return:
+    """
     end = start + pd.DateOffset(years=3)
     print("Working on", start, "to", end)
-    model, actual_classes, sess, test_dict = get_model(start, end)
-    models[start.__str__()] = model
-    classes[start.__str__()] = actual_classes
-    sessions[start.__str__()] = sess
-    test_dicts[start.__str__()] = test_dict
+    # build model
+    saver, sess, test_dict, train_dict, f1_score, accuracy = build_model(start, end)
+
+    # If model already exists in db, check accuracy and replace if new model is better.
+    posts = db.posts
+    if posts.find_one({'date': start.date().__str__()}) is not None:
+        stored_accuracy = posts.find_one({'date': start.date().__str__()})['accuracy']
+        if stored_accuracy > accuracy:
+            print("no need to replace data for", start.date().__str__())
+            print("existing stored accuracy", stored_accuracy, "vs", accuracy)
+            return
+    # All model variables are stored in session
+    saver.save(sess, "models/" + start.date().__str__())
+    post = {'date': start.__str__(),
+            'test_data': test_dict,
+            'train_data': train_dict,
+            'f1_score': f1_score,
+            'accuracy': accuracy}
+    posts.insert_one(post)
+    print("Storing!")
 
 
-def generate_dates(start, end, month):
+def generate_start_dates(start, end):
+    """
+    generate all the possible start dates that are shifted by a quarter. cascading window.
+    :param start: the start date
+    :param end: the final (start) date
+    :return: a list all the start dates shifted by a quarter
+    """
     list = []
     for i in range(end - start):
         for j in range(len(month)):
@@ -35,21 +66,21 @@ def generate_dates(start, end, month):
     return list
 
 
-def get_models(start, end):
-    dates = generate_dates(start, end, month)
-    print(dates)
+def build_models(start, end):
+    """
+    Build all the models in parallel for all possible start dates
+    :param start:
+    :param end:
+    :return:
+    """
+    start_dates = generate_start_dates(start, end)
+    print("Date Range:", start_dates)
 
-    for date in dates:
-        futures.append(pool.submit(process, date))
-
+    for start_date in start_dates:
+        futures.append(pool.submit(process, start_date))
     wait(futures)
-    print("PRINTING STUFF")
-    print("Models", models)
-    print("Classes", classes)
-    print("Sessions", sessions)
-    print("Test", test_dicts)
 
 
 if __name__ == '__main__':
-    print(n_cpus)
-    get_models(start_year, end_year)
+    print("number of CPUs:", n_cpus)
+    build_models(start_year, end_year)

@@ -1,11 +1,8 @@
-from concurrent.futures import ProcessPoolExecutor, as_completed
-
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+
 from toolbox import load_indices
-import matplotlib.pylab as plt
-from joblib import Parallel, delayed
 
 
 def tf_confusion_metrics(model, actual_classes, session, feed_dict):
@@ -226,15 +223,15 @@ def run_model(n_hidden_nodes):
     return tf_confusion_metrics(model, actual_classes, sess, feed_dict)
 
 
-node_indices = []
-accuracies = []
-f1scores = []
-
-for n_nodes in range(1, 100):
-    if n_nodes % 5 == 0:
-        f1_score, accuracy = run_model(n_nodes)
-        node_indices.append(n_nodes)
-        accuracies.append(accuracy)
-        f1scores.append(f1_score)
-
-np.savetxt("result_5-100.csv", np.array([node_indices, accuracies, f1scores]), delimiter=",")
+# node_indices = []
+# accuracies = []
+# f1scores = []
+#
+# for n_nodes in range(1, 100):
+#     if n_nodes % 5 == 0:
+#         f1_score, accuracy = run_model(n_nodes)
+#         node_indices.append(n_nodes)
+#         accuracies.append(accuracy)
+#         f1scores.append(f1_score)
+#
+# np.savetxt("result_5-100.csv", np.array([node_indices, accuracies, f1scores]), delimiter=",")

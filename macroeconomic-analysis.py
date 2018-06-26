@@ -1,7 +1,5 @@
 import pandas as pd
-import numpy as np
-from toolbox import extract_macroeconomic_data, test_stationarity, make_indices_stationary, \
-    make_time_series_stationary
+from toolbox import extract_macroeconomic_data, test_stationarity, make_time_series_stationary
 
 start = pd.datetime(1998, 1, 2)
 end = pd.datetime(2016, 1, 2)
