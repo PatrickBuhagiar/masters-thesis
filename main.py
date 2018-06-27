@@ -8,7 +8,7 @@ from stock_model import build_model
 
 # static data
 start_year = 1998
-end_year = 2000
+end_year = 1999
 month = [1, 4, 7, 10]
 n_cpus = multiprocessing.cpu_count()
 
