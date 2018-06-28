@@ -296,4 +296,3 @@ def load_model(date_id):
         print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
         print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
         print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
-
