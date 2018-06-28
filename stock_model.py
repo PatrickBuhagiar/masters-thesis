@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from bson.binary import Binary
+from pymongo import MongoClient
 
 from best_architecture import tf_confusion_metrics
 from toolbox import load_indices
@@ -204,24 +205,24 @@ def build_model(start, end):
     sess = tf.Session()
     num_predictors = len(training_inputs.columns)
     num_classes = len(training_outputs.columns)
-    feature_data = tf.placeholder("float", [None, num_predictors])
-    actual_classes = tf.placeholder("float", [None, num_classes])
+    feature_data = tf.placeholder("float", [None, num_predictors], name="feature_data")
+    actual_classes = tf.placeholder("float", [None, num_classes], name="actual_classes")
 
-    weights1 = tf.Variable(tf.truncated_normal([num_predictors, n_hidden_nodes], stddev=0.0001))
-    biases1 = tf.Variable(tf.ones([n_hidden_nodes]))
-    weights2 = tf.Variable(tf.truncated_normal([n_hidden_nodes, num_classes], stddev=0.0001))
-    biases2 = tf.Variable(tf.ones([2]))
+    weights1 = tf.Variable(tf.truncated_normal([num_predictors, n_hidden_nodes], stddev=0.0001), name="w1")
+    biases1 = tf.Variable(tf.ones([n_hidden_nodes]), name="b1")
+    weights2 = tf.Variable(tf.truncated_normal([n_hidden_nodes, num_classes], stddev=0.0001), name="w2")
+    biases2 = tf.Variable(tf.ones([2]), name="b2")
 
-    hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1)
-    model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2)
-    cost = -tf.reduce_sum(actual_classes * tf.log(model))
+    hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1, name="h")
+    model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2, name="model")
+    cost = -tf.reduce_sum(actual_classes * tf.log(model), name="cost")
     train_op1 = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cost)
     init = tf.global_variables_initializer()
 
     # Run Model
     sess.run(init)
-    correct_prediction = tf.equal(tf.argmax(model, 1), tf.argmax(actual_classes, 1))
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+    correct_prediction = tf.equal(tf.argmax(model, 1), tf.argmax(actual_classes, 1), name="prediction")
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"), name="accuracy")
     for i in range(1, 30001):
         sess.run(
             train_op1,
@@ -247,6 +248,8 @@ def build_model(start, end):
 
     # Calculate the F1 Score and Accuracy with the training set
     f1_score, accuracy = tf_confusion_metrics(model, actual_classes, sess, feed_dict)
+    print(start, f1_score, accuracy)
+
     saver = tf.train.Saver()
 
     test_dict = { # mongodb can't save numpy arrays. convert back with pickle.loads(x)
@@ -260,3 +263,37 @@ def build_model(start, end):
     }
 
     return saver, sess, test_dict, train_dict, f1_score, accuracy
+
+
+def load_model(date_id):
+    """
+    Load a tensor model from disk
+    :param date_id: the id
+    :return:
+    """
+    # MongoDB
+    client = MongoClient('localhost', 27017)
+    db = client['thesis']
+    posts = db.posts
+
+    with tf.Session() as sess:
+        saver = tf.train.import_meta_graph('models/'+date_id+".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("models/"))
+        graph = tf.get_default_graph()
+        model = graph.get_tensor_by_name("model:0")
+        actual_classes = graph.get_tensor_by_name("actual_classes:0")
+        feature_data = graph.get_tensor_by_name("feature_data:0")
+
+        post = posts.find_one({"_id": date_id})
+        test_fd = pickle.loads(post['test_data']['feature_data'])
+        test_ac = pickle.loads(post['test_data']['actual_classes'])
+
+        feed_dict = {
+            feature_data: test_fd,
+            actual_classes: test_ac
+        }
+
+        print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
+        print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
+        print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
+

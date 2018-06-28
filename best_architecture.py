@@ -68,10 +68,11 @@ def tf_confusion_metrics(model, actual_classes, session, feed_dict):
     accuracy = (float(tp) + float(tn)) / (float(tp) + float(fp) + float(fn) + float(tn))
 
     recall = tpr
-    precision = float(tp) / (float(tp) + float(fp))
-
-    f1_score = (2 * (precision * recall) / (precision + recall))
-
+    if recall != 0:
+        precision = float(tp) / (float(tp) + float(fp))
+        f1_score = (2 * (precision * recall) / (precision + recall))
+    else:
+        f1_score = 0
     return f1_score, accuracy
 
 
