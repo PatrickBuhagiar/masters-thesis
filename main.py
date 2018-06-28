@@ -47,7 +47,7 @@ def process(start):
             print("existing stored accuracy", stored_accuracy, "vs", accuracy)
             return
     # All model variables are stored in session
-    saver.save(sess, "models/" + start.date().__str__())
+    saver.save(sess, "models/" + start.date().__str__() + "/" + start.date().__str__())
     posts.update_one({'_id': start.date().__str__()}, {'$set': post}, upsert=True)
     print("Storing!")
 

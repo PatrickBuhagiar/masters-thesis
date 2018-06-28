@@ -277,8 +277,8 @@ def load_model(date_id):
     posts = db.posts
 
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph('models/'+date_id+".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("models/"))
+        saver = tf.train.import_meta_graph('models/'+date_id+"/"+ date_id + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("models/" + date_id + "/"))
         graph = tf.get_default_graph()
         model = graph.get_tensor_by_name("model:0")
         actual_classes = graph.get_tensor_by_name("actual_classes:0")
