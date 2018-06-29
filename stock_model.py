@@ -252,14 +252,15 @@ def build_model(start, end):
 
     saver = tf.train.Saver()
 
-    test_dict = { # mongodb can't save numpy arrays. convert back with pickle.loads(x)
+    test_dict = {  # mongodb can't save numpy arrays. convert back with pickle.loads(x)
         'feature_data': Binary(pickle.dumps(test_inputs.values, protocol=2)),
         'actual_classes': Binary(pickle.dumps(test_outputs.values.reshape(len(test_outputs.values), 2), protocol=2))
     }
 
     train_dict = {
         'feature_data': Binary(pickle.dumps(training_inputs.values, protocol=2)),
-        'actual_classes': Binary(pickle.dumps(training_outputs.values.reshape(len(training_outputs.values), 2), protocol=2))
+        'actual_classes': Binary(
+            pickle.dumps(training_outputs.values.reshape(len(training_outputs.values), 2), protocol=2))
     }
 
     return saver, sess, test_dict, train_dict, f1_score, accuracy
@@ -277,7 +278,7 @@ def load_model(date_id):
     posts = db.posts
 
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph('models/'+date_id+"/"+ date_id + ".meta")
+        saver = tf.train.import_meta_graph('models/' + date_id + "/" + date_id + ".meta")
         saver.restore(sess, tf.train.latest_checkpoint("models/" + date_id + "/"))
         graph = tf.get_default_graph()
         model = graph.get_tensor_by_name("model:0")
@@ -293,6 +294,4 @@ def load_model(date_id):
             actual_classes: test_ac
         }
 
-        print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
-        print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
         print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))

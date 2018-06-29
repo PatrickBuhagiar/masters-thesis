@@ -55,6 +55,53 @@ def extract_index(filename, start, end, date_parse):
     return ts
 
 
+def load_macroeconomic_data(filename, start_index, type='Q'):
+    data = pd.read_csv(filename, index_col='Date')[start_index:]
+    d = {}
+
+    for date, row in data.iterrows():
+        if type == 'Q':
+            d[(stringify(extract_quarterly(date)))] = float(row['Value'])
+        elif type == 'M':
+            d[stringify(extract_month(date))] = float(row['Value'])
+    return d
+
+
+def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
+    if type == 'Q':
+        # convert current date to Q1 and year, and return that quarter and the 3 previous one
+        if 0 < date.month < 4:
+            t_0 = data[stringify([date.year, 1])]
+            t_1 = data[stringify([date.year - 1, 4])]
+            t_2 = data[stringify([date.year - 1, 3])]
+            t_3 = data[stringify([date.year - 1, 2])]
+        elif 4 <= date.month < 7:
+            t_0 = data[stringify([date.year, 2])]
+            t_1 = data[stringify([date.year, 1])]
+            t_2 = data[stringify([date.year - 1, 4])]
+            t_3 = data[stringify([date.year - 1, 3])]
+        elif 7 <= date.month < 10:
+            t_0 = data[stringify([date.year, 3])]
+            t_1 = data[stringify([date.year, 2])]
+            t_2 = data[stringify([date.year, 1])]
+            t_3 = data[stringify([date.year - 1, 4])]
+        else:
+            t_0 = data[stringify([date.year, 4])]
+            t_1 = data[stringify([date.year, 3])]
+            t_2 = data[stringify([date.year, 2])]
+            t_3 = data[stringify([date.year, 1])]
+        return [t_0, t_1, t_2, t_3]
+    elif type == 'M':
+        t_0 = data[stringify([date.year, date.month])]
+        t_1_date = date - pd.DateOffset(months=3)
+        t_1 = data[stringify([t_1_date.year, t_1_date.month])]
+        t_2_date = date - pd.DateOffset(months=6)
+        t_2 = data[stringify([t_2_date.year, t_2_date.month])]
+        t_3_date = date - pd.DateOffset(months=12)
+        t_3 = data[stringify([t_3_date.year, t_3_date.month])]
+        return [t_0, t_1, t_2, t_3] # convert that date to month, and return the current month, 3, 6, and 12 months ago
+
+
 def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     """
     Extracts macroeconomic data from a csv file and filters out into a date range.
@@ -72,7 +119,7 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
 
     for index, row in data.iterrows():
         if type == 'Q':
-            d['Date'].append(convert_quarterly_to_date(index))
+            d['Date'].append(convert_to_date(index))
         elif type == 'D':
             d['Date'].append(pd.to_datetime(index))
         d['Value'].append(float(row['Value']))
@@ -88,7 +135,11 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     return ts
 
 
-def convert_quarterly_to_date(date):
+def stringify(data: []):
+    return data.__str__()
+
+
+def convert_to_date(date):
     """
     Covert a given date String into a pandas datetime
 
@@ -136,6 +187,48 @@ def convert_quarterly_to_date(date):
         elif month == "DEC":
             int_month = 12
         return pd.datetime(int(year), int_month, 1)
+
+
+def extract_month(date):
+    year, month = date.split(" ")
+    int_month = 0
+    if month == "JAN":
+        int_month = 1
+    elif month == "FEB":
+        int_month = 2
+    elif month == "MAR":
+        int_month = 3
+    elif month == "APR":
+        int_month = 4
+    elif month == "MAY":
+        int_month = 5
+    elif month == "JUN":
+        int_month = 6
+    elif month == "JUL":
+        int_month = 7
+    elif month == "AUG":
+        int_month = 8
+    elif month == "SEP":
+        int_month = 9
+    elif month == "OCT":
+        int_month = 10
+    elif month == "NOV":
+        int_month = 11
+    elif month == "DEC":
+        int_month = 12
+    return [int(year), int_month]
+
+
+def extract_quarterly(date):
+    year, quarter = date.replace(" ", "").split("Q")
+    if quarter == "1":
+        return [int(year), 1]
+    elif quarter == "2":
+        return [int(year), 2]
+    elif quarter == "3":
+        return [int(year), 3]
+    else:
+        return [int(year), 4]
 
 
 def plot(indices, title):
