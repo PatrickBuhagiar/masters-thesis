@@ -57,6 +57,10 @@ def extract_index(filename, start, end, date_parse):
 
 def load_macroeconomic_data(filename, start_index, type='Q'):
     data = pd.read_csv(filename, index_col='Date')[start_index:]
+    if type == 'D':
+        all_days = pd.date_range(data.index[0], data.index[-1])
+        data = data.reindex(all_days, fill_value=0)
+        data.fillna(method='ffill')
     d = {}
 
     for date, row in data.iterrows():
@@ -64,6 +68,9 @@ def load_macroeconomic_data(filename, start_index, type='Q'):
             d[(stringify(extract_quarterly(date)))] = float(row['Value'])
         elif type == 'M':
             d[stringify(extract_month(date))] = float(row['Value'])
+        elif type == 'D':
+            parsed_date = pd.to_datetime(date)
+            d[parsed_date.__str__()] = float(row['Value'])
     return d
 
 
@@ -99,7 +106,13 @@ def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
         t_2 = data[stringify([t_2_date.year, t_2_date.month])]
         t_3_date = date - pd.DateOffset(months=12)
         t_3 = data[stringify([t_3_date.year, t_3_date.month])]
-        return [t_0, t_1, t_2, t_3] # convert that date to month, and return the current month, 3, 6, and 12 months ago
+        return [t_0, t_1, t_2, t_3]  # convert that date to month, and return the current month, 3, 6, and 12 months ago
+    elif type == 'D':
+        t_0 = data.T[date].Value
+        t_1 = data.T[(date - pd.DateOffset(months=3)).__str__()].Value
+        t_2 = data.T[(date - pd.DateOffset(months=6)).__str__()].Value
+        t_3 = data.T[(date - pd.DateOffset(months=12)).__str__()].Value
+        return [t_0, t_1, t_2, t_3]
 
 
 def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
@@ -126,11 +139,12 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
 
     ts = pd.DataFrame(d)
     ts = ts.set_index('Date')
-    all_days = pd.date_range(d['Date'][0], d['Date'][-1], freq='D')
+    all_days = pd.date_range(start - pd.DateOffset(months=1), end, freq='D')
     ts = ts.reindex(all_days)
-    ts = ts.interpolate()
+    ts = ts.fillna(method='ffill')
     filtered_day_range = pd.date_range(start, end, freq='D')
     ts = ts.reindex(filtered_day_range)
+    data.fillna(method='ffill')
     ts = ts.dropna()
     return ts
 
@@ -220,15 +234,16 @@ def extract_month(date):
 
 
 def extract_quarterly(date):
-    year, quarter = date.replace(" ", "").split("Q")
-    if quarter == "1":
-        return [int(year), 1]
-    elif quarter == "2":
-        return [int(year), 2]
-    elif quarter == "3":
-        return [int(year), 3]
-    else:
-        return [int(year), 4]
+    if "Q" in date:
+        year, quarter = date.replace(" ", "").split("Q")
+        if quarter == "1":
+            return [int(year), 1]
+        elif quarter == "2":
+            return [int(year), 2]
+        elif quarter == "3":
+            return [int(year), 3]
+        else:
+            return [int(year), 4]
 
 
 def plot(indices, title):
