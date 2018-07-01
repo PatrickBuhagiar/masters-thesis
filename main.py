@@ -7,7 +7,7 @@ from pymongo import MongoClient
 from stock_model import build_model
 
 # static data
-start_year = 1998
+start_year = 2010
 end_year = 2011
 month = [1, 4, 7, 10]
 n_cpus = multiprocessing.cpu_count()
@@ -48,6 +48,7 @@ def process(start):
             return
     # All model variables are stored in session
     saver.save(sess, "models/" + start.date().__str__() + "/" + start.date().__str__())
+    sess.close()
     posts.update_one({'_id': start.date().__str__()}, {'$set': post}, upsert=True)
     print("Storing!")
 

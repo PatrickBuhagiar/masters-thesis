@@ -266,6 +266,23 @@ def build_model(start, end):
     return saver, sess, test_dict, train_dict, f1_score, accuracy
 
 
+def get_model_predictions(date_id, training_inputs):
+    # Load model and variables
+    with tf.Session() as sess:
+        saver = tf.train.import_meta_graph('models/' + date_id + "/" + date_id + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("models/" + date_id + "/"))
+        graph = tf.get_default_graph()
+        model = graph.get_tensor_by_name("model:0")
+        feature_data = graph.get_tensor_by_name("feature_data:0")
+        feed_dict = {
+            feature_data: training_inputs.values,
+        }
+
+        predictions = sess.run(model, feed_dict)
+        sess.close()
+        return predictions
+
+
 def load_model(date_id):
     """
     Load a tensor model from disk
