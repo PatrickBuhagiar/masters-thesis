@@ -424,7 +424,7 @@ def make_time_series_stationary(ts):
     return diff
 
 
-def prepare_macroeconomic_data(start, end, meta_inputs):
+def prepare_macroeconomic_data(start, end, meta_inputs, columns, dates):
     trade_balance_data = load_macroeconomic_data("data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv", 90)
     gdp_data = load_macroeconomic_data("data/macroeconomics/GB/GB_GDP.csv", 90)
     inflation_data = load_macroeconomic_data("data/macroeconomics/GB/GB_INFLATION.csv", 22)
@@ -452,8 +452,7 @@ def prepare_macroeconomic_data(start, end, meta_inputs):
     uem_1 = []
     uem_2 = []
     uem_3 = []
-    for row in meta_inputs.iterrows():
-        date = row[1].Date
+    for date in dates:
         tbd = get_lagged_macroeconomic_data(trade_balance_data, date)
         tbd_0.append(tbd[0])
         tbd_1.append(tbd[1])
@@ -503,3 +502,24 @@ def prepare_macroeconomic_data(start, end, meta_inputs):
     meta_inputs['unemployment_data_1'] = uem_1
     meta_inputs['unemployment_data_2'] = uem_2
     meta_inputs['unemployment_data_3'] = uem_3
+
+    columns.append('trade_balance_data_0')
+    columns.append('trade_balance_data_1')
+    columns.append('trade_balance_data_2')
+    columns.append('trade_balance_data_3')
+    columns.append('gdp_data_0')
+    columns.append('gdp_data_1')
+    columns.append('gdp_data_2')
+    columns.append('gdp_data_3')
+    columns.append('inflation_data_0')
+    columns.append('inflation_data_1')
+    columns.append('inflation_data_2')
+    columns.append('inflation_data_3')
+    columns.append('interest_data_0')
+    columns.append('interest_data_1')
+    columns.append('interest_data_2')
+    columns.append('interest_data_3')
+    columns.append('unemployment_data_0')
+    columns.append('unemployment_data_1')
+    columns.append('unemployment_data_2')
+    columns.append('unemployment_data_3')

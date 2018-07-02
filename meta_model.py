@@ -5,8 +5,7 @@ from pymongo import MongoClient
 from best_architecture import tf_confusion_metrics
 from stock_model import load_data, divide_into_training_testing, organise_data, extract_market_directions, log_diff, \
     get_model_predictions
-from toolbox import load_macroeconomic_data, get_lagged_macroeconomic_data, extract_macroeconomic_data, \
-    prepare_macroeconomic_data
+from toolbox import prepare_macroeconomic_data
 
 # MongoDB initialisation
 client = MongoClient('localhost', 27017)
@@ -21,29 +20,29 @@ extract_market_directions(log_return_data)
 training_test_data = organise_data(log_return_data)
 
 # Split data into training and testing
-inputs = training_test_data[training_test_data.columns[2:]]
+inputs_for_stock_models = training_test_data[training_test_data.columns[2:]]
 outputs = training_test_data[training_test_data.columns[:2]]
 
 # get all stored models and get predictions
 cursor = db.posts.find({})  # get all items
 meta_inputs = pd.DataFrame()
 _range = pd.date_range(start, end)
-meta_inputs['Date'] = _range[:inputs.index.size]
-meta_inputs.set_index('Date')
+dates = _range[:inputs_for_stock_models.index.size]
+columns = []
 
 for item in cursor:
     date = item.get("_id")
+    columns.append(date + "_prediction")
     print(date)
-    model_predictions = get_model_predictions(date, inputs)
+    model_predictions = get_model_predictions(date, inputs_for_stock_models)
     meta_inputs[date + "_predictions_0"] = model_predictions[:, 0]
     meta_inputs[date + "_predictions_1"] = model_predictions[:, 1]
+    # meta_inputs[date + "_prediction"] = 0
     # meta_inputs.ix[model_predictions[:,0] >= 0.5, date + "_prediction"] = 1
 
-
 # Load all macroeconomic data
-prepare_macroeconomic_data(start, end, meta_inputs)
+prepare_macroeconomic_data(start, end, meta_inputs, columns, dates)
 
-meta_inputs = meta_inputs.set_index('Date')
 # concatenate all model outputs and macro data into one matrix + expected output
 
 
@@ -67,7 +66,7 @@ biases2 = tf.Variable(tf.ones([2]))
 hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1)
 model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2)
 cost = -tf.reduce_sum(actual_classes * tf.log(model))
-train_op1 = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cost)
+train_op1 = tf.train.AdamOptimizer(learning_rate=1).minimize(cost)
 init = tf.global_variables_initializer()
 
 # Run Model
@@ -100,5 +99,3 @@ feed_dict = {
 # Calculate the F1 Score and Accuracy with the training set
 f1_score, accuracy = tf_confusion_metrics(model, actual_classes, sess, feed_dict)
 print(start, f1_score, accuracy)
-
-# execute model
