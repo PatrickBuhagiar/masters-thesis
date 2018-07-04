@@ -313,3 +313,10 @@ def load_model(date_id):
         }
 
         print(tf_confusion_metrics(model, actual_classes, sess, feed_dict))
+
+
+def load_train_test_stock_data(start, end):
+    df = load_data(start, end)
+    log_return_data = log_diff(df)
+    extract_market_directions(log_return_data)
+    return organise_data(log_return_data)
