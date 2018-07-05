@@ -57,7 +57,7 @@ biases2 = tf.Variable(tf.ones([2]))
 hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1)
 model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2)
 cost = -tf.reduce_sum(actual_classes * tf.log(model))
-train_op1 = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cost)
+train_op1 = tf.train.AdamOptimizer(learning_rate=0.00008).minimize(cost)
 init = tf.global_variables_initializer()
 
 # Run Model
