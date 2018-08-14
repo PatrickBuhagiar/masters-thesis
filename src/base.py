@@ -7,10 +7,8 @@ from best_architecture import tf_confusion_metrics
 from stock_model import divide_into_training_testing
 from toolbox import extract_index
 
-start = pd.datetime(2013, 1, 1)
+start = pd.datetime(2008, 1, 1)
 end = pd.datetime(2018, 1, 1)
-
-n_hidden_nodes = 4
 
 # load FTSE and prepare data
 dateparse = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
@@ -27,7 +25,7 @@ directions['DOWN'] = 0
 directions.ix[directions['FTSE'] < 0, 'DOWN'] = 1
 
 data = pd.DataFrame(
-    columns=['up', 'down', 'ftse_1', 'ftse_2', 'ftse_3']
+    columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'ftse_4', 'ftse_5']
 )
 for i in range(7, len(ts_log)):
     up = directions['UP'].ix[i]
@@ -35,87 +33,63 @@ for i in range(7, len(ts_log)):
     ftse_1 = ts_log.ix[i - 1]
     ftse_2 = ts_log.ix[i - 2]
     ftse_3 = ts_log.ix[i - 3]
+    ftse_4 = ts_log.ix[i - 4]
+    ftse_5 = ts_log.ix[i - 5]
     data = data.append(
         {
             'up': up,
-            'down': down,
+            # 'down': down,
             'ftse_1': ftse_1,
             'ftse_2': ftse_2,
-            'ftse_3': ftse_3
+            'ftse_3': ftse_3,
+            'ftse_4': ftse_4,
+            'ftse_5': ftse_5
         }, ignore_index=True
     )
 
-inputs = data[data.columns[2:]]
-outputs = data[data.columns[:2]]
+inputs = data[data.columns[1:]]
+outputs = data[data.columns[:1]]
 
 test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(inputs, outputs, len(data))
 
-# Build model
-sess = tf.Session()
-num_predictors = len(training_inputs.columns)
-num_classes = len(training_outputs.columns)
-feature_data = tf.placeholder("float", [None, num_predictors], name="feature_data")
-actual_classes = tf.placeholder("float", [None, num_classes], name="actual_classes")
+feature_count = training_inputs.shape[1]
+label_count = training_outputs.shape[1]
+print(feature_count, label_count)
 
-weights1 = tf.Variable(tf.truncated_normal([num_predictors, n_hidden_nodes], stddev=0.0001), name="w1")
-biases1 = tf.Variable(tf.ones([n_hidden_nodes]), name="b1")
-weights2 = tf.Variable(tf.truncated_normal([n_hidden_nodes, num_classes], stddev=0.0001), name="w2")
-biases2 = tf.Variable(tf.ones([2]), name="b2")
+training_epochs = 3000
+learning_rate = 0.005
+n_hidden_nodes = 5
+cost_history = np.empty(shape=[1], dtype=float)
 
-hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1, name="h")
-model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2, name="model")
-cost = -tf.reduce_sum(actual_classes * tf.log(model), name="cost")
-train_op1 = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cost)
-init = tf.global_variables_initializer()
+X = tf.placeholder(tf.float32, [None, feature_count])
+Y = tf.placeholder(tf.float32, [None, label_count])
+is_training = tf.Variable(True, dtype=tf.bool)
 
-sess.run(init)
+initializer = tf.contrib.layers.xavier_initializer()
+h0 = tf.layers.dense(X, n_hidden_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
+h0 = tf.nn.dropout(h0, 0.80)
+h1 = tf.layers.dense(h0, label_count, activation=None)
 
-binary_prediction = tf.greater_equal(model, 0.5)
+cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
+cost = tf.reduce_mean(cross_entropy)
+optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
-correct_prediction = tf.equal(tf.argmax(model, 1), tf.argmax(actual_classes, 1), name="prediction")
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"), name="accuracy")
-for i in range(1, 30001):
-    sess.run(
-        train_op1,
-        feed_dict={
-            feature_data: training_inputs.values,
-            actual_classes: training_outputs.values.reshape(len(training_outputs.values), 2)
-        }
-    )
-    # Every 5000, we are going to print the current training accuracy of the model
-    if i % 5000 == 0:
-        print("start date", start, "iteration", i, sess.run(
-            binary_prediction,
-            feed_dict={
-                feature_data: training_inputs.values,
-                actual_classes: training_outputs.values.reshape(len(training_outputs.values), 2)
-            }
-        ))
+predicted = tf.nn.sigmoid(h1)
+correct_pred = tf.equal(tf.round(predicted), Y)
+accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
-feed_dict = {
-    feature_data: test_inputs.values,
-    actual_classes: test_outputs.values.reshape(len(test_outputs.values), 2)
-}
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
 
-predicted = tf.argmax(model, 1)
-actual = tf.argmax(actual_classes, 1)
+    for step in range(training_epochs + 1):
+        sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs})
+        loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs})
+        cost_history = np.append(cost_history, acc)
 
-TP = tf.count_nonzero(tf.multiply(predicted, actual))
-TN = tf.count_nonzero(tf.multiply(tf.subtract(predicted, 1), tf.subtract(actual, 1)))
-FP = tf.count_nonzero(tf.multiply(predicted, tf.subtract(actual, 1)))
-FN = tf.count_nonzero(tf.multiply(tf.subtract(predicted, 1), actual))
+        if step % 500 == 0:
+            print("Step: {:5}\tLoss: {:.3f}\tAcc: {:.2%}".format(step, loss, acc))
 
-tp, tn, fp, fn = sess.run(
-    [TP, TN, FP, FN],
-    feed_dict
-)
+    print('Test Accuracy:', sess.run([accuracy], feed_dict={X: test_inputs, Y: test_outputs}))
+    test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
 
-precision = tp/ (tp + fp)
-recall = tp / (tp + fn)
-f1 = 2.0 * precision * recall / (precision + recall)
-accuracy = (tp + tn) / (tp + fn + tn + fp)
-
-
-# Calculate the F1 Score and Accuracy with the training set
-f1_score1, accuracy1 = tf_confusion_metrics(model, actual_classes, sess, feed_dict)
-print(f1, accuracy)
+    print("lol")
