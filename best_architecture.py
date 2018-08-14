@@ -141,9 +141,9 @@ def run_model(n_hidden_nodes):
         nikkei_log_return_0 = log_return_data['NIKKEI_log_return'].ix[i]
         nikkei_log_return_1 = log_return_data['NIKKEI_log_return'].ix[i - 1]
         nikkei_log_return_2 = log_return_data['NIKKEI_log_return'].ix[i - 2]
-        sp500_log_return_0 = log_return_data['S&P500_log_return'].ix[i]
-        sp500_log_return_1 = log_return_data['S&P500_log_return'].ix[i - 1]
-        sp500_log_return_2 = log_return_data['S&P500_log_return'].ix[i - 2]
+        sp500_log_return_0 = log_return_data['S&P500_log_return'].ix[i - 1]
+        sp500_log_return_1 = log_return_data['S&P500_log_return'].ix[i - 2]
+        sp500_log_return_2 = log_return_data['S&P500_log_return'].ix[i - 3]
 
         training_test_data = training_test_data.append(
             {

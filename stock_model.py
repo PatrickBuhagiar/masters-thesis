@@ -8,7 +8,6 @@ from pymongo import MongoClient
 
 from best_architecture import tf_confusion_metrics
 from toolbox import load_indices
-import threading
 
 
 def normalise_stocks(stocks):
@@ -125,9 +124,9 @@ def organise_data(stocks):
         nikkei_log_return_0 = stocks['NIKKEI_log_return'].ix[i]
         nikkei_log_return_1 = stocks['NIKKEI_log_return'].ix[i - 1]
         nikkei_log_return_2 = stocks['NIKKEI_log_return'].ix[i - 2]
-        sp500_log_return_0 = stocks['S&P500_log_return'].ix[i]
-        sp500_log_return_1 = stocks['S&P500_log_return'].ix[i - 1]
-        sp500_log_return_2 = stocks['S&P500_log_return'].ix[i - 2]
+        sp500_log_return_0 = stocks['S&P500_log_return'].ix[i - 1]
+        sp500_log_return_1 = stocks['S&P500_log_return'].ix[i - 2]
+        sp500_log_return_2 = stocks['S&P500_log_return'].ix[i - 3]
 
         data = data.append(
             {

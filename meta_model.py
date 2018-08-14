@@ -30,7 +30,7 @@ for item in cursor:
     print(date)
     model_predictions = get_model_predictions(date, inputs_for_stock_models)
     meta_inputs[date + "_predictions_0"] = model_predictions[:, 0]
-    # meta_inputs[date + "_predictions_1"] = model_predictions[:, 1]
+    meta_inputs[date + "_predictions_1"] = model_predictions[:, 1]
     # meta_inputs[date + "_prediction"] = 0  # use this to convert outputs to binary
     # meta_inputs.ix[model_predictions[:,0] >= 0.5, date + "_prediction"] = 1
 
@@ -57,7 +57,7 @@ biases2 = tf.Variable(tf.ones([2]))
 hidden_layer = tf.nn.relu(tf.matmul(feature_data, weights1) + biases1)
 model = tf.nn.softmax(tf.matmul(hidden_layer, weights2) + biases2)
 cost = -tf.reduce_sum(actual_classes * tf.log(model))
-train_op1 = tf.train.AdamOptimizer(learning_rate=0.00008).minimize(cost)
+train_op1 = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cost)
 init = tf.global_variables_initializer()
 
 # Run Model
