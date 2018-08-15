@@ -1,13 +1,13 @@
+import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 
 # global variables
-from best_architecture import tf_confusion_metrics
 from stock_model import divide_into_training_testing
 from toolbox import extract_index
 
-start = pd.datetime(2008, 1, 1)
+start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
 # load FTSE and prepare data
@@ -25,7 +25,7 @@ directions['DOWN'] = 0
 directions.ix[directions['FTSE'] < 0, 'DOWN'] = 1
 
 data = pd.DataFrame(
-    columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'ftse_4', 'ftse_5']
+    columns=['up', 'ftse_1', 'ftse_2', 'ftse_3']
 )
 for i in range(7, len(ts_log)):
     up = directions['UP'].ix[i]
@@ -33,17 +33,13 @@ for i in range(7, len(ts_log)):
     ftse_1 = ts_log.ix[i - 1]
     ftse_2 = ts_log.ix[i - 2]
     ftse_3 = ts_log.ix[i - 3]
-    ftse_4 = ts_log.ix[i - 4]
-    ftse_5 = ts_log.ix[i - 5]
     data = data.append(
         {
             'up': up,
             # 'down': down,
             'ftse_1': ftse_1,
             'ftse_2': ftse_2,
-            'ftse_3': ftse_3,
-            'ftse_4': ftse_4,
-            'ftse_5': ftse_5
+            'ftse_3': ftse_3
         }, ignore_index=True
     )
 
@@ -51,45 +47,73 @@ inputs = data[data.columns[1:]]
 outputs = data[data.columns[:1]]
 
 test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(inputs, outputs, len(data))
-
-feature_count = training_inputs.shape[1]
-label_count = training_outputs.shape[1]
-print(feature_count, label_count)
-
-training_epochs = 3000
 learning_rate = 0.005
 n_hidden_nodes = 5
-cost_history = np.empty(shape=[1], dtype=float)
 
-X = tf.placeholder(tf.float32, [None, feature_count])
-Y = tf.placeholder(tf.float32, [None, label_count])
-is_training = tf.Variable(True, dtype=tf.bool)
 
-initializer = tf.contrib.layers.xavier_initializer()
-h0 = tf.layers.dense(X, n_hidden_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
-h0 = tf.nn.dropout(h0, 0.80)
-h1 = tf.layers.dense(h0, label_count, activation=None)
+def run(learn_rate, n_nodes):
+    feature_count = training_inputs.shape[1]
+    label_count = training_outputs.shape[1]
+    training_epochs = 3000
 
-cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
-cost = tf.reduce_mean(cross_entropy)
-optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+    cost_history = np.empty(shape=[1], dtype=float)
+    X = tf.placeholder(tf.float32, [None, feature_count])
+    Y = tf.placeholder(tf.float32, [None, label_count])
+    is_training = tf.Variable(True, dtype=tf.bool)
+    initializer = tf.contrib.layers.xavier_initializer()
+    h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
+    h0 = tf.nn.dropout(h0, 0.80)
+    h1 = tf.layers.dense(h0, label_count, activation=None)
+    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
+    cost = tf.reduce_mean(cross_entropy)
+    optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
+    predicted = tf.nn.sigmoid(h1)
+    correct_pred = tf.equal(tf.round(predicted), Y)
+    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
 
-predicted = tf.nn.sigmoid(h1)
-correct_pred = tf.equal(tf.round(predicted), Y)
-accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+        for step in range(training_epochs + 1):
+            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs})
+            loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs})
+            cost_history = np.append(cost_history, acc)
 
-with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
+            if step % 500 == 0:
+                print("Step: {:5}\tLoss: {:.3f}\tAcc: {:.2%}".format(step, loss, acc))
 
-    for step in range(training_epochs + 1):
-        sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs})
-        loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs})
-        cost_history = np.append(cost_history, acc)
+        return sess.run(accuracy, feed_dict={X: test_inputs, Y: test_outputs})
+        # test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
 
-        if step % 500 == 0:
-            print("Step: {:5}\tLoss: {:.3f}\tAcc: {:.2%}".format(step, loss, acc))
 
-    print('Test Accuracy:', sess.run([accuracy], feed_dict={X: test_inputs, Y: test_outputs}))
-    test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
+n_nodes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+legends = []
+rates = []
 
-    print("lol")
+for j in range(0, 5):
+    learning_rate = 0.001 + (j / 500.0)
+    accuracy = []
+    print("iter 1")
+    for i in range(0, len(n_nodes)):
+        acc = run(learning_rate, n_nodes[i])
+        accuracy.append(acc)
+
+    # print("iter 2")
+    # for i in range(0, len(n_nodes)):
+    #     acc = run(learning_rate, n_nodes[i])
+    #     accuracy[i] += acc
+
+    print("iter 3")
+    for i in range(0, len(n_nodes)):
+        acc = run(learning_rate, n_nodes[i])
+        accuracy[i] += acc
+        accuracy[i] = accuracy[i] / 2.0
+
+    l, = plt.plot(n_nodes, accuracy, label="l.r. " + learning_rate.__str__())
+    legends.append(l)
+    rates.append("l.r. " + learning_rate.__str__())
+
+plt.legend(legends, rates)
+plt.title("Plot of Hit Accuracies for Various Number of Hidden Nodes and Learning Rates")
+plt.xlabel("Number of Hidden Nodes")
+plt.ylabel("Average Accuracy")
+plt.show()
