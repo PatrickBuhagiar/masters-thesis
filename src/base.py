@@ -1,13 +1,16 @@
 import matplotlib.pylab as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import csv
 
 # global variables
 from stock_model import divide_into_training_testing
 from toolbox import extract_index
 
-start = pd.datetime(2008, 1, 1)
+start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
 # load FTSE and prepare data
@@ -86,38 +89,34 @@ def run(learn_rate, n_nodes):
         # test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
 
 
-# print(run(0.005, 10))
+X = np.arange(4, 27, 2)  # number of nodes
+Y = np.arange(0.001, 0.012, 0.002)  # learning rates
+Z = np.ones([len(X), len(Y)])
 
-n_nodes = [5, 10, 15, 20, 25, 30]
-legends = []
-rates = []
-
-for j in range(0, 6):
-    learning_rate = 0.001 + (j / 500.0)
+for j in range(0, len(Y)):
+    learning_rate = Y[j]
     accuracy = []
     print("j", j)
-    print("iter 1")
-    for i in range(0, len(n_nodes)):
-        acc = run(learning_rate, n_nodes[i])
-        accuracy.append(acc)
+    print("iter 1", j)
+    for i in range(0, len(X)):
+        n_nodes = X[i]
+        acc = 0
+        for k in range(0, 5):
+            acc += run(learning_rate, n_nodes)
+        acc = acc / 5.0
+        Z[j][i] = round(acc, 2)
 
-    # print("iter 2")
-    # for i in range(0, len(n_nodes)):
-    #     acc = run(learning_rate, n_nodes[i])
-    #     accuracy[i] += acc
+np.savetxt("accuracies.csv", Z, delimiter=",")
 
-    print("iter 2")
-    for i in range(0, len(n_nodes)):
-        acc = run(learning_rate, n_nodes[i])
-        accuracy[i] += acc
-        accuracy[i] = accuracy[i] / 2.0
+# Z = np.array(list(csv.reader(open("accuracies_inv.csv"), delimiter=","))).astype("float")
+X, Y = np.meshgrid(X, Y)
 
-    l, = plt.plot(n_nodes, accuracy, label="l.r. " + learning_rate.__str__())
-    legends.append(l)
-    rates.append("l.r. " + learning_rate.__str__())
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.set_xlabel("Learning Rate")
+ax.set_ylabel("Number of Hidden Layer Nodes")
+ax.set_zlabel("Accuracy")
 
-plt.legend(legends, rates)
-plt.title("Plot of Hit Accuracies for Various Number of Hidden Nodes and Learning Rates")
-plt.xlabel("Number of Hidden Nodes")
-plt.ylabel("Average Accuracy")
+plt.title("3D plot of Number of Nodes VS Learning Rate VS Accuracy")
+surf = ax.plot_surface(Y, X, Z, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
 plt.show()
