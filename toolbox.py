@@ -34,7 +34,7 @@ def load_indices(start, end):
 
 def extract_index(filename, start, end, date_parse):
     """
-    Extracts the index from a csv file and filters out into a date range.
+    Extracts the index from a csv file and filters base_out into a date range.
 
     :param  filename: The name of the csv file
     :param     start: The start date
@@ -118,7 +118,7 @@ def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
 
 def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     """
-    Extracts macroeconomic data from a csv file and filters out into a date range.
+    Extracts macroeconomic data from a csv file and filters base_out into a date range.
 
     :param filename: The name of the csv file
     :param start_index: the start index of the csv file (therefore skip the first n values). In some cases, initial values of csv files are unwanted
