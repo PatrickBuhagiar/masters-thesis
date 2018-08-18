@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/only_other_stock_markets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toolbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/toolbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/only_other_stock_markets.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/only_other_stock_markets.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,88 +17,53 @@
     <favorites_list name="thesis" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/base.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="87">
-                  <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="327" column="38" lean-forward="true" selection-start-line="327" selection-start-column="38" selection-end-line="327" selection-end-column="38" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="toolbox.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/toolbox.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="282">
-                  <caret line="46" selection-start-line="46" selection-end-line="46" />
-                  <folding>
-                    <element signature="e#33#63#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="toolbox.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/toolbox.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#33#63#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="33" column="66" lean-forward="true" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
-                  <folding>
-                    <element signature="e#0#22#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="stock_model.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/stock_model.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-330">
-                  <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
-                  <folding>
-                    <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="126" column="7" lean-forward="true" selection-start-line="126" selection-start-column="7" selection-end-line="126" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="341" column="14" lean-forward="true" selection-start-line="341" selection-start-column="14" selection-end-line="341" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="otherstocks_console.out" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="48" column="78" lean-forward="true" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="toolbox.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/toolbox.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#33#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -123,6 +87,7 @@
       <find>cac</find>
       <find>dax</find>
       <find>hkse</find>
+      <find>001</find>
     </findStrings>
     <replaceStrings>
       <replace>dax</replace>
@@ -169,8 +134,9 @@
         <option value="$PROJECT_DIR$/best_architecture.py" />
         <option value="$PROJECT_DIR$/src/accuracies_inv.csv" />
         <option value="$PROJECT_DIR$/src/console.out" />
-        <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/toolbox.py" />
+        <option value="$PROJECT_DIR$/src/otherstocks_console.out" />
+        <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
       </list>
     </option>
@@ -217,6 +183,7 @@
       <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\src\only_stocks" />
       <recent name="C:\dev\thesis\thesis\src\out" />
       <recent name="C:\dev\thesis\thesis" />
       <recent name="C:\dev\thesis\thesis\main" />
@@ -357,14 +324,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" weight="0.14102565" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.33293977" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34710744" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34710744" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3305785" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
@@ -639,7 +607,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/t.py" />
     <entry file="file://$PROJECT_DIR$/f1.csv" />
     <entry file="file://$PROJECT_DIR$/results_35-55.csv" />
     <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/matplotlib/pyplot.py">
@@ -921,6 +888,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/toolbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#33#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -943,30 +920,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+        <state relative-caret-position="34">
+          <caret line="126" column="7" lean-forward="true" selection-start-line="126" selection-start-column="7" selection-end-line="126" selection-end-column="7" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="48" column="78" lean-forward="true" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="327" column="38" lean-forward="true" selection-start-line="327" selection-start-column="38" selection-end-line="327" selection-end-column="38" />
+        <state relative-caret-position="383">
+          <caret line="341" column="14" lean-forward="true" selection-start-line="341" selection-start-column="14" selection-end-line="341" selection-end-column="14" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/toolbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="e#33#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
