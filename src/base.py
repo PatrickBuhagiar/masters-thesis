@@ -123,22 +123,23 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 
 if __name__ == '__main__':
-    # test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
+    test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
     X = np.arange(4, 27, 2)  # number of nodes
     Y = np.arange(0.001, 0.012, 0.002)  # learning rates
-    # accuracies = np.ones([len(X), len(Y)])
-    # f1s = np.ones([len(X), len(Y)])
-    # for j in range(0, len(Y)):
-    #     futures.append(
-    #         pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
-    #                     test_inputs,
-    #                     test_outputs))
-    #
-    # wait(futures)
-    # np.savetxt("final_accuracies.csv", accuracies, delimiter=",")
-    # np.savetxt("final_f1s.csv", f1s, delimiter=",")
+    accuracies = np.ones([len(X), len(Y)])
+    f1s = np.ones([len(X), len(Y)])
+    for j in range(0, len(Y)):
+        futures.append(
+            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+                        test_inputs,
+                        test_outputs))
 
-    accuracies = np.array(list(csv.reader(open("final_accuracies.csv"), delimiter=","))).astype("float")
+    wait(futures)
+    np.savetxt("final_accuracies.csv", accuracies, delimiter=",")
+    np.savetxt("final_f1s.csv", f1s, delimiter=",")
+
+    # uncomment this if you want to load results directly from file
+    # accuracies = np.array(list(csv.reader(open("final_accuracies.csv"), delimiter=","))).astype("float")
     Y, X = np.meshgrid(Y, X)
 
     fig = plt.figure()

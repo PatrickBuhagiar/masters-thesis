@@ -32,7 +32,7 @@ def load_indices(start, end):
             "HKSE": ts_HSI}
 
 
-def extract_index(filename, start, end, date_parse):
+def extract_index(filename, start, end, date_parse, dropna=True):
     """
     Extracts the index from a csv file and filters base_out into a date range.
 
@@ -40,6 +40,7 @@ def extract_index(filename, start, end, date_parse):
     :param     start: The start date
     :param       end: the end date
     :param date_parse: the type of date parsing
+    :param dropna: drop any nas
 
     :return: The indices as a time series
     """
@@ -47,12 +48,9 @@ def extract_index(filename, start, end, date_parse):
     # Fill missing dates and values
     all_days = pd.date_range(start, end, freq='D')
     data = data.reindex(all_days)
-    # data = data.fillna(method='ffill')
-    # filtered_days = pd.date_range(start, end, freq='D')
-    # data = data.reindex(filtered_days)
-    # data = data.fillna(method='ffill')
     ts = data['Close']
-    ts = ts.dropna()
+    if dropna:
+        ts = ts.dropna()
     return ts
 
 
@@ -483,10 +481,18 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
         uem_1.append(uem[1])
         uem_2.append(uem[2])
         uem_3.append(uem[3])
-    meta_inputs['trade_balance_data_0'] = [(x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values())) for x in tbd_0]
-    meta_inputs['trade_balance_data_1'] = [(x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values())) for x in tbd_1]
-    meta_inputs['trade_balance_data_2'] = [(x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values())) for x in tbd_2]
-    meta_inputs['trade_balance_data_3'] = [(x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values())) for x in tbd_3]
+    meta_inputs['trade_balance_data_0'] = [
+        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
+        for x in tbd_0]
+    meta_inputs['trade_balance_data_1'] = [
+        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
+        for x in tbd_1]
+    meta_inputs['trade_balance_data_2'] = [
+        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
+        for x in tbd_2]
+    meta_inputs['trade_balance_data_3'] = [
+        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
+        for x in tbd_3]
     meta_inputs['gdp_data_0'] = [x / max(gdp_data.values()) for x in gdp_0]
     meta_inputs['gdp_data_1'] = [x / max(gdp_data.values()) for x in gdp_1]
     meta_inputs['gdp_data_2'] = [x / max(gdp_data.values()) for x in gdp_2]
