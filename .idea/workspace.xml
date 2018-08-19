@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/only_other_stock_markets.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/only_other_stock_markets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="126" column="7" lean-forward="true" selection-start-line="126" selection-start-column="7" selection-end-line="126" selection-end-column="7" />
+            <state relative-caret-position="252">
+              <caret line="127" column="41" lean-forward="true" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="41" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -30,34 +29,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="341" column="14" lean-forward="true" selection-start-line="341" selection-start-column="14" selection-end-line="341" selection-end-column="14" />
+            <state relative-caret-position="407">
+              <caret line="340" column="55" selection-start-line="340" selection-start-column="55" selection-end-line="340" selection-end-column="55" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="otherstocks_console.out" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="48" column="78" lean-forward="true" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="toolbox.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/toolbox.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-              <folding>
-                <element signature="e#33#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,6 +66,7 @@
       <find>dax</find>
       <find>hkse</find>
       <find>001</find>
+      <find>dickey</find>
     </findStrings>
     <replaceStrings>
       <replace>dax</replace>
@@ -136,8 +115,10 @@
         <option value="$PROJECT_DIR$/src/console.out" />
         <option value="$PROJECT_DIR$/toolbox.py" />
         <option value="$PROJECT_DIR$/src/otherstocks_console.out" />
-        <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
+        <option value="$PROJECT_DIR$/src/only_maro_params.py" />
+        <option value="$PROJECT_DIR$/src/only_macro_train_single_model.py" />
+        <option value="$PROJECT_DIR$/src/base.py" />
       </list>
     </option>
   </component>
@@ -201,7 +182,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.only_other_stock_markets">
+  <component name="RunManager" selected="Python.base">
     <configuration name="base" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -301,8 +282,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.only_other_stock_markets" />
         <item itemvalue="Python.base" />
+        <item itemvalue="Python.only_other_stock_markets" />
         <item itemvalue="Python.meta_model" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.stock_model" />
@@ -324,19 +305,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.33293977" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34710744" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32585597" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34710744" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3305785" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.29916567" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -347,23 +327,23 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14148352" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
+      <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.35064936" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.33175915" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info id="Favorites" order="0" side_tool="true" weight="0.22537112" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34710744" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" visible="true" weight="0.33293977" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3305785" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.33492252" />
+      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -383,19 +363,14 @@
           <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="218" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/base.py</url>
           <line>102</line>
           <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/base.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="243" />
+          <url>file://$PROJECT_DIR$/toolbox.py</url>
+          <line>313</line>
+          <option name="timeStamp" value="253" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -408,7 +383,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="252" />
+      <option name="time" value="256" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -560,6 +535,41 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>ftse_log</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>ftse_normalised</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>ftse_normalised.shift()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_inputs</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_inputs['ftse_1'].values</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_inputs['ftse_1']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>test_inputs[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>data</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -569,60 +579,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>n225_log.ix[date_6]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>date_2</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n225_log</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>date_5</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n225_log.ix[date_5]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n225_log.ix[date_3]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n225_log.ix[date_4]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/f1.csv" />
-    <entry file="file://$PROJECT_DIR$/results_35-55.csv" />
-    <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3356" column="8" selection-start-line="3356" selection-start-column="8" selection-end-line="3356" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/indices/^FCHI.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/indices/^GDAXI.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -743,9 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -798,9 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="30" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,9 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding>
-            <element signature="e#33#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -888,26 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/toolbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="e#33#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="33" column="66" lean-forward="true" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stock_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-330">
@@ -918,27 +848,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base.py">
+    <entry file="file://$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="126" column="7" lean-forward="true" selection-start-line="126" selection-start-column="7" selection-end-line="126" selection-end-column="7" />
+        <state relative-caret-position="816">
+          <caret line="48" column="78" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toolbox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1432">
+          <caret line="490" column="26" lean-forward="true" selection-start-line="490" selection-start-column="26" selection-end-line="490" selection-end-column="26" />
+          <folding>
+            <element signature="e#33#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/838557750/numpy/core/umath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="2879" column="4" selection-start-line="2879" selection-start-column="4" selection-end-line="2879" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/pandas/core/groupby/groupby.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="2046" column="8" selection-start-line="2046" selection-start-column="8" selection-end-line="2046" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/only_macro_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/only_other_stocks/otherstocks_console.out">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="48" column="78" lean-forward="true" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/only_macro_train_single_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="341" column="14" lean-forward="true" selection-start-line="341" selection-start-column="14" selection-end-line="341" selection-end-column="14" />
+        <state relative-caret-position="407">
+          <caret line="340" column="55" selection-start-line="340" selection-start-column="55" selection-end-line="340" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="127" column="41" lean-forward="true" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="41" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>

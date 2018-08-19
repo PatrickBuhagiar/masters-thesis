@@ -124,8 +124,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(4, 27, 2)  # number of nodes
-    Y = np.arange(0.001, 0.012, 0.002)  # learning rates
+    X = np.arange(20, 29, 1)  # number of nodes
+    Y = np.arange(0.0005, 0.0017, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -135,8 +135,8 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("final_accuracies.csv", accuracies, delimiter=",")
-    np.savetxt("final_f1s.csv", f1s, delimiter=",")
+    np.savetxt("base_accuracies.csv", accuracies, delimiter=",")
+    np.savetxt("base_f1s.csv", f1s, delimiter=",")
 
     # uncomment this if you want to load results directly from file
     # accuracies = np.array(list(csv.reader(open("final_accuracies.csv"), delimiter=","))).astype("float")
@@ -149,5 +149,5 @@ if __name__ == '__main__':
     ax.set_zlabel("Accuracy")
 
     plt.title("3D plot of Number of Nodes VS Learning Rate VS Accuracy")
-    surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
+    surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
     plt.show()
