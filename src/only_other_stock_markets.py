@@ -13,7 +13,7 @@ start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
-pool = ThreadPoolExecutor(4)
+pool = ThreadPoolExecutor(16)
 futures = []
 
 def divide_into_training_testing(inputs, outputs, n):
