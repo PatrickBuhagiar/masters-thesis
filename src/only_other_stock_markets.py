@@ -9,9 +9,6 @@ import multiprocessing
 from concurrent.futures import ThreadPoolExecutor, wait
 
 # global variables
-from stock_model import divide_into_training_testing
-from toolbox import extract_index
-
 start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
@@ -19,6 +16,40 @@ end = pd.datetime(2018, 1, 1)
 pool = ThreadPoolExecutor(4)
 futures = []
 
+def divide_into_training_testing(inputs, outputs, n):
+    """
+    Divide the data into training and testing.
+    This is split as 80/20.
+    :param inputs: the input data
+    :param outputs: the output data
+    :param n: the size of the dataset (training + testing)
+    :return: the inputs and outputs of both the training and testing data
+    """
+    training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
+    training_inputs = inputs[:training_set_size]
+    training_outputs = outputs[:training_set_size]
+    test_inputs = inputs[training_set_size:]
+    test_outputs = outputs[training_set_size:]
+    return test_outputs, test_inputs, training_outputs, training_inputs
+
+def extract_index(filename, start, end, date_parse, dropna=True):
+    """
+    Extracts the index from a csv file and filters base_out into a date range.
+    :param  filename: The name of the csv file
+    :param     start: The start date
+    :param       end: the end date
+    :param date_parse: the type of date parsing
+    :param dropna: drop any nas
+    :return: The indices as a time series
+    """
+    data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
+    # Fill missing dates and values
+    all_days = pd.date_range(start, end, freq='D')
+    data = data.reindex(all_days)
+    ts = data['Close']
+    if dropna:
+        ts = ts.dropna()
+    return ts
 
 def prepare_data():
     dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
