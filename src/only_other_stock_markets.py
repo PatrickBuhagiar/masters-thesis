@@ -1,6 +1,6 @@
-#import matplotlib.pylab as plt
-#from mpl_toolkits.mplot3d import Axes3D
-#from matplotlib import cm
+# import matplotlib.pylab as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# from matplotlib import cm
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -15,6 +15,7 @@ end = pd.datetime(2018, 1, 1)
 # Concurrency stuff
 pool = ThreadPoolExecutor(16)
 futures = []
+
 
 def divide_into_training_testing(inputs, outputs, n):
     """
@@ -31,6 +32,7 @@ def divide_into_training_testing(inputs, outputs, n):
     test_inputs = inputs[training_set_size:]
     test_outputs = outputs[training_set_size:]
     return test_outputs, test_inputs, training_outputs, training_inputs
+
 
 def extract_index(filename, start, end, date_parse, dropna=True):
     """
@@ -50,6 +52,7 @@ def extract_index(filename, start, end, date_parse, dropna=True):
     if dropna:
         ts = ts.dropna()
     return ts
+
 
 def prepare_data():
     dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
@@ -342,8 +345,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(2, 10, 1)  # number of nodes
-    Y = np.arange(0.0008, 0.0027, 0.0002)  # learning rates
+    X = np.arange(4, 11, 1)  # number of nodes
+    Y = np.arange(0.0001, 0.0015, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -353,21 +356,21 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("other_stocks_accuracies.csv", accuracies, delimiter=",")
-    np.savetxt("other_stocks_f1s.csv", f1s, delimiter=",")
+    np.savetxt("other_stocks_accuracies_4-11_0001-0015.csv", accuracies, delimiter=",")
+    np.savetxt("other_stocks_f1s_4-11_0001-0015.csv", f1s, delimiter=",")
 
     # uncomment this to read from file
     # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies.csv"), delimiter=","))).astype("float")
     # f1s = np.array(list(csv.reader(open("other_stocks_f1s.csv"), delimiter=","))).astype("float")
-  #  Y, X = np.meshgrid(Y, X)
+    #  Y, X = np.meshgrid(Y, X)
 
- #   fig = plt.figure()
- #   ax = fig.gca(projection='3d')
-  #  ax.set_xlabel("Learning Rate")
-   # ax.set_ylabel("Number of Hidden Layer Nodes")
- #   ax.set_zlabel("F1 Score")
+    #   fig = plt.figure()
+    #   ax = fig.gca(projection='3d')
+    #  ax.set_xlabel("Learning Rate")
+    # ax.set_ylabel("Number of Hidden Layer Nodes")
+    #   ax.set_zlabel("F1 Score")
 
-    #plt.title("3D plot of Number of Nodes VS Learning Rate VS F1 Score")
-    #surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
-    #surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
-    #plt.show()
+    # plt.title("3D plot of Number of Nodes VS Learning Rate VS F1 Score")
+    # surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
+    # surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
+    # plt.show()

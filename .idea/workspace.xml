@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/only_other_stock_markets.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/only_other_stock_markets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/other_stocks_accuracies.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/other_stocks_accuracies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/only_other_stocks/other_stocks_accuracies_2-10_0008-0027.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/other_stocks_f1s.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/other_stocks_f1s.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/only_other_stocks/other_stocks_f1s_2-10_0008-0027.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="2159">
+              <caret line="139" selection-start-line="139" selection-end-line="139" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -28,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
+            <state relative-caret-position="334">
+              <caret line="359" column="34" lean-forward="true" selection-start-line="359" selection-start-column="34" selection-end-line="359" selection-end-column="34" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -116,15 +121,15 @@
         <option value="$PROJECT_DIR$/src/otherstocks_console.out" />
         <option value="$PROJECT_DIR$/src/only_maro_params.py" />
         <option value="$PROJECT_DIR$/src/only_macro_train_single_model.py" />
-        <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
         <option value="$PROJECT_DIR$/src/base.py" />
+        <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="width" value="1148" />
-    <option name="height" value="1454" />
+    <option name="x" value="-12" />
+    <option name="width" value="1149" />
+    <option name="height" value="1455" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -134,6 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,11 +152,22 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="base_out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="only_other_stocks" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -163,10 +180,11 @@
       <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\src\only_other_stocks" />
+      <recent name="C:\dev\thesis\thesis\src\base_out" />
       <recent name="C:\dev\thesis\thesis\src\only_stocks" />
       <recent name="C:\dev\thesis\thesis\src\out" />
       <recent name="C:\dev\thesis\thesis" />
-      <recent name="C:\dev\thesis\thesis\main" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -181,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.base">
+  <component name="RunManager" selected="Python.only_other_stock_markets">
     <configuration name="base" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -281,8 +299,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.base" />
         <item itemvalue="Python.only_other_stock_markets" />
+        <item itemvalue="Python.base" />
         <item itemvalue="Python.meta_model" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.stock_model" />
@@ -306,17 +324,16 @@
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.2145749" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.3494687" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32467532" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3494687" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" visible="true" weight="0.32467532" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3270366" />
-      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29916567" />
+      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -324,26 +341,27 @@
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.14102565" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34710744" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" visible="true" weight="0.33293977" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3305785" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" visible="true" weight="0.33293977" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -716,9 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,9 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -842,9 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-330">
           <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,30 +888,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/only_macro_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/only_macro_main.py" />
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" selection-start-line="11" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/only_macro_train_single_model.py">
+    <entry file="file://$PROJECT_DIR$/src/only_macro_train_single_model.py" />
+    <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+        <state relative-caret-position="2159">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -911,18 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="334">
+          <caret line="359" column="34" lean-forward="true" selection-start-line="359" selection-start-column="34" selection-end-line="359" selection-end-column="34" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
