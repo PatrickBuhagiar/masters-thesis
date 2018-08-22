@@ -345,8 +345,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(4, 11, 1)  # number of nodes
-    Y = np.arange(0.0001, 0.0015, 0.0001)  # learning rates
+    X = np.arange(7, 21, 1)  # number of nodes
+    Y = np.arange(0.0001, 0.0011, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -356,8 +356,8 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("other_stocks_accuracies_4-11_0001-0015.csv", accuracies, delimiter=",")
-    np.savetxt("other_stocks_f1s_4-11_0001-0015.csv", f1s, delimiter=",")
+    np.savetxt("other_stocks_accuracies_7-21_0001-0011.csv", accuracies, delimiter=",")
+    np.savetxt("other_stocks_f1s_7-21_0001-0011.csv", f1s, delimiter=",")
 
     # uncomment this to read from file
     # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies.csv"), delimiter=","))).astype("float")
