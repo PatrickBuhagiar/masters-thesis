@@ -139,7 +139,8 @@ if __name__ == '__main__':
     np.savetxt("base_f1s.csv", f1s, delimiter=",")
 
     # uncomment this if you want to load results directly from file
-    # accuracies = np.array(list(csv.reader(open("final_accuracies.csv"), delimiter=","))).astype("float")
+    # accuracies = np.array(list(csv.reader(open("base_accuracies.csv"), delimiter=","))).astype("float")
+    # f1s = np.array(list(csv.reader(open("base_f1s.csv"), delimiter=","))).astype("float")
     Y, X = np.meshgrid(Y, X)
 
     fig = plt.figure()
@@ -149,5 +150,5 @@ if __name__ == '__main__':
     ax.set_zlabel("Accuracy")
 
     plt.title("3D plot of Number of Nodes VS Learning Rate VS Accuracy")
-    surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
+    surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
     plt.show()

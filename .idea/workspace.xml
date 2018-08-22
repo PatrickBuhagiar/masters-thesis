@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="" />
+    <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="117" column="65" lean-forward="true" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
+            <state relative-caret-position="102">
+              <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -26,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="only_other_stock_markets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5253">
-              <caret line="324" column="20" selection-start-line="324" selection-start-column="20" selection-end-line="324" selection-end-column="20" />
+            <state relative-caret-position="170">
+              <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -112,14 +114,14 @@
         <option value="$PROJECT_DIR$/src/console.out" />
         <option value="$PROJECT_DIR$/toolbox.py" />
         <option value="$PROJECT_DIR$/src/otherstocks_console.out" />
-        <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
         <option value="$PROJECT_DIR$/src/only_maro_params.py" />
         <option value="$PROJECT_DIR$/src/only_macro_train_single_model.py" />
+        <option value="$PROJECT_DIR$/src/only_other_stock_markets.py" />
         <option value="$PROJECT_DIR$/src/base.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
     <option name="width" value="1148" />
     <option name="height" value="1454" />
@@ -309,10 +311,10 @@
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32585597" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34710744" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32467532" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3494687" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3305785" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.3270366" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29916567" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -387,71 +389,146 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string />
+        <expression-string>array(list(csv.reader(open(&quot;final_accuracies.csv&quot;), delimiter=&quot;,&quot;))).astype(&quot;float&quot;)
+    X, Y = np.meshgrid(X, Y)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>acc = run(learning_rate, n_nodes[i])
+    accuracy.append(acc)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>sess.run(
+            model,
+            feed_dict={
+                feature_data: training_inputs.values,
+                actual_classes: training_outputs.values.reshape(len(training_outputs.values), 2)
+            }
+        )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>sess.run(
+            binary_prediction,
+            feed_dict={
+                feature_data: training_inputs.values,
+                actual_classes: training_outputs.values.reshape(len(training_outputs.values), 2)
+            }
+        )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>sess.run(
+           binary_prediction,
+           feed_dict={
+               feature_data: training_inputs.values,
+               actual_classes: training_outputs.values.reshape(len(training_outputs.values), 2)
+           }
+       )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>sess.run(
+       training_step,
+       feed_dict={
+           feature_data: training_predictors_tf.values,
+           actual_classes: training_classes_tf.values.reshape(len(training_classes_tf.values), 2)
+       }
+   )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>sess.run(
+        training_step,
+        feed_dict={
+            feature_data: training_predictors_tf.values,
+            actual_classes: training_classes_tf.values.reshape(len(training_classes_tf.values), 2)
+        }
+    )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="breakpointCondition">
       <expression>
-        <expression-string />
+        <expression-string>((date - pd.DateOffset(months=3)).__str__()) == '2013-10-01 00:00:00';</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>(date - pd.DateOffset(months=3)).__str__()) == '2013-10-01 00:00:00';</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>date == '1999-01-01'</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>not index.__contains__(&quot;Q&quot;)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="setValue">
       <expression>
-        <expression-string />
+        <expression-string>[0.00060036 0.00041778 0.00021666]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string />
+        <expression-string>Date
+1999-06-18    7.861847
+1999-06-21    7.862468
+1999-06-22    7.860336
+1999-06-23    7.847262
+1999-06-24    7.836053
+1999-06-25    7.831561
+1999-06-28    7.841834
+1999-06-29    7.849792
+1999-06-30    7.856397
+1999-07-01    7.871616
+1999-07-02    7.873420
+1999-07-05    7.889302
+1999-07-06    7.887492
+1999-07-07    7.880357
+1999-07-08    7.873024
+1999-07-09    7.875967
+1999-07-12    7.878400
+1999-07-13    7.863157
+1999-07-14    7.862546
+1999-07-15    7.877261
+1999-07-16    7.874753
+1999-07-19    7.865978
+1999-07-20    7.850071
+1999-07-21    7.839156
+1999-07-22    7.836029
+1999-07-23    7.824533
+1999-07-26    7.813985
+1999-07-27    7.820357
+1999-07-28    7.820470
+1999-07-29    7.792042
+                ...   
+2017-11-17    7.871516
+2017-11-20    7.875123
+2017-11-21    7.879534
+2017-11-22    7.876684
+2017-11-23    7.881171
+2017-11-24    7.882661
+2017-11-27    7.876508
+2017-11-28    7.881688
+2017-11-29    7.882632
+2017-11-30    7.877507
+2017-12-01    7.866620
+2017-12-04    7.87966...</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -832,20 +909,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base.py">
+    <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="117" column="65" lean-forward="true" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
+        <state relative-caret-position="170">
+          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/only_other_stock_markets.py">
+    <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5253">
-          <caret line="324" column="20" selection-start-line="324" selection-start-column="20" selection-end-line="324" selection-end-column="20" />
+        <state relative-caret-position="102">
+          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
