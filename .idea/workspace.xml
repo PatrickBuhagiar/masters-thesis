@@ -20,10 +20,10 @@
       <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="191" column="70" selection-start-line="191" selection-start-column="70" selection-end-line="191" selection-end-column="70" />
+            <state relative-caret-position="-102">
+              <caret line="147" column="50" selection-start-line="147" selection-start-column="50" selection-end-line="147" selection-end-column="50" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#103#121#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -320,17 +320,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006748" side_tool="true" weight="0.33175915" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3494687" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.3494687" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32419547" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32349467" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" weight="0.32349467" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49932525" visible="true" weight="0.32349467" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29752067" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -932,10 +931,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="191" column="70" selection-start-line="191" selection-start-column="70" selection-end-line="191" selection-end-column="70" />
+        <state relative-caret-position="-102">
+          <caret line="147" column="50" selection-start-line="147" selection-start-column="50" selection-end-line="147" selection-end-column="50" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#103#121#0" expanded="true" />
           </folding>
         </state>
       </provider>

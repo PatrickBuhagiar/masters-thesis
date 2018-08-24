@@ -175,8 +175,8 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("base_accuracies_8-21_0008-0023.csv", accuracies, delimiter=",")
-    np.savetxt("base_f1s_8-21_0008-0023.csv", f1s, delimiter=",")
+    np.savetxt("base_accuracies_5-15_0001-0016.csv", accuracies, delimiter=",")
+    np.savetxt("base_f1s_5-15_0001-0016.csv", f1s, delimiter=",")
 
     # uncomment this if you want to load results directly from file
     # accuracies = np.array(list(csv.reader(open("base_accuracies.csv"), delimiter=","))).astype("float")
