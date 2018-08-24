@@ -16,7 +16,7 @@ start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
-pool = ThreadPoolExecutor(32)
+pool = ThreadPoolExecutor(16)
 futures = []
 
 
@@ -141,30 +141,25 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
 def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
     learning_rate = Y[j]
     for i in range(0, len(X)):
-        futures.append(
-            pool.submit(process_with_n_nodes, X, i, Z, ZZ, learning_rate, test_inputs, test_outputs, training_inputs,
-                        training_outputs))
+        n_nodes = X[i]
+        acc = 0.0
+        f1 = 0.0
+        for k in range(0, 20):
+            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
+                                           test_outputs)
+            acc += accuracy
+            precision = TP / (TP + FP)
+            recall = TP / (TP + FN)
+            f1 += (2 * precision * recall) / (precision + recall)
+            print("learning rate", "%.2f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+                  (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
+        acc = acc / 20.0
+        f1 = f1 / 20.0
+        print("learning rate", "%.2f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
+              f1, "accuracy", acc)
 
-
-def process_with_n_nodes(X, i, Z, ZZ, learning_rate, test_inputs, test_outputs, training_inputs, training_outputs):
-    n_nodes = X[i]
-    acc = 0.0
-    f1 = 0.0
-    for k in range(0, 20):
-        accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
-                                       test_outputs)
-        acc += accuracy
-        precision = TP / (TP + FP)
-        recall = TP / (TP + FN)
-        f1 += (2 * precision * recall) / (precision + recall)
-        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-              (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
-    acc = acc / 20.0
-    f1 = f1 / 20.0
-    print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
-          f1, "accuracy", acc)
-    Z[i][j] = acc
-    ZZ[i][j] = f1
+        Z[i][j] = acc
+        ZZ[i][j] = f1
 
 
 if __name__ == '__main__':
@@ -174,9 +169,10 @@ if __name__ == '__main__':
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
-        process_with_learning_rate(j, X, Y, accuracies, f1s, training_inputs, training_outputs,
-                                   test_inputs,
-                                   test_outputs)
+        futures.append(
+            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+                        test_inputs,
+                        test_outputs))
 
     wait(futures)
     np.savetxt("base_accuracies_5-15_0005-0011.csv", accuracies, delimiter=",")
