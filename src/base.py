@@ -164,7 +164,7 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(8, 21, 1)  # number of nodes
+    X = np.arange(10, 21, 1)  # number of nodes
     Y = np.arange(0.0008, 0.0023, 0.0001)   # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
