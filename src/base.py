@@ -151,11 +151,11 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
             f1 += (2 * precision * recall) / (precision + recall)
-            print("learning rate", learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+            print("learning rate", "%.2f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
-        print("learning rate", learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
+        print("learning rate", "%.2f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
         Z[i][j] = acc
@@ -164,8 +164,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(10, 21, 1)  # number of nodes
-    Y = np.arange(0.0008, 0.0023, 0.0001)   # learning rates
+    X = np.arange(5, 15, 1)  # number of nodes
+    Y = np.arange(0.0001, 0.0016, 0.0001)   # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
