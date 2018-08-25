@@ -127,10 +127,6 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs})
         loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs})
         cost_history = np.append(cost_history, acc)
-
-        # if step % 500 == 0:
-        #     print("Step: {:5}\tLoss: {:.3f}\tAcc: {:.2%}".format(step, loss, acc))
-        # test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
     accuracy, TP, TN, FP, FN = sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs})
     saver = tf.train.Saver()
     return (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN, saver, sess
@@ -158,7 +154,7 @@ def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inpu
             ses = sess
         else:
             sess.close()
-        print("learning rate", learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
               (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model with", "f1", f1, "accuracy", acc)
