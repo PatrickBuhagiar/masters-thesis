@@ -1,26 +1,15 @@
-# import matplotlib.pylab as plt
-# from mpl_toolkits.mplot3d import Axes3D
-# from matplotlib import cm
+from concurrent.futures import ThreadPoolExecutor, wait
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-import csv
-import multiprocessing
-from concurrent.futures import ThreadPoolExecutor, wait
-
-# global variables
-# from stock_model import divide_into_training_testing
-# from toolbox import extract_index
-
-start = pd.datetime(2013, 1, 1)
-end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
 pool = ThreadPoolExecutor(16)
 futures = []
 
-learning_rate = 0.001
-n_nodes = 5
+learning_rate = 0.0013
+n_nodes = 7
 
 
 def extract_index(filename, start, end, date_parse, dropna=True):
@@ -125,11 +114,11 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
     predicted = tf.nn.sigmoid(h1, name="predicted")
     correct_pred = tf.equal(tf.round(predicted), Y)
-    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
     TP = tf.count_nonzero(tf.round(predicted) * Y)
     TN = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1))
     FP = tf.count_nonzero(tf.round(predicted) * (Y - 1))
     FN = tf.count_nonzero((tf.round(predicted) - 1) * Y)
+    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
     sess = tf.Session()
     sess.run(tf.global_variables_initializer())
@@ -144,10 +133,10 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         # test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
     accuracy, TP, TN, FP, FN = sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs})
     saver = tf.train.Saver()
-    return accuracy, TP, TN, FP, FN, saver, sess
+    return (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN, saver, sess
 
 
-def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, date):
     acc = 0.0
     f1 = 0.0
     svr = None
@@ -159,7 +148,7 @@ def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inpu
         precision = TP / (TP + FP)
         recall = TP / (TP + FN)
         f1_score = (2 * precision * recall) / (precision + recall)
-
+        accuracy = (TP + TN) / (TP + TN + FP + FN)
         if f1_score > f1:
             if ses is not None:
                 ses.close()
@@ -173,7 +162,7 @@ def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inpu
               (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model with", "f1", f1, "accuracy", acc)
-    svr.save(ses, "models/" + start.date().__str__() + "/" + start.date().__str__())
+    svr.save(ses, "h2_models/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
@@ -190,6 +179,6 @@ if __name__ == '__main__':
         futures.append(
             pool.submit(process, learning_rate, n_nodes, training_inputs, training_outputs,
                         test_inputs,
-                        test_outputs))
+                        test_outputs, date))
 
     wait(futures)
