@@ -334,11 +334,11 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
             f1 += 2 * ((precision * recall) / (precision + recall))
-            print("learning rate", learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+            print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
-        print("learning rate", learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
+        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
         Z[i][j] = acc

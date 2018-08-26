@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base_accuracies_5-11_0005-0021.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/base_out/correct/base_accuracies_5-11_0005-0021.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/base_f1s_5-11_0005-0021.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/base_out/correct/base_f1s_5-11_0005-0021.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,74 +19,11 @@
       <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="187" column="34" lean-forward="true" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
+            <state relative-caret-position="114">
+              <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="361" column="37" lean-forward="true" selection-start-line="361" selection-start-column="37" selection-end-line="361" selection-end-column="37" />
-              <folding>
-                <element signature="e#103#121#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="461" column="66" selection-start-line="461" selection-start-column="66" selection-end-line="461" selection-end-column="66" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GB_BALANCE_OF_TRADE.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3393">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GB_INFLATION.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/macroeconomics/GB/GB_INFLATION.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="69" column="15" selection-start-line="69" selection-start-column="15" selection-end-line="69" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="meta_model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/meta_model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="362" column="23" selection-start-line="362" selection-start-column="23" selection-end-line="362" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -370,16 +304,16 @@
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.32349467" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3494687" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.3494687" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32349467" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3199528" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.3199528" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -946,8 +880,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="187" column="34" lean-forward="true" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
+        <state relative-caret-position="114">
+          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
