@@ -296,7 +296,8 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     Y = tf.placeholder(tf.float32, [None, label_count])
     initializer = tf.contrib.layers.xavier_initializer()
     h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
-    h0 = tf.nn.dropout(h0, 0.80)
+    keep_prob = tf.placeholder(tf.float32, name='keep_prob')
+    h0 = tf.nn.dropout(h0, keep_prob)
     h1 = tf.layers.dense(h0, label_count, activation=None)
     cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
     cost = tf.reduce_mean(cross_entropy)
@@ -313,10 +314,10 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         sess.run(tf.global_variables_initializer())
 
         for step in range(training_epochs + 1):
-            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs})
-            loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs})
+            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
-        return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs})
+        return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
 def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
