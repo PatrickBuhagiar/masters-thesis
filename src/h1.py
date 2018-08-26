@@ -13,7 +13,7 @@ start = pd.datetime(2013, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
-pool = ThreadPoolExecutor(16)
+pool = ThreadPoolExecutor(20)
 futures = []
 
 
@@ -315,7 +315,8 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
 
         for step in range(training_epochs + 1):
             sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
-            loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            loss, _, acc = sess.run([cost, optimizer, accuracy],
+                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
         return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
@@ -329,12 +330,12 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
         for k in range(0, 20):
             accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
                                            test_outputs)
-            acc += accuracy
+            acc += (TP + TN) / (TP + TN + FP + FN)
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
-            f1 += (2 * precision * recall) / (precision + recall)
+            f1 += 2 * ((precision * recall) / (precision + recall))
             print("learning rate", learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-                  (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
+                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
         print("learning rate", learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
@@ -346,8 +347,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(7, 21, 1)  # number of nodes
-    Y = np.arange(0.0001, 0.0011, 0.0001)  # learning rates
+    X = np.arange(10, 21, 1)  # number of nodes
+    Y = np.arange(0.0001, 0.0009, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -357,8 +358,8 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("other_stocks_accuracies_7-21_0001-0011.csv", accuracies, delimiter=",")
-    np.savetxt("other_stocks_f1s_7-21_0001-0011.csv", f1s, delimiter=",")
+    np.savetxt("other_stocks_accuracies_10-21_0001-0009.csv", accuracies, delimiter=",")
+    np.savetxt("other_stocks_f1s_10-21_0001-0009.csv", f1s, delimiter=",")
 
     # uncomment this to read from file
     # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies.csv"), delimiter=","))).astype("float")

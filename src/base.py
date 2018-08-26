@@ -127,7 +127,8 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
 
         for step in range(training_epochs + 1):
             sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
-            loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            loss, _, acc = sess.run([cost, optimizer, accuracy],
+                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
 
             # if step % 500 == 0:
@@ -148,9 +149,10 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
             acc += (TP + TN) / (TP + TN + FP + FN)
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
-            f1 += (2 * precision * recall) / (precision + recall)
+            f1 += 2 * ((precision * recall) / (precision + recall))
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN)
+                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
+                  FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
@@ -162,8 +164,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
 
 if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
-    X = np.arange(5, 16, 1)  # number of nodes
-    Y = np.arange(0.0005, 0.02, 0.001)  # learning rates
+    X = np.arange(5, 11, 1)  # number of nodes
+    Y = np.arange(0.0005, 0.0021, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -173,8 +175,8 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("base_accuracies_5-16_0005-02.csv", accuracies, delimiter=",")
-    np.savetxt("base_f1s_5-16_0005-02.csv", f1s, delimiter=",")
+    np.savetxt("base_accuracies_5-11_0005-0021.csv", accuracies, delimiter=",")
+    np.savetxt("base_f1s_5-11_0005-0021.csv", f1s, delimiter=",")
 
     # uncomment this if you want to load results directly from file
     # accuracies = np.array(list(csv.reader(open("base_accuracies.csv"), delimiter=","))).astype("float")
