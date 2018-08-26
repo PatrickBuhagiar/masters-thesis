@@ -452,9 +452,9 @@ if __name__ == '__main__':
     # load all stored models
     model_dates = get_model_names()
     for date in model_dates:
-        model_predictions = get_model_predictions(model_dates[0], inputs)
-        meta_inputs[model_dates[0] + "_predictions"] = model_predictions[:, 0]
-        print("processing model predictions for period", model_dates[0])
+        model_predictions = get_model_predictions(date, inputs)
+        meta_inputs[date + "_predictions"] = model_predictions[:, 0]
+        print("processing model predictions for period", date)
 
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
