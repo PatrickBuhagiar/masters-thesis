@@ -111,7 +111,7 @@ def get_model_predictions(filename, inputs):
         }
 
         predicted = graph.get_tensor_by_name("predicted:0")
-        predictions = sess.run(predicted, feed_dict)
+        predictions = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict)
         sess.close()
         return predictions
 
@@ -456,6 +456,9 @@ if __name__ == '__main__':
         meta_inputs[date + "_predictions"] = model_predictions[:, 0]
         print("processing model predictions for period", date)
 
+    meta_inputs['ftse_1'] = inputs['ftse_1']
+    meta_inputs['ftse_2'] = inputs['ftse_2']
+    meta_inputs['ftse_3'] = inputs['ftse_3']
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
 
