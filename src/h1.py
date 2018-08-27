@@ -335,7 +335,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
             recall = TP / (TP + FN)
             f1 += 2 * ((precision * recall) / (precision + recall))
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN)
+                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
+                  FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
@@ -362,16 +363,16 @@ if __name__ == '__main__':
     np.savetxt("other_stocks_f1s_10-21_0001-0009.csv", f1s, delimiter=",")
 
     # uncomment this to read from file
-    # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies.csv"), delimiter=","))).astype("float")
-    # f1s = np.array(list(csv.reader(open("other_stocks_f1s.csv"), delimiter=","))).astype("float")
-    #  Y, X = np.meshgrid(Y, X)
-
-    #   fig = plt.figure()
-    #   ax = fig.gca(projection='3d')
-    #  ax.set_xlabel("Learning Rate")
+    # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies_10-21_0001-0009.csv"), delimiter=","))).astype("float")
+    # f1s = np.array(list(csv.reader(open("other_stocks_f1s_10-21_0001-0009.csv"), delimiter=","))).astype("float")
+    # Y, X = np.meshgrid(Y, X)
+    #
+    # fig = plt.figure()
+    # ax = fig.gca(projection='3d')
+    # ax.set_xlabel("Learning Rate")
     # ax.set_ylabel("Number of Hidden Layer Nodes")
-    #   ax.set_zlabel("F1 Score")
-
+    # ax.set_zlabel("F1 Score")
+    #
     # plt.title("3D plot of Number of Nodes VS Learning Rate VS F1 Score")
     # surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
     # surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
