@@ -1,6 +1,11 @@
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+from concurrent.futures import ThreadPoolExecutor, wait
+
+# Concurrency stuff
+pool = ThreadPoolExecutor(20)
+futures = []
 
 
 def load_data(start, end):
@@ -408,10 +413,6 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
             loss, _, acc = sess.run([cost, optimizer, accuracy],
                                     feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
-
-            # if step % 500 == 0:
-            #     print("Step: {:5}\tLoss: {:.3f}\tAcc: {:.2%}".format(step, loss, acc))
-        # test_predict_result = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict={X: test_inputs})
         return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
@@ -450,13 +451,27 @@ if __name__ == '__main__':
     meta_inputs = pd.DataFrame()
     # load all stored models
     model_dates = get_model_names()
-    # for date in model_dates:
-    model_predictions = get_model_predictions(model_dates[0], inputs)
-    meta_inputs[model_dates[0] + "_predictions"] = model_predictions[:, 0]
-    print(model_dates[0])
+    for date in model_dates:
+        model_predictions = get_model_predictions(date, inputs)
+        meta_inputs[date + "_predictions"] = model_predictions[:, 0]
+        print("processing model predictions for period", date)
 
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
 
+    # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
+    X = np.arange(5, 21, 1)  # number of nodes
+    Y = np.arange(0.0001, 0.0021, 0.0001)  # learning rates
+    accuracies = np.ones([len(X), len(Y)])
+    f1s = np.ones([len(X), len(Y)])
+    for j in range(0, len(Y)):
+        futures.append(
+            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+                        test_inputs,
+                        test_outputs))
+
+    wait(futures)
+    np.savetxt("h2_accuracies_5-21_0001-0021.csv", accuracies, delimiter=",")
+    np.savetxt("h2_f1s_5-21_0001-0021.csv", f1s, delimiter=",")
