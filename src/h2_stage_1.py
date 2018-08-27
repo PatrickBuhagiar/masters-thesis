@@ -126,9 +126,11 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
 
     for step in range(training_epochs + 1):
         sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
-        loss, _, acc = sess.run([cost, optimizer, accuracy], feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+        loss, _, acc = sess.run([cost, optimizer, accuracy],
+                                feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
         cost_history = np.append(cost_history, acc)
-    accuracy, TP, TN, FP, FN = sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+    accuracy, TP, TN, FP, FN = sess.run([accuracy, TP, TN, FP, FN],
+                                        feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
     saver = tf.train.Saver()
     return (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN, saver, sess
 
@@ -146,7 +148,7 @@ def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inpu
         recall = TP / (TP + FN)
         f1_score = (2 * precision * recall) / (precision + recall)
         accuracy = (TP + TN) / (TP + TN + FP + FN)
-        if f1_score > f1:
+        if accuracy > acc:
             if ses is not None:
                 ses.close()
             f1 = f1_score
