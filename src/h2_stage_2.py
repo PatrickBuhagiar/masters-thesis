@@ -1,3 +1,8 @@
+# import matplotlib.pylab as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# from matplotlib import cm
+# import csv
+import multiprocessing
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -465,8 +470,8 @@ if __name__ == '__main__':
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
-    X = np.arange(5, 21, 5)  # number of nodes
-    Y = np.arange(0.0001, 0.0022, 0.0002)  # learning rates
+    X = np.arange(20, 41, 5)  # number of nodes
+    Y = np.arange(0.001, 0.011, 0.0005)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -476,5 +481,20 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_5-40_0001-0022.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_5-40_0001-0022.csv", f1s, delimiter=",")
+    np.savetxt("h2_accuracies_20-41_001-011.csv", accuracies, delimiter=",")
+    np.savetxt("h2_f1s_20-41_001-011.csv", f1s, delimiter=",")
+
+    # uncomment this if you want to load results directly from file
+    # accuracies = np.array(list(csv.reader(open("h2_accuracies_5-40_0001-0022.csv"), delimiter=","))).astype("float")
+    # f1s = np.array(list(csv.reader(open("h2_f1s_5-40_0001-0022.csv"), delimiter=","))).astype("float")
+    # Y, X = np.meshgrid(Y, X)
+    #
+    # fig = plt.figure()
+    # ax = fig.gca(projection='3d')
+    # ax.set_xlabel("Learning Rate")
+    # ax.set_ylabel("Number of Hidden Layer Nodes")
+    # ax.set_zlabel("Accuracy")
+    #
+    # plt.title("3D plot of Number of Nodes VS Learning Rate VS Accuracy")
+    # surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
+    # plt.show()

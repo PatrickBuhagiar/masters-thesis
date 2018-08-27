@@ -20,8 +20,8 @@
       <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="55" />
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -29,8 +29,8 @@
       <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/h1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="356" column="39" selection-start-line="356" selection-start-column="39" selection-end-line="356" selection-end-column="39" />
+            <state relative-caret-position="171">
+              <caret line="364" column="4" lean-forward="true" selection-start-line="364" selection-start-column="4" selection-end-line="378" selection-end-column="16" />
               <folding>
                 <element signature="e#103#121#0" expanded="true" />
               </folding>
@@ -50,10 +50,10 @@
       <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="458" column="42" selection-start-line="458" selection-start-column="42" selection-end-line="458" selection-end-column="42" />
+            <state relative-caret-position="231">
+              <caret line="472" column="27" selection-start-line="472" selection-start-column="27" selection-end-line="472" selection-end-column="27" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#116#138#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,12 +175,6 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="only_other_stocks" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -216,7 +210,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.h1">
+  <component name="RunManager" selected="Python.h2_stage_2">
     <configuration name="base" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -316,8 +310,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.h1" />
         <item itemvalue="Python.h2_stage_2" />
+        <item itemvalue="Python.h1" />
         <item itemvalue="Python.base" />
         <item itemvalue="Python.h3_stage_1" />
         <item itemvalue="Python.only_macro_first_stage" />
@@ -346,12 +340,12 @@
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.32349467" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.3494687" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3494687" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49932525" weight="0.32349467" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3199528" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.29988194" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.29988194" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -366,13 +360,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/h2_stage_2.py</url>
-          <line>460</line>
-          <option name="timeStamp" value="321" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -880,23 +867,6 @@
     <entry file="file://$PROJECT_DIR$/src/h3_models/.gitkeep">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="356" column="39" selection-start-line="356" selection-start-column="39" selection-end-line="356" selection-end-column="39" />
-          <folding>
-            <element signature="e#103#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -904,12 +874,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="364" column="4" lean-forward="true" selection-start-line="364" selection-start-column="4" selection-end-line="378" selection-end-column="16" />
+          <folding>
+            <element signature="e#103#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="458" column="42" selection-start-line="458" selection-start-column="42" selection-end-line="458" selection-end-column="42" />
+        <state relative-caret-position="231">
+          <caret line="472" column="27" selection-start-line="472" selection-start-column="27" selection-end-line="472" selection-end-column="27" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#116#138#0" expanded="true" />
           </folding>
         </state>
       </provider>
