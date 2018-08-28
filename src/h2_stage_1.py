@@ -148,7 +148,7 @@ def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inpu
         recall = TP / (TP + FN)
         f1_score = (2 * precision * recall) / (precision + recall)
         accuracy = (TP + TN) / (TP + TN + FP + FN)
-        if accuracy > acc:
+        if f1_score > f1:
             if ses is not None:
                 ses.close()
             f1 = f1_score

@@ -421,10 +421,10 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
-def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
-    learning_rate = Y[j]
-    for i in range(0, len(X)):
-        n_nodes = X[i]
+def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
+    n_nodes = X[j]
+    for i in range(0, len(Y)):
+        learning_rate = Y[i]
         acc = 0.0
         f1 = 0.0
         for k in range(0, 20):
@@ -442,8 +442,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
-        Z[i][j] = acc
-        ZZ[i][j] = f1
+        Z[j][i] = acc
+        ZZ[j][i] = f1
 
 
 if __name__ == '__main__':
@@ -464,19 +464,22 @@ if __name__ == '__main__':
     meta_inputs['ftse_1'] = inputs['ftse_1']
     meta_inputs['ftse_2'] = inputs['ftse_2']
     meta_inputs['ftse_3'] = inputs['ftse_3']
+    meta_inputs['ftse_4'] = inputs['ftse_4']
+    meta_inputs['ftse_5'] = inputs['ftse_5']
+
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
 
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
-    X = np.arange(20, 41, 5)  # number of nodes
-    Y = np.arange(0.001, 0.011, 0.0005)  # learning rates
+    X = np.arange(26, 46, 1)  # number of nodes
+    Y = np.arange(0.002, 0.006, 0.001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
-    for j in range(0, len(Y)):
+    for j in range(0, len(X)):
         futures.append(
-            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+            pool.submit(process, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
                         test_inputs,
                         test_outputs))
 
