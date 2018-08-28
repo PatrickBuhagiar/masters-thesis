@@ -1,11 +1,6 @@
-# import matplotlib.pylab as plt
-# from mpl_toolkits.mplot3d import Axes3D
-# from matplotlib import cm
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-import csv
-import multiprocessing
 from concurrent.futures import ThreadPoolExecutor, wait
 
 # global variables
@@ -362,18 +357,3 @@ if __name__ == '__main__':
     np.savetxt("other_stocks_accuracies_10-21_0001-0009.csv", accuracies, delimiter=",")
     np.savetxt("other_stocks_f1s_10-21_0001-0009.csv", f1s, delimiter=",")
 
-    # uncomment this to read from file
-    # accuracies = np.array(list(csv.reader(open("other_stocks_accuracies_10-21_0001-0009.csv"), delimiter=","))).astype("float")
-    # f1s = np.array(list(csv.reader(open("other_stocks_f1s_10-21_0001-0009.csv"), delimiter=","))).astype("float")
-    # Y, X = np.meshgrid(Y, X)
-    #
-    # fig = plt.figure()
-    # ax = fig.gca(projection='3d')
-    # ax.set_xlabel("Learning Rate")
-    # ax.set_ylabel("Number of Hidden Layer Nodes")
-    # ax.set_zlabel("F1 Score")
-    #
-    # plt.title("3D plot of Number of Nodes VS Learning Rate VS F1 Score")
-    # surf = ax.plot_surface(Y, X, accuracies, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
-    # surf = ax.plot_surface(Y, X, f1s, cmap=cm.coolwarm, rstride=1, cstride=1, linewidth=0)
-    # plt.show()
