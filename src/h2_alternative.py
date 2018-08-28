@@ -401,7 +401,7 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
         n_nodes = X[i]
         acc = 0.0
         f1 = 0.0
-        for k in range(0, 20):
+        for k in range(0, 1):
             accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
                                            test_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
@@ -411,8 +411,8 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
                   FP, FN)
-        acc = acc / 20.0
-        f1 = f1 / 20.0
+        acc = acc / 1
+        f1 = f1 / 1
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
@@ -425,8 +425,8 @@ if __name__ == '__main__':
     prepare_macroeconomic_data(start, end, inputs, dates)
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(inputs, outputs,
                                                                                                 len(inputs))
-    X = np.arange(5, 16, 2)  # number of nodes
-    Y = np.arange(0.0005, 0.0021, 0.0001)  # learning rates
+    X = np.arange(20, 51, 2)  # number of nodes
+    Y = np.arange(0.001, 0.021, 0.001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
@@ -436,5 +436,5 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_alt_5-16_0005-0021.csv", accuracies, delimiter=",")
-    np.savetxt("h2_alt_f1s_5-16_0005-0021.csv", f1s, delimiter=",")
+    np.savetxt("h2_alt_20-51_001-021.csv", accuracies, delimiter=",")
+    np.savetxt("h2_alt_f1s_20-51_001-021.csv", f1s, delimiter=",")
