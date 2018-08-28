@@ -8,8 +8,8 @@ import tensorflow as tf
 pool = ThreadPoolExecutor(16)
 futures = []
 
-learning_rate = 0.0002
-n_nodes = 15
+learning_rate = 0.0003
+n_nodes = 17
 
 
 def extract_index(filename, start, end, date_parse, dropna=True):
