@@ -8,15 +8,6 @@ pool = ThreadPoolExecutor(20)
 futures = []
 
 
-def load_data(start, end):
-    dateparse = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
-    ts_FTSE = extract_index('../data/indices/^FTSE.csv', start, end, dateparse)
-    ts_normalised = ts_FTSE / max(ts_FTSE)
-    ts_log = np.log(ts_normalised / ts_normalised.shift())
-    ts_log = ts_log.dropna()
-    return ts_log
-
-
 def stringify(data: []):
     return data.__str__()
 
@@ -32,33 +23,233 @@ def extract_index(filename, start, end, date_parse, dropna=True):
     return ts
 
 
-def prepare_data(ftse_data):
+def prepare_data():
+    dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
+    dateparse2 = lambda dates: pd.datetime.strptime(dates, '%d/%m/%Y')
+    dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
+
+    # Prepare FTSE
+    ftse_data = extract_index('../data/indices/^FTSE.csv', start, end, dateparse3)
+    ftse_normalised = ftse_data / max(ftse_data)
+    ftse_log = np.log(ftse_normalised / ftse_normalised.shift())
+    ftse_log = ftse_log.dropna()
+
+    # Prepare other stocks
+    cac_data = extract_index('../data/indices/^FCHI.csv', start, end, dateparse)
+    dax_data = extract_index('../data/indices/^GDAXI.csv', start, end, dateparse)
+    sp500_data = extract_index('../data/indices/^GSPC.csv', start, end, dateparse2)
+    n225_data = extract_index('../data/indices/^N225.csv', start, end, dateparse)
+    stoxx_data = extract_index('../data/indices/^STOXX50E.csv', start, end, dateparse2)
+    hkse_data = extract_index('../data/indices/^HSI.csv', start, end, dateparse)
+
+    cac_normalised = cac_data / max(cac_data)
+    dax_normalised = dax_data / max(dax_data)
+    sp500_normalised = sp500_data / max(sp500_data)
+    n225_normalised = n225_data / max(n225_data)
+    stoxx_normalised = stoxx_data / max(stoxx_data)
+    hkse_normalised = hkse_data / max(hkse_data)
+
+    cac_log = np.log(cac_normalised / cac_normalised.shift())
+    dax_log = np.log(dax_normalised / dax_normalised.shift())
+    sp500_log = np.log(sp500_normalised / sp500_normalised.shift())
+    n225_log = np.log(n225_normalised / n225_normalised.shift())
+    stoxx_log = np.log(stoxx_normalised / stoxx_normalised.shift())
+    hkse_log = np.log(hkse_normalised / hkse_normalised.shift())
+
+    cac_log = cac_log.dropna()
+    dax_log = dax_log.dropna()
+    sp500_log = sp500_log.dropna()
+    stoxx_log = stoxx_log.dropna()
+    hkse_log = hkse_log.dropna()
+    n225_log = n225_log.dropna()
+
+    # Prepare directions
     directions = pd.DataFrame()
-    directions['FTSE'] = ftse_data
+    directions['FTSE'] = ftse_log
     directions['UP'] = 0
     directions.ix[directions['FTSE'] >= 0, 'UP'] = 1
     directions['DOWN'] = 0
     directions.ix[directions['FTSE'] < 0, 'DOWN'] = 1
+
     data = pd.DataFrame(
-        columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'ftse_4', 'ftse_5']
+        columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'cac_1', 'cac_2', 'cac_3', 'dax_1', 'dax_2', 'dax_3', 'stoxx_1',
+                 'stoxx_2', 'stoxx_3', 'sp500_1', 'sp500_2', 'sp500_3', 'hkse_0', 'hkse_1', 'hkse_2', 'n225_0',
+                 'n225_1', 'n225_2']
     )
+
     dates = []
-    for i in range(7, len(ftse_data)):
+    for i in range(7, len(ftse_log)):
         up = directions['UP'].ix[i]
-        down = directions['DOWN'].ix[i]
-        ftse_1 = ftse_data.ix[i - 1]
-        ftse_2 = ftse_data.ix[i - 2]
-        ftse_3 = ftse_data.ix[i - 3]
-        ftse_4 = ftse_data.ix[i - 4]
-        ftse_5 = ftse_data.ix[i - 5]
+
+        date_0 = ftse_log.keys()[i]
+        date_1 = ftse_log.keys()[i - 1]
+        date_2 = ftse_log.keys()[i - 2]
+        date_3 = ftse_log.keys()[i - 3]
+        date_4 = ftse_log.keys()[i - 4]
+        date_5 = ftse_log.keys()[i - 5]
+        date_6 = ftse_log.keys()[i - 6]
+
+        ftse_1 = ftse_log.ix[i - 1]
+        ftse_2 = ftse_log.ix[i - 2]
+        ftse_3 = ftse_log.ix[i - 3]
+
+        cac_1 = 0
+        cac_2 = 0
+        cac_3 = 0
+        if cac_log.keys().contains(date_3):
+            cac_3 = cac_log.ix[date_3]
+        elif cac_log.keys().contains(date_4):
+            cac_3 = cac_log.ix[date_4]
+        elif cac_log.keys().contains(date_5):
+            cac_3 = cac_log.ix[date_5]
+        else:
+            cac_3 = cac_log.ix[date_6]
+
+        if cac_log.keys().contains(date_2):
+            cac_2 = cac_log.ix[date_2]
+        else:
+            cac_2 = cac_3
+
+        if cac_log.keys().contains(date_1):
+            cac_1 = cac_log.ix[date_1]
+        else:
+            cac_1 = cac_2
+
+        dax_1 = 0
+        dax_2 = 0
+        dax_3 = 0
+        if dax_log.keys().contains(date_3):
+            dax_3 = dax_log.ix[date_3]
+        elif dax_log.keys().contains(date_4):
+            dax_3 = dax_log.ix[date_4]
+        elif dax_log.keys().contains(date_5):
+            dax_3 = dax_log.ix[date_5]
+        else:
+            dax_3 = dax_log.ix[date_6]
+
+        if dax_log.keys().contains(date_2):
+            dax_2 = dax_log.ix[date_2]
+        else:
+            dax_2 = dax_3
+
+        if dax_log.keys().contains(date_1):
+            dax_1 = dax_log.ix[date_1]
+        else:
+            dax_1 = dax_2
+
+        stoxx_1 = 0
+        stoxx_2 = 0
+        stoxx_3 = 0
+        if stoxx_log.keys().contains(date_3):
+            stoxx_3 = stoxx_log.ix[date_3]
+        elif stoxx_log.keys().contains(date_4):
+            stoxx_3 = stoxx_log.ix[date_4]
+        elif stoxx_log.keys().contains(date_5):
+            stoxx_3 = stoxx_log.ix[date_5]
+        else:
+            stoxx_3 = stoxx_log.ix[date_6]
+
+        if stoxx_log.keys().contains(date_2):
+            stoxx_2 = stoxx_log.ix[date_2]
+        else:
+            stoxx_2 = stoxx_3
+
+        if stoxx_log.keys().contains(date_1):
+            stoxx_1 = stoxx_log.ix[date_1]
+        else:
+            stoxx_1 = stoxx_2
+
+        sp500_1 = 0
+        sp500_2 = 0
+        sp500_3 = 0
+        if sp500_log.keys().contains(date_3):
+            sp500_3 = sp500_log.ix[date_3]
+        elif sp500_log.keys().contains(date_4):
+            sp500_3 = sp500_log.ix[date_4]
+        elif sp500_log.keys().contains(date_5):
+            sp500_3 = sp500_log.ix[date_5]
+        else:
+            sp500_3 = sp500_log.ix[date_6]
+
+        if sp500_log.keys().contains(date_2):
+            sp500_2 = sp500_log.ix[date_2]
+        else:
+            sp500_2 = sp500_3
+
+        if sp500_log.keys().contains(date_1):
+            sp500_1 = sp500_log.ix[date_1]
+        else:
+            sp500_1 = sp500_2
+
+        hkse_0 = 0
+        hkse_1 = 0
+        hkse_2 = 0
+        if hkse_log.keys().contains(date_2):
+            hkse_2 = hkse_log.ix[date_2]
+        elif hkse_log.keys().contains(date_3):
+            hkse_2 = hkse_log.ix[date_3]
+        elif hkse_log.keys().contains(date_4):
+            hkse_2 = hkse_log.ix[date_4]
+        else:
+            hkse_2 = hkse_log.ix[date_5]
+
+        if hkse_log.keys().contains(date_1):
+            hkse_1 = hkse_log.ix[date_1]
+        else:
+            hkse_1 = hkse_2
+
+        if hkse_log.keys().contains(date_0):
+            hkse_0 = hkse_log.ix[date_0]
+        else:
+            hkse_0 = hkse_1
+
+        n225_0 = 0
+        n225_1 = 0
+        n225_2 = 0
+        if n225_log.keys().contains(date_2):
+            n225_2 = n225_log.ix[date_2]
+        elif n225_log.keys().contains(date_3):
+            n225_2 = n225_log.ix[date_3]
+        elif n225_log.keys().contains(date_4):
+            n225_2 = n225_log.ix[date_4]
+        elif n225_log.keys().contains(date_5):
+            n225_2 = n225_log.ix[date_5]
+        else:
+            n225_2 = n225_log.ix[date_6]
+
+        if n225_log.keys().contains(date_1):
+            n225_1 = n225_log.ix[date_1]
+        else:
+            n225_1 = n225_2
+
+        if n225_log.keys().contains(date_0):
+            n225_0 = n225_log.ix[date_0]
+        else:
+            n225_0 = n225_1
         data = data.append(
             {
                 'up': up,
                 'ftse_1': ftse_1,
                 'ftse_2': ftse_2,
                 'ftse_3': ftse_3,
-                'ftse_4': ftse_4,
-                'ftse_5': ftse_5
+                'cac_1': cac_1,
+                'cac_2': cac_2,
+                'cac_3': cac_3,
+                'dax_1': dax_1,
+                'dax_2': dax_2,
+                'dax_3': dax_3,
+                'stoxx_1': stoxx_1,
+                'stoxx_2': stoxx_2,
+                'stoxx_3': stoxx_3,
+                'sp500_1': sp500_1,
+                'sp500_2': sp500_2,
+                'sp500_3': sp500_3,
+                'hkse_0': hkse_0,
+                'hkse_1': hkse_1,
+                'hkse_2': hkse_2,
+                'n225_0': n225_0,
+                'n225_1': n225_1,
+                'n225_2': n225_2
             }, ignore_index=True
         )
         dates.append(ftse_data.index[i])
@@ -100,8 +291,8 @@ def divide_into_training_testing(inputs, outputs, n):
 def get_model_predictions(filename, inputs):
     # Load model and variables
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph("h2_models/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h2_models/" + filename + "/"))
+        saver = tf.train.import_meta_graph("h3_models/" + filename + "/" + filename + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("h3_models/" + filename + "/"))
         graph = tf.get_default_graph()
         X = graph.get_tensor_by_name("X:0")
         keep_prob = graph.get_tensor_by_name("keep_prob:0")
@@ -445,8 +636,7 @@ if __name__ == '__main__':
     # Load the stock data that will be used for training and testing the meta model
     start = pd.datetime(2013, 1, 1)
     end = pd.datetime(2018, 1, 1)
-    ftse_data = load_data(start, end)
-    inputs, outputs, dates = prepare_data(ftse_data)
+    inputs, outputs, dates = prepare_data()
 
     meta_inputs = pd.DataFrame()
     # load all stored models
@@ -459,8 +649,6 @@ if __name__ == '__main__':
     meta_inputs['ftse_1'] = inputs['ftse_1']
     meta_inputs['ftse_2'] = inputs['ftse_2']
     meta_inputs['ftse_3'] = inputs['ftse_3']
-    meta_inputs['ftse_4'] = inputs['ftse_4']
-    meta_inputs['ftse_5'] = inputs['ftse_5']
 
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
@@ -479,5 +667,5 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_20-41_001-011.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_20-41_001-011.csv", f1s, delimiter=",")
+    np.savetxt("h3_accuracies_20-41_001-011.csv", accuracies, delimiter=",")
+    np.savetxt("h3_f1s_20-41_001-011.csv", f1s, delimiter=",")
