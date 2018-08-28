@@ -5,11 +5,11 @@ import pandas as pd
 import tensorflow as tf
 
 # Concurrency stuff
-pool = ThreadPoolExecutor(16)
+pool = ThreadPoolExecutor(20)
 futures = []
 
-learning_rate = 0.0007
-n_nodes = 9
+# learning_rate = 0.0007
+# n_nodes = 9
 
 
 def extract_index(filename, start, end, date_parse, dropna=True):
@@ -135,33 +135,40 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     return (TP + TN) / (TP + TN + FP + FN), TP, TN, FP, FN, saver, sess
 
 
-def process(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, date):
+# process for every date
+def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, date):
     acc = 0.0
     f1 = 0.0
+    lr = 0.0
+    n_n = 0
     svr = None
     ses = None
-    for k in range(0, 20):
-        accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_nodes, training_inputs, training_outputs,
-                                                    test_inputs,
-                                                    test_outputs)
-        precision = TP / (TP + FP)
-        recall = TP / (TP + FN)
-        f1_score = (2 * precision * recall) / (precision + recall)
-        accuracy = (TP + TN) / (TP + TN + FP + FN)
-        if f1_score > f1:
-            if ses is not None:
-                ses.close()
-            f1 = f1_score
-            acc = accuracy
-            svr = saver
-            ses = sess
-        else:
-            sess.close()
-        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-              (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
+    for learning_rate in learning_rates:
+        for n_node in n_nodes:
+            for k in range(0, 5):
+                accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
+                                                            test_inputs,
+                                                            test_outputs)
+                precision = TP / (TP + FP)
+                recall = TP / (TP + FN)
+                f1_score = (2 * precision * recall) / (precision + recall)
+                accuracy = (TP + TN) / (TP + TN + FP + FN)
+                if f1_score > f1:
+                    if ses is not None:
+                        ses.close()
+                    f1 = f1_score
+                    acc = accuracy
+                    svr = saver
+                    ses = sess
+                    lr = learning_rate
+                    n_n = n_node
+                else:
+                    sess.close()
+                print("learning rate", "%.5f" % learning_rate, "n_nodes", n_node, "iter", k, "f1",
+                      (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
-    print("Chosen Model with", "f1", f1, "accuracy", acc)
-    svr.save(ses, "h2_models/" + date.date().__str__() + "/" + date.date().__str__())
+    print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
+    svr.save(ses, "h2_models_alt/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
@@ -175,8 +182,10 @@ if __name__ == '__main__':
     for date in start_dates:
         ftse_data = load_data(date, date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_data)
+        n_nodes = np.arange(26, 46, 1)  # number of nodes
+        learning_rates = np.arange(0.002, 0.006, 0.001)  # learning rates
         futures.append(
-            pool.submit(process, learning_rate, n_nodes, training_inputs, training_outputs,
+            pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
                         test_inputs,
                         test_outputs, date))
 
