@@ -1,118 +1,14 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 from concurrent.futures import ThreadPoolExecutor, wait
+
+start = pd.datetime(2013, 1, 1)
+end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
 pool = ThreadPoolExecutor(20)
 futures = []
-
-
-def load_data(start, end):
-    dateparse = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
-    ts_FTSE = extract_index('../data/indices/^FTSE.csv', start, end, dateparse)
-    ts_normalised = ts_FTSE / max(ts_FTSE)
-    ts_log = np.log(ts_normalised / ts_normalised.shift())
-    ts_log = ts_log.dropna()
-    return ts_log
-
-
-def stringify(data: []):
-    return data.__str__()
-
-
-def extract_index(filename, start, end, date_parse, dropna=True):
-    data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
-    # Fill missing dates and values
-    all_days = pd.date_range(start, end, freq='D')
-    data = data.reindex(all_days)
-    ts = data['Close']
-    if dropna:
-        ts = ts.dropna()
-    return ts
-
-
-def prepare_data(ftse_data):
-    directions = pd.DataFrame()
-    directions['FTSE'] = ftse_data
-    directions['UP'] = 0
-    directions.ix[directions['FTSE'] >= 0, 'UP'] = 1
-    directions['DOWN'] = 0
-    directions.ix[directions['FTSE'] < 0, 'DOWN'] = 1
-    data = pd.DataFrame(
-        columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'ftse_4', 'ftse_5']
-    )
-    dates = []
-    for i in range(7, len(ftse_data)):
-        up = directions['UP'].ix[i]
-        ftse_1 = ftse_data.ix[i - 1]
-        ftse_2 = ftse_data.ix[i - 2]
-        ftse_3 = ftse_data.ix[i - 3]
-        ftse_4 = ftse_data.ix[i - 4]
-        ftse_5 = ftse_data.ix[i - 5]
-        data = data.append(
-            {
-                'up': up,
-                'ftse_1': ftse_1,
-                'ftse_2': ftse_2,
-                'ftse_3': ftse_3,
-                'ftse_4': ftse_4,
-                'ftse_5': ftse_5
-            }, ignore_index=True
-        )
-        dates.append(ftse_data.index[i])
-    inputs = data[data.columns[1:]]
-    outputs = data[data.columns[:1]]
-    return inputs, outputs, dates
-
-
-def get_model_names():
-    start_years = np.arange(2000, 2008, 1)
-    start_dates = []
-    file_names = []
-    for year in start_years:
-        start_dates.append(pd.datetime(year, 1, 1))
-        start_dates.append(pd.datetime(year, 7, 1))
-    for date in start_dates:
-        file_names.append(date.date().__str__())
-    return file_names
-
-
-def divide_into_training_testing(inputs, outputs, n):
-    """
-    Divide the data into training and testing.
-    This is split as 80/20.
-
-    :param inputs: the input data
-    :param outputs: the output data
-    :param n: the size of the dataset (training + testing)
-    :return: the inputs and outputs of both the training and testing data
-    """
-    training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
-    training_inputs = inputs[:training_set_size]
-    training_outputs = outputs[:training_set_size]
-    test_inputs = inputs[training_set_size:]
-    test_outputs = outputs[training_set_size:]
-    return test_outputs, test_inputs, training_outputs, training_inputs
-
-
-def get_model_predictions(filename, inputs):
-    # Load model and variables
-    with tf.Session() as sess:
-        saver = tf.train.import_meta_graph("h2_models/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h2_models/" + filename + "/"))
-        graph = tf.get_default_graph()
-        X = graph.get_tensor_by_name("X:0")
-        keep_prob = graph.get_tensor_by_name("keep_prob:0")
-        feed_dict = {
-            X: inputs.values,
-            keep_prob: 1
-        }
-
-        predicted = graph.get_tensor_by_name("predicted:0")
-        predictions = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict)
-        sess.close()
-        return predictions
 
 
 def convert_to_date(date):
@@ -208,6 +104,10 @@ def extract_quarterly(date):
             return [int(year), 4]
 
 
+def stringify(data: []):
+    return data.__str__()
+
+
 def load_macroeconomic_data(filename, start_index, start, end, type='Q'):
     data = pd.read_csv(filename, index_col='Date')[start_index:]
     if type == 'D':
@@ -249,6 +149,46 @@ def extract_macroeconomic_data(filename, start_index, start, end, type='Q'):
     data.fillna(method='ffill')
     ts = ts.dropna()
     return ts
+
+
+def extract_index(filename, start, end, date_parse, dropna=True):
+    """
+    Extracts the index from a csv file and filters base_out into a date range.
+
+    :param  filename: The name of the csv file
+    :param     start: The start date
+    :param       end: the end date
+    :param date_parse: the type of date parsing
+    :param dropna: drop any nas
+
+    :return: The indices as a time series
+    """
+    data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
+    # Fill missing dates and values
+    all_days = pd.date_range(start, end, freq='D')
+    data = data.reindex(all_days)
+    ts = data['Close']
+    if dropna:
+        ts = ts.dropna()
+    return ts
+
+
+def divide_into_training_testing(inputs, outputs, n):
+    """
+    Divide the data into training and testing.
+    This is split as 80/20.
+
+    :param inputs: the input data
+    :param outputs: the output data
+    :param n: the size of the dataset (training + testing)
+    :return: the inputs and outputs of both the training and testing data
+    """
+    training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
+    training_inputs = inputs[:training_set_size]
+    training_outputs = outputs[:training_set_size]
+    test_inputs = inputs[training_set_size:]
+    test_outputs = outputs[training_set_size:]
+    return test_outputs, test_inputs, training_outputs, training_inputs
 
 
 def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
@@ -380,6 +320,45 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 
+def prepare_data():
+    dateparse = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
+    ts_FTSE = extract_index('../data/indices/^FTSE.csv', start, end, dateparse)
+    ts_normalised = ts_FTSE / max(ts_FTSE)
+    ts_log = np.log(ts_normalised / ts_normalised.shift())
+    ts_log = ts_log.dropna()
+    directions = pd.DataFrame()
+    directions['FTSE'] = ts_log
+    directions['UP'] = 0
+    directions.ix[directions['FTSE'] >= 0, 'UP'] = 1
+    directions['DOWN'] = 0
+    directions.ix[directions['FTSE'] < 0, 'DOWN'] = 1
+    data = pd.DataFrame(
+        columns=['up', 'ftse_1', 'ftse_2', 'ftse_3', 'ftse_4', 'ftse_5']
+    )
+    dates = []
+    for i in range(7, len(ts_log)):
+        up = directions['UP'].ix[i]
+        ftse_1 = ts_log.ix[i - 1]
+        ftse_2 = ts_log.ix[i - 2]
+        ftse_3 = ts_log.ix[i - 3]
+        ftse_4 = ts_log.ix[i - 4]
+        ftse_5 = ts_log.ix[i - 5]
+        data = data.append(
+            {
+                'up': up,
+                'ftse_1': ftse_1,
+                'ftse_2': ftse_2,
+                'ftse_3': ftse_3,
+                'ftse_4': ftse_4,
+                'ftse_5': ftse_5
+            }, ignore_index=True
+        )
+        dates.append(ts_log.index[i])
+    inputs = data[data.columns[1:]]
+    outputs = data[data.columns[:1]]
+    return inputs, outputs, dates
+
+
 def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
     feature_count = training_inputs.shape[1]
     label_count = training_outputs.shape[1]
@@ -412,71 +391,50 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
             loss, _, acc = sess.run([cost, optimizer, accuracy],
                                     feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
+
         return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
-def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
-    n_nodes = X[j]
-    for i in range(0, len(Y)):
-        learning_rate = Y[i]
+def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
+    learning_rate = Y[j]
+    for i in range(0, len(X)):
+        n_nodes = X[i]
         acc = 0.0
         f1 = 0.0
-        for k in range(0, 20):
+        for k in range(0, 1):
             accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
                                            test_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
-            f1 += (2 * precision * recall) / (precision + recall)
+            f1 += 2 * ((precision * recall) / (precision + recall))
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
                   FP, FN)
-        acc = acc / 20.0
-        f1 = f1 / 20.0
+        acc = acc / 1
+        f1 = f1 / 1
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
-        Z[j][i] = acc
-        ZZ[j][i] = f1
+        Z[i][j] = acc
+        ZZ[i][j] = f1
 
 
 if __name__ == '__main__':
-    # Load the stock data that will be used for training and testing the meta model
-    start = pd.datetime(2013, 1, 1)
-    end = pd.datetime(2018, 1, 1)
-    ftse_data = load_data(start, end)
-    inputs, outputs, dates = prepare_data(ftse_data)
-
-    meta_inputs = pd.DataFrame()
-    # load all stored models
-    model_dates = get_model_names()
-    for date in model_dates:
-        model_predictions = get_model_predictions(date, inputs)
-        meta_inputs[date + "_predictions"] = model_predictions[:, 0]
-        print("processing model predictions for period", date)
-
-    meta_inputs['ftse_1'] = inputs['ftse_1']
-    meta_inputs['ftse_2'] = inputs['ftse_2']
-    meta_inputs['ftse_3'] = inputs['ftse_3']
-    meta_inputs['ftse_4'] = inputs['ftse_4']
-    meta_inputs['ftse_5'] = inputs['ftse_5']
-
-    # Load all macroeconomic data
-    prepare_macroeconomic_data(start, end, meta_inputs, dates)
-
-    # split into training and testing
-    test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
-                                                                                                len(meta_inputs))
-    X = np.arange(26, 46, 1)  # number of nodes
-    Y = np.arange(0.002, 0.006, 0.001)  # learning rates
+    inputs, outputs, dates = prepare_data()
+    prepare_macroeconomic_data(start, end, inputs, dates)
+    test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(inputs, outputs,
+                                                                                                len(inputs))
+    X = np.arange(20, 51, 2)  # number of nodes
+    Y = np.arange(0.001, 0.021, 0.001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
-    for j in range(0, len(X)):
+    for j in range(0, len(Y)):
         futures.append(
-            pool.submit(process, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
                         test_inputs,
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_20-41_001-011.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_20-41_001-011.csv", f1s, delimiter=",")
+    np.savetxt("h2_alt_20-51_001-021.csv", accuracies, delimiter=",")
+    np.savetxt("h2_alt_f1s_20-51_001-021.csv", f1s, delimiter=",")
