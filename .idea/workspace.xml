@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/h2_models_alt/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/h3_models_alt/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,17 +22,8 @@
           <file leaf-file-name="h2_stage_1.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="214">
-                  <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="thread.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/concurrent/futures/thread.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="162">
-                  <caret line="55" selection-start-line="55" selection-end-line="55" />
+                <state relative-caret-position="-510">
+                  <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -78,11 +68,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="439">
-                  <caret line="468" column="4" selection-start-line="468" selection-start-column="4" selection-end-line="468" selection-end-column="4" />
+                <state relative-caret-position="456">
+                  <caret line="469" column="6" selection-start-line="469" selection-start-column="6" selection-end-line="469" selection-end-column="6" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -102,11 +92,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="371" column="43" selection-start-line="371" selection-start-column="43" selection-end-line="371" selection-end-column="43" />
+                <state relative-caret-position="306">
+                  <caret line="377" column="32" lean-forward="true" selection-start-line="377" selection-start-column="32" selection-end-line="377" selection-end-column="32" />
                 </state>
               </provider>
             </entry>
@@ -206,12 +196,12 @@
         <option value="$PROJECT_DIR$/src/wilcoxon_signed-rank_test.py" />
         <option value="$PROJECT_DIR$/src/h1.py" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
-        <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
         <option value="$PROJECT_DIR$/src/h3_stage_2.py" />
         <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
         <option value="$PROJECT_DIR$/src/h2_alternative.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_1.py" />
+        <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
       </list>
     </option>
   </component>
@@ -247,6 +237,12 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="h2_models_alt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="thesis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="h3_models_alt" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -408,7 +404,7 @@
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
@@ -417,8 +413,8 @@
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.29964328" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.3198573" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -453,18 +449,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/h2_stage_1.py</url>
-          <line>162</line>
-          <option name="timeStamp" value="328" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/h2_stage_1.py</url>
-          <line>146</line>
-          <option name="timeStamp" value="329" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -475,7 +459,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="330" />
+      <option name="time" value="331" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -623,6 +607,11 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>learning_rate</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>learning_rates</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -662,15 +651,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>trade_balance_data</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/acc.csv" />
     <entry file="file://$PROJECT_DIR$/data-analysis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -916,13 +899,6 @@
     <entry file="file://$PROJECT_DIR$/src/wilcoxon_signed-rank_test.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="371" column="43" selection-start-line="371" selection-start-column="43" selection-end-line="371" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/pandas/core/indexes/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -973,16 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="468" column="4" selection-start-line="468" selection-start-column="4" selection-end-line="468" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_models_alt/.gitkeep">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -993,10 +959,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="469" column="6" selection-start-line="469" selection-start-column="6" selection-end-line="469" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_models_alt/.gitkeep">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
+        <state relative-caret-position="-510">
+          <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="377" column="32" lean-forward="true" selection-start-line="377" selection-start-column="32" selection-end-line="377" selection-end-column="32" />
         </state>
       </provider>
     </entry>
