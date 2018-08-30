@@ -99,8 +99,8 @@ def divide_into_training_testing(inputs, outputs, n):
 def get_model_predictions(filename, inputs):
     # Load model and variables
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph("h2_models/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h2_models/" + filename + "/"))
+        saver = tf.train.import_meta_graph("h2_models_alt/" + filename + "/" + filename + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("h2_models_alt/" + filename + "/"))
         graph = tf.get_default_graph()
         X = graph.get_tensor_by_name("X:0")
         keep_prob = graph.get_tensor_by_name("keep_prob:0")
