@@ -183,7 +183,7 @@ if __name__ == '__main__':
         ftse_data = load_data(date, date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_data)
         n_nodes = np.arange(8, 16, 2)  # number of nodes
-        learning_rates = np.arange(0.002, 0.006, 0.001)  # learning rates
+        learning_rates = np.arange(0.002, 0.007, 0.002)  # learning rates
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
                         test_inputs,
