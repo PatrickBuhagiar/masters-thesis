@@ -375,8 +375,8 @@ if __name__ == '__main__':
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_log, cac_log, dax_log,
                                                                                     sp500_log, stoxx_log, hkse_log,
                                                                                     n225_log)
-        n_nodes = np.arange(10, 21, 2)  # number of nodes
-        learning_rates = np.arange(0.0001, 0.001, 0.001)  # learning rates
+        n_nodes = np.arange(15, 26, 2)  # number of nodes
+        learning_rates = np.arange(0.0001, 0.001, 0.002)  # learning rates
 
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
