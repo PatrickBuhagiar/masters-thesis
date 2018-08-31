@@ -358,7 +358,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h3_models_alt/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h3_models_alt2/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
@@ -375,8 +375,8 @@ if __name__ == '__main__':
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_log, cac_log, dax_log,
                                                                                     sp500_log, stoxx_log, hkse_log,
                                                                                     n225_log)
-        n_nodes = np.arange(10, 21, 2)  # number of nodes
-        learning_rates = np.arange(0.0001, 0.001, 0.001)  # learning rates
+        n_nodes = np.arange(15, 26, 1)  # number of nodes
+        learning_rates = np.arange(0.0001, 0.0006, 0.0001)  # learning rates
 
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,

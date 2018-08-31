@@ -168,7 +168,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h2_models_alt/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h2_models/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
