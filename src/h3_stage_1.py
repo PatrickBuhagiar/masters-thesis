@@ -335,7 +335,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
     ses = None
     for learning_rate in learning_rates:
         for n_node in n_nodes:
-            for k in range(0, 5):
+            for k in range(0, 3):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
                                                             test_outputs)
@@ -343,7 +343,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                 recall = TP / (TP + FN)
                 f1_score = (2 * precision * recall) / (precision + recall)
                 accuracy = (TP + TN) / (TP + TN + FP + FN)
-                if f1_score > f1:
+                if accuracy > acc:
                     if ses is not None:
                         ses.close()
                     f1 = f1_score
@@ -375,8 +375,8 @@ if __name__ == '__main__':
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_log, cac_log, dax_log,
                                                                                     sp500_log, stoxx_log, hkse_log,
                                                                                     n225_log)
-        n_nodes = np.arange(15, 26, 1)  # number of nodes
-        learning_rates = np.arange(0.0001, 0.0006, 0.0001)  # learning rates
+        n_nodes = np.arange(15, 26, 2)  # number of nodes
+        learning_rates = np.arange(0.0001, 0.0009, 0.0002)  # learning rates
 
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
