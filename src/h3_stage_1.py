@@ -366,8 +366,8 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
 
 if __name__ == '__main__':
     # start_years = np.arange(2000, 2008, 1)
-    start_dates = [pd.datetime(2000, 1, 1), pd.datetime(2001, 1, 1), pd.datetime(2001, 7, 1), pd.datetime(2002, 1, 1),
-                   pd.datetime(2002, 7, 1), pd.datetime(2006, 1, 1), pd.datetime(2007, 1, 1), pd.datetime(2007, 7, 1)]
+    start_dates = [pd.datetime(2001, 7, 1), pd.datetime(2002, 1, 1), pd.datetime(2002, 7, 1), pd.datetime(2006, 1, 1),
+                   pd.datetime(2007, 1, 1), pd.datetime(2007, 7, 1)]
     # for year in start_years:
     #     start_dates.append(pd.datetime(year, 1, 1))
     #     start_dates.append(pd.datetime(year, 7, 1))
@@ -378,8 +378,8 @@ if __name__ == '__main__':
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_log, cac_log, dax_log,
                                                                                     sp500_log, stoxx_log, hkse_log,
                                                                                     n225_log)
-        n_nodes = np.arange(12, 20, 2)  # number of nodes
-        learning_rates = np.arange(0.0005, 0.0011, 0.0001)  # learning rates
+        n_nodes = np.arange(15, 26, 2)  # number of nodes
+        learning_rates = np.arange(0.0005, 0.0021, 0.0002)  # learning rates
 
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
