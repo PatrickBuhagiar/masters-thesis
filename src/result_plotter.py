@@ -8,9 +8,9 @@ import numpy as np
 X = np.arange(30, 36, 1)  # number of nodes
 Y = np.arange(0.006, 0.02, 0.002)  # learning rates
 
-accuracies = np.array(list(csv.reader(open("h2_accuracies_26-36_002-007.csv"), delimiter=","))).astype(
+accuracies = np.array(list(csv.reader(open("h2_accuracies_30-36_006-02.csv"), delimiter=","))).astype(
     "float")
-f1s = np.array(list(csv.reader(open("h2_f1s_26-36_002-007.csv"), delimiter=","))).astype("float")
+f1s = np.array(list(csv.reader(open("h2_f1s_30-36_006-02.csv"), delimiter=","))).astype("float")
 Y, X = np.meshgrid(Y, X)
 
 fig = plt.figure()
