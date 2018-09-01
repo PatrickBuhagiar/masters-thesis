@@ -145,7 +145,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
     ses = None
     for learning_rate in learning_rates:
         for n_node in n_nodes:
-            for k in range(0, 5):
+            for k in range(0, 3):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
                                                             test_outputs)
@@ -168,7 +168,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h2_models_alt/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h2_models2/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
@@ -182,8 +182,8 @@ if __name__ == '__main__':
     for date in start_dates:
         ftse_data = load_data(date, date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_data)
-        n_nodes = np.arange(8, 16, 2)  # number of nodes
-        learning_rates = np.arange(0.002, 0.007, 0.002)  # learning rates
+        n_nodes = np.arange(10, 21, 2)  # number of nodes
+        learning_rates = np.arange(0.0005, 0.0015, 0.0002)  # learning rates
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
                         test_inputs,
