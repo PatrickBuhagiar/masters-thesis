@@ -8,10 +8,6 @@ import tensorflow as tf
 pool = ThreadPoolExecutor(20)
 futures = []
 
-# learning_rate = 0.0007
-# n_nodes = 9
-
-
 def extract_index(filename, start, end, date_parse, dropna=True):
     """
     Extracts the index from a csv file and filters base_out into a date range.
@@ -153,7 +149,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                 recall = TP / (TP + FN)
                 f1_score = (2 * precision * recall) / (precision + recall)
                 accuracy = (TP + TN) / (TP + TN + FP + FN)
-                if f1_score > f1:
+                if accuracy > acc:
                     if ses is not None:
                         ses.close()
                     f1 = f1_score
@@ -173,17 +169,18 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
 
 
 if __name__ == '__main__':
-    start_years = np.arange(2000, 2008, 1)
-    start_dates = []
-    for year in start_years:
-        start_dates.append(pd.datetime(year, 1, 1))
-        start_dates.append(pd.datetime(year, 7, 1))
+    # start_years = np.arange(2002, 2006, 1)
+    start_dates = [pd.datetime(2004, 1, 1), pd.datetime(2000, 7, 1), pd.datetime(2002, 1, 1), pd.datetime(2007, 1, 1),
+                   pd.datetime(2007, 7, 1), pd.datetime(2004, 7, 1), pd.datetime(2000, 1, 1), pd.datetime(2001, 1, 1)]
+    # for year in start_years:
+    #     start_dates.append(pd.datetime(year, 1, 1))
+    #     start_dates.append(pd.datetime(year, 7, 1))
 
     for date in start_dates:
         ftse_data = load_data(date, date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_data)
-        n_nodes = np.arange(10, 21, 2)  # number of nodes
-        learning_rates = np.arange(0.0005, 0.0015, 0.0002)  # learning rates
+        n_nodes = np.arange(5, 16, 2)  # number of nodes
+        learning_rates = np.arange(0.0007, 0.002, 0.0003)  # learning rates
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
                         test_inputs,
