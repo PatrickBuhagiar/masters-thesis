@@ -8,6 +8,7 @@ import tensorflow as tf
 pool = ThreadPoolExecutor(20)
 futures = []
 
+
 def extract_index(filename, start, end, date_parse, dropna=True):
     """
     Extracts the index from a csv file and filters base_out into a date range.
@@ -164,14 +165,13 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h2_models2/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h2_models/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
 if __name__ == '__main__':
     # start_years = np.arange(2002, 2006, 1)
-    start_dates = [pd.datetime(2004, 1, 1), pd.datetime(2000, 7, 1), pd.datetime(2002, 1, 1), pd.datetime(2007, 1, 1),
-                   pd.datetime(2007, 7, 1), pd.datetime(2004, 7, 1), pd.datetime(2000, 1, 1), pd.datetime(2001, 1, 1)]
+    start_dates = [pd.datetime(2000, 1, 1), pd.datetime(2004, 1, 1), pd.datetime(2004, 7, 1), pd.datetime(2007, 1, 1)]
     # for year in start_years:
     #     start_dates.append(pd.datetime(year, 1, 1))
     #     start_dates.append(pd.datetime(year, 7, 1))
@@ -179,8 +179,8 @@ if __name__ == '__main__':
     for date in start_dates:
         ftse_data = load_data(date, date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_data)
-        n_nodes = np.arange(5, 16, 2)  # number of nodes
-        learning_rates = np.arange(0.0007, 0.002, 0.0003)  # learning rates
+        n_nodes = np.arange(4, 8, 1)  # number of nodes
+        learning_rates = np.arange(0.0003, 0.008, 0.0001)  # learning rates
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
                         test_inputs,
