@@ -337,7 +337,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
     ses = None
     for learning_rate in learning_rates:
         for n_node in n_nodes:
-            for k in range(0, 3):
+            for k in range(0, 10):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
                                                             test_outputs)
@@ -356,29 +356,36 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                     n_n = n_node
                 else:
                     sess.close()
-                print("learning rate", "%.5f" % learning_rate, "n_nodes", n_node, "iter", k, "f1",
+                print("date", date, "learning rate", "%.5f" % learning_rate, "n_nodes", n_node, "iter", k, "f1",
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h3_models/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h3_models_1/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
 if __name__ == '__main__':
-    # start_years = np.arange(2000, 2008, 1)
-    start_dates = [pd.datetime(2001, 7, 1), pd.datetime(2002, 1, 1), pd.datetime(2002, 7, 1), pd.datetime(2007, 7, 1)]
-    # for year in start_years:
-    #     start_dates.append(pd.datetime(year, 1, 1))
-    #     start_dates.append(pd.datetime(year, 7, 1))
+    start_years = np.arange(2000, 2008, 1)
+    start_dates = []
+    for year in start_years:
+        start_dates.append(pd.datetime(year, 1, 1))
+        start_dates.append(pd.datetime(year, 7, 1))
 
-    for date in start_dates:
+    lr = [0.0008, 0.0004, 0.0009, 0.0017, 0.0007, 0.0013, 0.0001, 0.0003,
+          0.0003, 0.0002, 0.0003, 0.0005, 0.0005, 0.0001, 0.0009, 0.0015]
+
+    nn = [12, 14, 16, 19, 17, 15, 23, 19,
+          25, 12, 15, 17, 19, 17, 21, 23]
+
+    for i in range(0, len(start_dates)):
+        date = start_dates[i]
         ftse_log, cac_log, dax_log, sp500_log, stoxx_log, hkse_log, n225_log = load_data(date,
                                                                                          date + pd.DateOffset(years=5))
         test_outputs, test_inputs, training_outputs, training_inputs = prepare_data(ftse_log, cac_log, dax_log,
                                                                                     sp500_log, stoxx_log, hkse_log,
                                                                                     n225_log)
-        n_nodes = np.arange(8, 15, 1)  # number of nodes
-        learning_rates = np.arange(0.0003, 0.001, 0.0001)  # learning rates
+        n_nodes = [nn[i]]  # np.arange(8, 15, 1)  # number of nodes
+        learning_rates = [lr[i]]  # np.arange(0.0003, 0.001, 0.0001)  # learning rates
 
         futures.append(
             pool.submit(process, learning_rates, n_nodes, training_inputs, training_outputs,
