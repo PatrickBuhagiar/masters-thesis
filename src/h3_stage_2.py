@@ -575,6 +575,7 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
 
 
 def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+    tf.reset_default_graph()
     feature_count = training_inputs.shape[1]
     label_count = training_outputs.shape[1]
     training_epochs = 3000
