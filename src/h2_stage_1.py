@@ -94,29 +94,29 @@ def load_data(start, end):
 # load FTSE and prepare data
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, date):
     feature_count = training_inputs.shape[1]
     label_count = training_outputs.shape[1]
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
-    X = tf.placeholder(tf.float32, [None, feature_count], name="X_")
-    Y = tf.placeholder(tf.float32, [None, label_count], name="Y_")
+    X = tf.placeholder(tf.float32, [None, feature_count], name="X_" + date)
+    Y = tf.placeholder(tf.float32, [None, label_count], name="Y_" + date)
     initializer = tf.contrib.layers.xavier_initializer()
-    h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer, name="h0_")
-    keep_prob = tf.placeholder(tf.float32, name='keep_prob_')
+    h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer, name="h0_" + date)
+    keep_prob = tf.placeholder(tf.float32, name='keep_prob_' + date)
     h0 = tf.nn.dropout(h0, keep_prob)
-    h1 = tf.layers.dense(h0, label_count, activation=None, name="h1_")
-    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1, name="cross_entropy_")
-    cost = tf.reduce_mean(cross_entropy, name="cost_")
+    h1 = tf.layers.dense(h0, label_count, activation=None, name="h1_" +date)
+    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1, name="cross_entropy_" + date)
+    cost = tf.reduce_mean(cross_entropy, name="cost_" + date)
     optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
-    predicted = tf.nn.sigmoid(h1, name="predicted_")
-    correct_pred = tf.equal(tf.round(predicted), Y, name="correct_pred_")
-    TP = tf.count_nonzero(tf.round(predicted) * Y, name="TP_")
-    TN = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1), name="TN_")
-    FP = tf.count_nonzero(tf.round(predicted) * (Y - 1), name="FP_")
-    FN = tf.count_nonzero((tf.round(predicted) - 1) * Y, name="FN_")
-    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32), name="accuracy_")
+    predicted = tf.nn.sigmoid(h1, name="predicted_" + date)
+    correct_pred = tf.equal(tf.round(predicted), Y, name="correct_pred_" + date)
+    TP = tf.count_nonzero(tf.round(predicted) * Y, name="TP_" + date)
+    TN = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1), name="TN_" + date)
+    FP = tf.count_nonzero(tf.round(predicted) * (Y - 1), name="FP_" + date)
+    FN = tf.count_nonzero((tf.round(predicted) - 1) * Y, name="FN_" + date)
+    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32), name="accuracy_" + date)
 
     sess = tf.Session()
     sess.run(tf.global_variables_initializer())
@@ -145,7 +145,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
             for k in range(0, 20):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
-                                                            test_outputs)
+                                                            test_outputs, date)
                 precision = TP / (TP + FP)
                 recall = TP / (TP + FN)
                 f1_score = (2 * precision * recall) / (precision + recall)

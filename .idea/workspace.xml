@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h2_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +22,7 @@
             <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="405">
-                  <caret line="118" column="7" lean-forward="true" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+                  <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -36,7 +34,7 @@
             <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="136">
-                  <caret line="293" column="13" lean-forward="true" selection-start-line="293" selection-start-column="13" selection-end-line="293" selection-end-column="13" />
+                  <caret line="293" column="33" lean-forward="true" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -44,8 +42,8 @@
           <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
-                  <caret line="297" column="50" selection-start-line="297" selection-start-column="50" selection-end-line="297" selection-end-column="50" />
+                <state relative-caret-position="456">
+                  <caret line="310" column="24" selection-start-line="310" selection-start-column="24" selection-end-line="310" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -53,8 +51,8 @@
           <file leaf-file-name="h2_stage_1.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="145">
-                  <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
+                <state relative-caret-position="213">
+                  <caret line="105" column="29" lean-forward="true" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -172,13 +170,13 @@
         <option value="$PROJECT_DIR$/src/base_out/correct/base_accuracies_5-11_0005-0021.csv" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
         <option value="$PROJECT_DIR$/src/h3_stage_2.py" />
-        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
         <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_1.py" />
+        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="1148" />
@@ -246,7 +244,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.h3_stage_1">
+  <component name="RunManager" selected="Python.h2_stage_1">
     <configuration name="h2_alternative" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -346,9 +344,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.h3_stage_1" />
-        <item itemvalue="Python.h2_stage_2" />
         <item itemvalue="Python.h2_stage_1" />
+        <item itemvalue="Python.h2_stage_2" />
+        <item itemvalue="Python.h3_stage_1" />
         <item itemvalue="Python.result_plotter" />
         <item itemvalue="Python.h2_alternative" />
       </list>
@@ -368,7 +366,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <frame x="-7" y="-7" width="1519" height="977" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.21120109" />
@@ -433,6 +431,16 @@
           <line>380</line>
           <option name="timeStamp" value="335" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/h2_stage_2.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="337" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/h2_stage_1.py</url>
+          <line>172</line>
+          <option name="timeStamp" value="338" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -444,7 +452,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="337" />
+      <option name="time" value="339" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -592,47 +600,47 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>predictions</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>graph.get_tensor_by_name(&quot;predicted:0&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>X.shape</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>X</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>graph.get_tensor_by_name(&quot;keep_prob:0&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>graph.get_tensor_by_name(&quot;X:0&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>graph.get_tensor_by_name(&quot;X_:0&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>sess.graph</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>sess</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>tf.train.import_meta_graph(&quot;h2_models_1/&quot; + filename + &quot;/&quot; + filename + &quot;.meta&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.unravel_index(np.argmax(accuracies, axis=None), accuracies.shape)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ind = np.unravel_index(np.argmax(accuracies, axis=None), accuracies.shape)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>accuracies.argmax()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>accuracies.argmax(axis=1)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>accuracies.max()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>max(accuracies, all())</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>max(accuracies)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -882,7 +890,7 @@
     <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="118" column="7" lean-forward="true" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -892,21 +900,21 @@
     <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="293" column="13" lean-forward="true" selection-start-line="293" selection-start-column="13" selection-end-line="293" selection-end-column="13" />
+          <caret line="293" column="33" lean-forward="true" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="297" column="50" selection-start-line="297" selection-start-column="50" selection-end-line="297" selection-end-column="50" />
+        <state relative-caret-position="456">
+          <caret line="310" column="24" selection-start-line="310" selection-start-column="24" selection-end-line="310" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
+        <state relative-caret-position="213">
+          <caret line="105" column="29" lean-forward="true" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="29" />
         </state>
       </provider>
     </entry>
