@@ -294,14 +294,14 @@ def get_model_predictions(filename, inputs):
         saver = tf.train.import_meta_graph("h3_models_2/" + filename + "/" + filename + ".meta")
         saver.restore(sess, tf.train.latest_checkpoint("h3_models_2/" + filename + "/"))
         graph = tf.get_default_graph()
-        X = graph.get_tensor_by_name("X_:0")
-        keep_prob = graph.get_tensor_by_name("keep_prob_:0")
+        X = graph.get_tensor_by_name("X_" + filename + ":0")
+        keep_prob = graph.get_tensor_by_name("keep_prob_" + filename + ":0")
         feed_dict = {
             X: inputs.values,
             keep_prob: 1
         }
 
-        predicted = graph.get_tensor_by_name("predicted_:0")
+        predicted = graph.get_tensor_by_name("predicted_" + filename + ":0")
         predictions = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict)
         sess.close()
         return predictions
