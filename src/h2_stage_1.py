@@ -100,17 +100,17 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
-    X = tf.placeholder(tf.float32, [None, feature_count], name="X")
-    Y = tf.placeholder(tf.float32, [None, label_count], name="Y")
+    X = tf.placeholder(tf.float32, [None, feature_count], name="X_")
+    Y = tf.placeholder(tf.float32, [None, label_count], name="Y_")
     initializer = tf.contrib.layers.xavier_initializer()
     h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
-    keep_prob = tf.placeholder(tf.float32, name='keep_prob')
+    keep_prob = tf.placeholder(tf.float32, name='keep_prob_')
     h0 = tf.nn.dropout(h0, keep_prob)
     h1 = tf.layers.dense(h0, label_count, activation=None)
-    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1, name="cross_entropy")
-    cost = tf.reduce_mean(cross_entropy, name="cost")
+    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1, name="cross_entropy_")
+    cost = tf.reduce_mean(cross_entropy, name="cost_")
     optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
-    predicted = tf.nn.sigmoid(h1, name="predicted")
+    predicted = tf.nn.sigmoid(h1, name="predicted_")
     correct_pred = tf.equal(tf.round(predicted), Y)
     TP = tf.count_nonzero(tf.round(predicted) * Y)
     TN = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1))
@@ -165,7 +165,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h2_models_1/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h2_models_2/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
