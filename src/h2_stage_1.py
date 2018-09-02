@@ -99,7 +99,7 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     label_count = training_outputs.shape[1]
     training_epochs = 3000
 
-    cost_history = np.empty(shape=[1], dtype=float, name="cost_history_")
+    cost_history = np.empty(shape=[1], dtype=float)
     X = tf.placeholder(tf.float32, [None, feature_count], name="X_")
     Y = tf.placeholder(tf.float32, [None, label_count], name="Y_")
     initializer = tf.contrib.layers.xavier_initializer()
