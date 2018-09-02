@@ -3,39 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-01-01/2002-01-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-01-01/2002-01-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-01-01/2002-01-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-01-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-07-01/2002-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-07-01/2002-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-07-01/2002-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2002-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-01-01/2003-01-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-01-01/2003-01-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-01-01/2003-01-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-01-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-07-01/2003-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-07-01/2003-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-07-01/2003-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2003-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-01-01/2004-01-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-01-01/2004-01-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-01-01/2004-01-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-01-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-07-01/2004-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-07-01/2004-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-07-01/2004-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2004-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-01-01/2005-01-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-01-01/2005-01-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-01-01/2005-01-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-01-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-07-01/2005-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-07-01/2005-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-07-01/2005-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_models2/2005-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,11 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="h2_stage_1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="h2_stage_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="185" column="25" lean-forward="true" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="58" />
+            <state relative-caret-position="187">
+              <caret line="174" column="30" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="370" column="30" lean-forward="true" selection-start-line="370" selection-start-column="30" selection-end-line="370" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -146,14 +123,14 @@
         <option value="$PROJECT_DIR$/src/h2_alternative.py" />
         <option value="$PROJECT_DIR$/src/base_out/correct/base_accuracies_5-11_0005-0021.csv" />
         <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
-        <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_1.py" />
+        <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1117" />
     <option name="width" value="1148" />
     <option name="height" value="1454" />
   </component>
@@ -341,46 +318,57 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <frame x="745" y="0" width="765" height="969" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" weight="0.39231825" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.32292917" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
       <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.3198573" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
+      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -644,9 +632,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/only_macro_main.py" />
     <entry file="file://$PROJECT_DIR$/src/only_macro_train_single_model.py" />
-    <entry file="file://$PROJECT_DIR$/src/h2_models.old.old/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_models.old.old/.gitkeep" />
     <entry file="file://$PROJECT_DIR$/src/base_out/base_f1s_2-10_0001-0011.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -806,9 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4488">
           <caret line="267" column="23" selection-start-line="267" selection-start-column="23" selection-end-line="267" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -833,9 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7225">
           <caret line="428" column="56" selection-start-line="428" selection-start-column="56" selection-end-line="428" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,9 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -888,17 +865,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
+    <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="363" selection-start-line="363" selection-end-line="363" />
+        <state relative-caret-position="187">
+          <caret line="174" column="30" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
+    <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="185" column="25" lean-forward="true" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="58" />
+        <state relative-caret-position="296">
+          <caret line="370" column="30" lean-forward="true" selection-start-line="370" selection-start-column="30" selection-end-line="370" selection-end-column="30" />
         </state>
       </provider>
     </entry>
