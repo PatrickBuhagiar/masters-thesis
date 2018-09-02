@@ -290,7 +290,7 @@ def load_data(start, end):
 # load FTSE and prepare data
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, date):
     tf.reset_default_graph()
 
     feature_count = training_inputs.shape[1]
@@ -347,7 +347,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
             for k in range(0, 20):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
-                                                            test_outputs)
+                                                            test_outputs, date)
                 precision = TP / (TP + FP)
                 recall = TP / (TP + FN)
                 f1_score = (2 * precision * recall) / (precision + recall)
@@ -367,7 +367,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h3_models_3/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h3_models/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 

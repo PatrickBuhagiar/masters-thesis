@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/h3_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +19,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="89">
-                  <caret line="382" lean-forward="true" selection-start-line="382" selection-end-line="382" />
+                <state relative-caret-position="31">
+                  <caret line="447" column="35" lean-forward="true" selection-start-line="447" selection-start-column="35" selection-end-line="447" selection-end-column="35" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -32,11 +31,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="191">
-                  <caret line="577" column="6" selection-start-line="577" selection-start-column="6" selection-end-line="577" selection-end-column="6" />
+                <state relative-caret-position="208">
+                  <caret line="296" column="67" selection-start-line="296" selection-start-column="67" selection-end-line="296" selection-end-column="67" />
                 </state>
               </provider>
             </entry>
@@ -106,7 +105,7 @@
       <find>001</find>
       <find>dickey</find>
       <find>feed_dict</find>
-      <find>date.year.__str__() + date.month.__str__()</find>
+      <find />
     </findStrings>
     <replaceStrings>
       <replace>dax</replace>
@@ -366,7 +365,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" weight="0.21120109" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -430,6 +428,11 @@
           <line>298</line>
           <option name="timeStamp" value="349" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/h2_stage_2.py</url>
+          <line>476</line>
+          <option name="timeStamp" value="350" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -441,170 +444,114 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="350" />
+      <option name="time" value="351" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][878]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][877]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][876]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0].index(0)</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][1200]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][1000]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][-2]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_0][-1]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="breakpointCondition">
       <expression>
-        <expression-string>k &gt; 0</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>((date - pd.DateOffset(months=3)).__str__()) == '2013-10-01 00:00:00';</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(date - pd.DateOffset(months=3)).__str__()) == '2013-10-01 00:00:00';</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>date == '1999-01-01'</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>not index.__contains__(&quot;Q&quot;)</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="setValue">
       <expression>
-        <expression-string>[0.00060036 0.00041778 0.00021666]</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>Date
-1999-06-18    7.861847
-1999-06-21    7.862468
-1999-06-22    7.860336
-1999-06-23    7.847262
-1999-06-24    7.836053
-1999-06-25    7.831561
-1999-06-28    7.841834
-1999-06-29    7.849792
-1999-06-30    7.856397
-1999-07-01    7.871616
-1999-07-02    7.873420
-1999-07-05    7.889302
-1999-07-06    7.887492
-1999-07-07    7.880357
-1999-07-08    7.873024
-1999-07-09    7.875967
-1999-07-12    7.878400
-1999-07-13    7.863157
-1999-07-14    7.862546
-1999-07-15    7.877261
-1999-07-16    7.874753
-1999-07-19    7.865978
-1999-07-20    7.850071
-1999-07-21    7.839156
-1999-07-22    7.836029
-1999-07-23    7.824533
-1999-07-26    7.813985
-1999-07-27    7.820357
-1999-07-28    7.820470
-1999-07-29    7.792042
-                ...   
-2017-11-17    7.871516
-2017-11-20    7.875123
-2017-11-21    7.879534
-2017-11-22    7.876684
-2017-11-23    7.881171
-2017-11-24    7.882661
-2017-11-27    7.876508
-2017-11-28    7.881688
-2017-11-29    7.882632
-2017-11-30    7.877507
-2017-12-01    7.866620
-2017-12-04    7.87966...</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>training_inputs</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>graph._nodes_by_id</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>graph.get_tensor_by_name(&quot;X_&quot; + filename + &quot;:0&quot;)</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>graph.get_tensor_by_name(&quot;X_&quot; + filename)</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -614,7 +561,7 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>saver.restore(sess, tf.train.latest_checkpoint(&quot;h2_models_2/&quot; + filename + &quot;/&quot;))</expression-string>
+        <expression-string />
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -630,11 +577,6 @@
       </expression>
       <expression>
         <expression-string>graph</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>graph.get_all_collection_keys()[2]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -898,20 +840,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="577" column="6" selection-start-line="577" selection-start-column="6" selection-end-line="577" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="382" lean-forward="true" selection-start-line="382" selection-end-line="382" />
+        <state relative-caret-position="31">
+          <caret line="447" column="35" lean-forward="true" selection-start-line="447" selection-start-column="35" selection-end-line="447" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="296" column="67" selection-start-line="296" selection-start-column="67" selection-end-line="296" selection-end-column="67" />
         </state>
       </provider>
     </entry>

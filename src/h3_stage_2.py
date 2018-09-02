@@ -293,8 +293,8 @@ def get_model_predictions(filename, inputs):
     # Load model and variables
     with tf.Session() as sess:
         name = filename[0] + filename[1] + filename[2] + filename[3] + filename[6]
-        saver = tf.train.import_meta_graph("h3_models_2/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h3_models_2/" + filename + "/"))
+        saver = tf.train.import_meta_graph("h3_models/" + filename + "/" + filename + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("h3_models/" + filename + "/"))
         graph = tf.get_default_graph()
         X = graph.get_tensor_by_name("X_" + name + ":0")
         keep_prob = graph.get_tensor_by_name("keep_prob_" + name + ":0")
