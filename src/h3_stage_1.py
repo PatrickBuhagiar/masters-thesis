@@ -298,7 +298,7 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
-    date_name = date.date().__str__()
+    date_name = date.year.__str__() + date.month.__str__()
 
     X = tf.placeholder(tf.float32, [None, feature_count], name="X_" + date_name)
     Y = tf.placeholder(tf.float32, [None, label_count], name="Y_" + date_name)
@@ -367,7 +367,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
                       (2 * precision * recall) / (precision + recall), "accuracy", accuracy, TP, TN, FP, FN)
 
     print("Chosen Model for date", date, " is f1", f1, "accuracy", acc, "learning rate", "%.5f" % lr, "n_nodes", n_n)
-    svr.save(ses, "h3_models_2/" + date.date().__str__() + "/" + date.date().__str__())
+    svr.save(ses, "h3_models_3/" + date.date().__str__() + "/" + date.date().__str__())
     ses.close()
 
 
