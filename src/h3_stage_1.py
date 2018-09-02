@@ -337,7 +337,7 @@ def process(learning_rates, n_nodes, training_inputs, training_outputs, test_inp
     ses = None
     for learning_rate in learning_rates:
         for n_node in n_nodes:
-            for k in range(0, 10):
+            for k in range(0, 20):
                 accuracy, TP, TN, FP, FN, saver, sess = run(learning_rate, n_node, training_inputs, training_outputs,
                                                             test_inputs,
                                                             test_outputs)
