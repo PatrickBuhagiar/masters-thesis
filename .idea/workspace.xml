@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h2_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2001-07-01/2001-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2001-07-01/2001-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2001-07-01/2001-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2001-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-01-01/2002-01-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-01-01/2002-01-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-01-01/2002-01-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-01-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-07-01/2002-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-07-01/2002-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-07-01/2002-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2002-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2007-07-01/2007-07-01.data-00000-of-00001" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2007-07-01/2007-07-01.index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2007-07-01/2007-07-01.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_models/2007-07-01/checkpoint" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/h3_stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h2_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,20 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="h2_stage_1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h2_stage_1.py">
+      <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="182" column="48" selection-start-line="182" selection-start-column="48" selection-end-line="182" selection-end-column="48" />
+            <state relative-caret-position="385">
+              <caret line="480" column="47" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="h3_stage_1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
+      <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="380" column="34" lean-forward="true" selection-start-line="380" selection-start-column="34" selection-end-line="380" selection-end-column="34" />
+            <state relative-caret-position="85">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -139,17 +124,18 @@
         <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/src/h2_alternative.py" />
         <option value="$PROJECT_DIR$/src/base_out/correct/base_accuracies_5-11_0005-0021.csv" />
-        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_1.py" />
         <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
+        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1117" />
-    <option name="width" value="1148" />
-    <option name="height" value="1454" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="2279" />
+    <option name="height" value="1466" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -329,17 +315,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="745" y="0" width="765" height="969" extended-state="0" />
+    <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" weight="0.39231825" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" weight="0.39203778" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.32292917" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -816,17 +802,13 @@
     <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_20-41_001-011_f1models.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_alternative.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7225">
           <caret line="428" column="56" selection-start-line="428" selection-start-column="56" selection-end-line="428" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -859,13 +841,6 @@
     <entry file="file://$PROJECT_DIR$/src/h2_models/.gitkeep">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="102" column="49" selection-start-line="102" selection-start-column="49" selection-end-line="102" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -885,8 +860,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
+        <state relative-caret-position="286">
           <caret line="380" column="34" lean-forward="true" selection-start-line="380" selection-start-column="34" selection-end-line="380" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="480" column="47" selection-start-line="480" selection-start-column="47" selection-end-line="480" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

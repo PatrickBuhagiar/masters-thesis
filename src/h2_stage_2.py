@@ -99,8 +99,8 @@ def divide_into_training_testing(inputs, outputs, n):
 def get_model_predictions(filename, inputs):
     # Load model and variables
     with tf.Session() as sess:
-        saver = tf.train.import_meta_graph("h2_models_alt/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h2_models_alt/" + filename + "/"))
+        saver = tf.train.import_meta_graph("h2_models/" + filename + "/" + filename + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("h2/" + filename + "/"))
         graph = tf.get_default_graph()
         X = graph.get_tensor_by_name("X:0")
         keep_prob = graph.get_tensor_by_name("keep_prob:0")
@@ -359,25 +359,25 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     meta_inputs['trade_balance_data_2'] = [
         (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
         for x in tbd_2]
-    meta_inputs['trade_balance_data_3'] = [
-        (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
-        for x in tbd_3]
+    # meta_inputs['trade_balance_data_3'] = [
+    #     (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
+    #     for x in tbd_3]
     meta_inputs['gdp_data_0'] = [x / max(gdp_data.values()) for x in gdp_0]
     meta_inputs['gdp_data_1'] = [x / max(gdp_data.values()) for x in gdp_1]
     meta_inputs['gdp_data_2'] = [x / max(gdp_data.values()) for x in gdp_2]
-    meta_inputs['gdp_data_3'] = [x / max(gdp_data.values()) for x in gdp_3]
+    # meta_inputs['gdp_data_3'] = [x / max(gdp_data.values()) for x in gdp_3]
     meta_inputs['inflation_data_0'] = [x / max(inflation_data.values()) for x in inf_0]
     meta_inputs['inflation_data_1'] = [x / max(inflation_data.values()) for x in inf_1]
     meta_inputs['inflation_data_2'] = [x / max(inflation_data.values()) for x in inf_2]
-    meta_inputs['inflation_data_3'] = [x / max(inflation_data.values()) for x in inf_3]
+    # meta_inputs['inflation_data_3'] = [x / max(inflation_data.values()) for x in inf_3]
     meta_inputs['interest_data_0'] = [x / max(interest_data.values) for x in int_0]
     meta_inputs['interest_data_1'] = [x / max(interest_data.values) for x in int_1]
     meta_inputs['interest_data_2'] = [x / max(interest_data.values) for x in int_2]
-    meta_inputs['interest_data_3'] = [x / max(interest_data.values) for x in int_3]
+    # meta_inputs['interest_data_3'] = [x / max(interest_data.values) for x in int_3]
     meta_inputs['unemployment_data_0'] = [x / max(unemployment_data.values()) for x in uem_0]
     meta_inputs['unemployment_data_1'] = [x / max(unemployment_data.values()) for x in uem_1]
     meta_inputs['unemployment_data_2'] = [x / max(unemployment_data.values()) for x in uem_2]
-    meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
+    # meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 
 def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
@@ -458,8 +458,8 @@ if __name__ == '__main__':
     meta_inputs['ftse_1'] = inputs['ftse_1']
     meta_inputs['ftse_2'] = inputs['ftse_2']
     meta_inputs['ftse_3'] = inputs['ftse_3']
-    meta_inputs['ftse_4'] = inputs['ftse_4']
-    meta_inputs['ftse_5'] = inputs['ftse_5']
+    # meta_inputs['ftse_4'] = inputs['ftse_4']
+    # meta_inputs['ftse_5'] = inputs['ftse_5']
 
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
@@ -467,8 +467,8 @@ if __name__ == '__main__':
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
-    X = np.arange(30, 36, 1)  # number of nodes
-    Y = np.arange(0.006, 0.02, 0.002)  # learning rates
+    X = np.arange(30, 41, 2)  # number of nodes
+    Y = np.arange(0.0006, 0.0051, 0.0004)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
@@ -478,5 +478,5 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_30-36_006-02.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_30-36_006-02.csv", f1s, delimiter=",")
+    np.savetxt("h2_accuracies_30-41_0006-0051.csv", accuracies, delimiter=",")
+    np.savetxt("h2_f1s_30-41_0006-0051.csv", f1s, delimiter=",")
