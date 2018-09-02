@@ -298,7 +298,7 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
-    date_name = date.year.__str__() + date.month.__str__()
+    date_name = date.date().__str__()
 
     X = tf.placeholder(tf.float32, [None, feature_count], name="X_" + date_name)
     Y = tf.placeholder(tf.float32, [None, label_count], name="Y_" + date_name)
