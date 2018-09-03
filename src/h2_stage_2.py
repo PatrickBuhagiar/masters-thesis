@@ -101,8 +101,8 @@ def get_model_predictions(filename, inputs):
     # Load model and variables
     with tf.Session() as sess:
         name = filename[0] + filename[1] + filename[2] + filename[3] + filename[6]
-        saver = tf.train.import_meta_graph("h2_models_2/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h2_models_2/" + filename + "/"))
+        saver = tf.train.import_meta_graph("h2_models/" + filename + "/" + filename + ".meta")
+        saver.restore(sess, tf.train.latest_checkpoint("h2_models/" + filename + "/"))
         graph = tf.get_default_graph()
         X = graph.get_tensor_by_name("X_" + name + ":0")
         keep_prob = graph.get_tensor_by_name("keep_prob_" + name + ":0")
@@ -470,8 +470,8 @@ if __name__ == '__main__':
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
-    X = np.arange(30, 41, 2)  # number of nodes
-    Y = np.arange(0.0006, 0.0051, 0.0004)  # learning rates
+    X = np.arange(30, 51, 2)  # number of nodes
+    Y = np.arange(0.002, 0.0031, 0.0002)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
@@ -481,5 +481,5 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_30-41_0006-0051.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_30-41_0006-0051.csv", f1s, delimiter=",")
+    np.savetxt("h2_accuracies_30-51_002-0031.csv", accuracies, delimiter=",")
+    np.savetxt("h2_f1s_30-51_002-0031.csv", f1s, delimiter=",")
