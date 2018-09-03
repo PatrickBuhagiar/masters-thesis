@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h2_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/h3_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/result_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/result_plotter.py" afterDir="false" />
     </list>
@@ -21,8 +21,11 @@
       <file leaf-file-name="result_plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="19" selection-start-column="19" selection-end-column="19" />
+            <state relative-caret-position="238">
+              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -30,8 +33,8 @@
       <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="673" column="25" selection-start-line="673" selection-start-column="25" selection-end-line="673" selection-end-column="25" />
+            <state relative-caret-position="224">
+              <caret line="661" column="21" lean-forward="true" selection-start-line="661" selection-start-column="21" selection-end-line="661" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -40,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="394">
-              <caret line="470" column="13" lean-forward="true" selection-start-line="470" selection-start-column="13" selection-end-line="470" selection-end-column="13" />
+              <caret line="470" column="37" lean-forward="true" selection-start-line="470" selection-start-column="37" selection-end-line="470" selection-end-column="37" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -168,30 +171,6 @@
             <path>
               <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="indices" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="macroeconomics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="macroeconomics" type="462c0819:PsiDirectoryNode" />
-              <item name="GB" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -206,16 +185,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\data\macroeconomics" />
+      <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\thesis\thesis\src\h2_out" />
       <recent name="C:\dev\thesis\thesis\src\only_other_stocks\correct" />
       <recent name="C:\dev\thesis\thesis\src\base_out\correct" />
       <recent name="C:\dev\thesis\thesis\src\base_out" />
       <recent name="C:\dev\thesis\thesis\src\only_other_stocks" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\thesis\thesis\data\macroeconomics" />
-      <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -358,14 +337,14 @@
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.21120109" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5026991" side_tool="true" visible="true" weight="0.3198573" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32580262" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.3472057" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.4979757" weight="0.3234245" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49865046" weight="0.3472057" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49730095" visible="true" weight="0.3198573" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49865046" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
@@ -387,23 +366,23 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -639,13 +618,7 @@
     <entry file="file://$PROJECT_DIR$/src/h3_models/.gitkeep">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_5-40_0001-0022.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_5-40_0001-0022.csv" />
     <entry file="file://$PROJECT_DIR$/src/wilcoxon_signed-rank_test.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -663,9 +636,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_20-41_001-011_f1models.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_20-41_001-011_f1models.csv" />
     <entry file="file://$PROJECT_DIR$/src/h2_alternative.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7225">
@@ -700,18 +671,12 @@
     <entry file="file://$PROJECT_DIR$/src/h2_models/2000-07-01/checkpoint">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_models_1/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_models_1/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_models_1/.gitkeep" />
+    <entry file="file://$PROJECT_DIR$/src/h3_models_1/.gitkeep" />
     <entry file="file://$PROJECT_DIR$/src/h2_models/.gitkeep">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_models_2/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_models_2/.gitkeep" />
     <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/concurrent/futures/thread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -733,9 +698,7 @@
     <entry file="file://$PROJECT_DIR$/src/h2_models/2000-01-01/checkpoint">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_models_3/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_models_3/.gitkeep" />
     <entry file="file://$PROJECT_DIR$/src/h3_stage_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="962">
@@ -819,9 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -845,7 +805,7 @@
     <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
-          <caret line="470" column="13" lean-forward="true" selection-start-line="470" selection-start-column="13" selection-end-line="470" selection-end-column="13" />
+          <caret line="470" column="37" lean-forward="true" selection-start-line="470" selection-start-column="37" selection-end-line="470" selection-end-column="37" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -854,15 +814,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        <state relative-caret-position="238">
+          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="673" column="25" selection-start-line="673" selection-start-column="25" selection-end-line="673" selection-end-column="25" />
+        <state relative-caret-position="224">
+          <caret line="661" column="21" lean-forward="true" selection-start-line="661" selection-start-column="21" selection-end-line="661" selection-end-column="21" />
         </state>
       </provider>
     </entry>
