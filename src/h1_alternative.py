@@ -1,18 +1,44 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 from concurrent.futures import ThreadPoolExecutor, wait
+
+# global variables
+start = pd.datetime(2013, 1, 1)
+end = pd.datetime(2018, 1, 1)
 
 # Concurrency stuff
 pool = ThreadPoolExecutor(20)
 futures = []
 
 
-def stringify(data: []):
-    return data.__str__()
+def divide_into_training_testing(inputs, outputs, n):
+    """
+    Divide the data into training and testing.
+    This is split as 80/20.
+    :param inputs: the input data
+    :param outputs: the output data
+    :param n: the size of the dataset (training + testing)
+    :return: the inputs and outputs of both the training and testing data
+    """
+    training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
+    training_inputs = inputs[:training_set_size]
+    training_outputs = outputs[:training_set_size]
+    test_inputs = inputs[training_set_size:]
+    test_outputs = outputs[training_set_size:]
+    return test_outputs, test_inputs, training_outputs, training_inputs
 
 
 def extract_index(filename, start, end, date_parse, dropna=True):
+    """
+    Extracts the index from a csv file and filters base_out into a date range.
+    :param  filename: The name of the csv file
+    :param     start: The start date
+    :param       end: the end date
+    :param date_parse: the type of date parsing
+    :param dropna: drop any nas
+    :return: The indices as a time series
+    """
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
     # Fill missing dates and values
     all_days = pd.date_range(start, end, freq='D')
@@ -76,8 +102,7 @@ def prepare_data():
                  'stoxx_2', 'stoxx_3', 'sp500_1', 'sp500_2', 'sp500_3', 'hkse_0', 'hkse_1', 'hkse_2', 'n225_0',
                  'n225_1', 'n225_2']
     )
-
-    dates = []
+    dates =[]
     for i in range(7, len(ftse_log)):
         up = directions['UP'].ix[i]
 
@@ -93,6 +118,7 @@ def prepare_data():
         ftse_2 = ftse_log.ix[i - 2]
         ftse_3 = ftse_log.ix[i - 3]
 
+        dates.append(ftse_log.index[i])
         cac_1 = 0
         cac_2 = 0
         cac_3 = 0
@@ -252,61 +278,70 @@ def prepare_data():
                 'n225_2': n225_2
             }, ignore_index=True
         )
-        dates.append(ftse_data.index[i])
     inputs = data[data.columns[1:]]
     outputs = data[data.columns[:1]]
     return inputs, outputs, dates
 
 
-def get_model_names():
-    start_years = np.arange(2000, 2008, 1)
-    start_dates = []
-    file_names = []
-    for year in start_years:
-        start_dates.append(pd.datetime(year, 1, 1))
-        start_dates.append(pd.datetime(year, 7, 1))
-    for date in start_dates:
-        file_names.append(date.date().__str__())
-    return file_names
+def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+    feature_count = training_inputs.shape[1]
+    label_count = training_outputs.shape[1]
+    training_epochs = 3000
 
+    cost_history = np.empty(shape=[1], dtype=float)
+    X = tf.placeholder(tf.float32, [None, feature_count])
+    Y = tf.placeholder(tf.float32, [None, label_count])
+    initializer = tf.contrib.layers.xavier_initializer()
+    h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
+    keep_prob = tf.placeholder(tf.float32, name='keep_prob')
+    h0 = tf.nn.dropout(h0, keep_prob)
+    h1 = tf.layers.dense(h0, label_count, activation=None)
+    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
+    cost = tf.reduce_mean(cross_entropy)
+    optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
+    predicted = tf.nn.sigmoid(h1)
+    correct_pred = tf.equal(tf.round(predicted), Y)
+    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+    t_p = tf.count_nonzero(tf.round(predicted) * Y)
+    t_n = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1))
+    f_p = tf.count_nonzero(tf.round(predicted) * (Y - 1))
+    f_n = tf.count_nonzero((tf.round(predicted) - 1) * Y)
 
-def divide_into_training_testing(inputs, outputs, n):
-    """
-    Divide the data into training and testing.
-    This is split as 80/20.
-
-    :param inputs: the input data
-    :param outputs: the output data
-    :param n: the size of the dataset (training + testing)
-    :return: the inputs and outputs of both the training and testing data
-    """
-    training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
-    training_inputs = inputs[:training_set_size]
-    training_outputs = outputs[:training_set_size]
-    test_inputs = inputs[training_set_size:]
-    test_outputs = outputs[training_set_size:]
-    return test_outputs, test_inputs, training_outputs, training_inputs
-
-
-def get_model_predictions(filename, inputs):
-    tf.reset_default_graph()
-    # Load model and variables
     with tf.Session() as sess:
-        name = filename[0] + filename[1] + filename[2] + filename[3] + filename[6]
-        saver = tf.train.import_meta_graph("h3_models/" + filename + "/" + filename + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint("h3_models/" + filename + "/"))
-        graph = tf.get_default_graph()
-        X = graph.get_tensor_by_name("X_" + name + ":0")
-        keep_prob = graph.get_tensor_by_name("keep_prob_" + name + ":0")
-        feed_dict = {
-            X: inputs.values,
-            keep_prob: 1
-        }
+        sess.run(tf.global_variables_initializer())
 
-        predicted = graph.get_tensor_by_name("predicted_" + name + ":0")
-        predictions = sess.run(tf.cast(tf.round(predicted), tf.int32), feed_dict)
-        sess.close()
-        return predictions
+        for step in range(training_epochs + 1):
+            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            loss, _, acc = sess.run([cost, optimizer, accuracy],
+                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            cost_history = np.append(cost_history, acc)
+        return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+
+
+def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
+    learning_rate = Y[j]
+    for i in range(0, len(X)):
+        n_nodes = X[i]
+        acc = 0.0
+        f1 = 0.0
+        for k in range(0, 20):
+            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
+                                           test_outputs)
+            acc += (TP + TN) / (TP + TN + FP + FN)
+            precision = TP / (TP + FP)
+            recall = TP / (TP + FN)
+            f1 += 2 * ((precision * recall) / (precision + recall))
+            print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
+                  FP, FN)
+        acc = acc / 20.0
+        f1 = f1 / 20.0
+        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
+              f1, "accuracy", acc)
+
+        Z[i][j] = acc
+        ZZ[i][j] = f1
+
 
 
 def convert_to_date(date):
@@ -485,6 +520,9 @@ def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
         t_3 = data.T[(date - pd.DateOffset(months=12)).__str__()].Value
         return [t_0, t_1, t_2, t_3]
 
+def stringify(data: []):
+    return data.__str__()
+
 
 def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     trade_balance_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv", 90, start, end)
@@ -574,102 +612,48 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     # meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
-    tf.reset_default_graph()
-    feature_count = training_inputs.shape[1]
-    label_count = training_outputs.shape[1]
-    training_epochs = 3000
-
-    cost_history = np.empty(shape=[1], dtype=float)
-    X = tf.placeholder(tf.float32, [None, feature_count])
-    Y = tf.placeholder(tf.float32, [None, label_count])
-    initializer = tf.contrib.layers.xavier_initializer()
-    h0 = tf.layers.dense(X, n_nodes, activation=tf.nn.relu, kernel_initializer=initializer)
-    keep_prob = tf.placeholder(tf.float32, name='keep_prob')
-    h0 = tf.nn.dropout(h0, keep_prob)
-    h1 = tf.layers.dense(h0, label_count, activation=None)
-    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
-    cost = tf.reduce_mean(cross_entropy)
-    optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
-    predicted = tf.nn.sigmoid(h1)
-    correct_pred = tf.equal(tf.round(predicted), Y)
-    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-    TP = tf.count_nonzero(tf.round(predicted) * Y)
-    TN = tf.count_nonzero((tf.round(predicted) - 1) * (Y - 1))
-    FP = tf.count_nonzero(tf.round(predicted) * (Y - 1))
-    FN = tf.count_nonzero((tf.round(predicted) - 1) * Y)
-
-    with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
-
-        for step in range(training_epochs + 1):
-            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
-            loss, _, acc = sess.run([cost, optimizer, accuracy],
-                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
-            cost_history = np.append(cost_history, acc)
-        return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
-
-
-def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
-    n_nodes = X[j]
-    for i in range(0, len(Y)):
-        learning_rate = Y[i]
-        acc = 0.0
-        f1 = 0.0
-        for k in range(0, 20):
-            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
-                                           test_outputs)
-            acc += (TP + TN) / (TP + TN + FP + FN)
-            precision = TP / (TP + FP)
-            recall = TP / (TP + FN)
-            f1 += (2 * precision * recall) / (precision + recall)
-            print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
-                  (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
-                  FP, FN)
-        acc = acc / 20.0
-        f1 = f1 / 20.0
-        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
-              f1, "accuracy", acc)
-
-        Z[j][i] = acc
-        ZZ[j][i] = f1
-
-
 if __name__ == '__main__':
-    # Load the stock data that will be used for training and testing the meta model
-    start = pd.datetime(2013, 1, 1)
-    end = pd.datetime(2018, 1, 1)
-    inputs, outputs, dates = prepare_data()
+    inputs, output, dates = prepare_data()
 
-    meta_inputs = pd.DataFrame()
-    # load all stored models
-    model_dates = get_model_names()
-    for date in model_dates:
-        model_predictions = get_model_predictions(date, inputs)
-        meta_inputs[date + "_predictions"] = model_predictions[:, 0]
-        print("processing model predictions for period", date)
+    full_inputs = pd.DataFrame()
+    full_inputs['ftse_1'] = inputs['ftse_1']
+    full_inputs['ftse_2'] = inputs['ftse_2']
+    full_inputs['ftse_3'] = inputs['ftse_3']
+    full_inputs['cac_1'] = inputs['cac_1']
+    full_inputs['cac_2'] = inputs['cac_2']
+    full_inputs['cac_3'] = inputs['cac_3']
+    full_inputs['dax_1'] = inputs['dax_1']
+    full_inputs['dax_2'] = inputs['dax_2']
+    full_inputs['dax_3'] = inputs['dax_3']
+    full_inputs['stoxx_1'] = inputs['stoxx_1']
+    full_inputs['stoxx_2'] = inputs['stoxx_2']
+    full_inputs['stoxx_3'] = inputs['stoxx_3']
+    full_inputs['sp500_1'] = inputs['sp500_1']
+    full_inputs['sp500_2'] = inputs['sp500_2']
+    full_inputs['sp500_3'] = inputs['sp500_3']
+    full_inputs['hkse_0'] = inputs['hkse_0']
+    full_inputs['hkse_1'] = inputs['hkse_1']
+    full_inputs['hkse_2'] = inputs['hkse_2']
+    full_inputs['n225_0'] = inputs['n225_0']
+    full_inputs['n225_1'] = inputs['n225_1']
+    full_inputs['n225_2'] = inputs['n225_2']
 
-    meta_inputs['ftse_1'] = inputs['ftse_1']
-    meta_inputs['ftse_2'] = inputs['ftse_2']
-    meta_inputs['ftse_3'] = inputs['ftse_3']
-
-    # Load all macroeconomic data
-    prepare_macroeconomic_data(start, end, meta_inputs, dates)
-
+    prepare_macroeconomic_data(start, end, full_inputs, dates)
     # split into training and testing
-    test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
-                                                                                                len(meta_inputs))
+    test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(full_inputs, output,
+                                                                                                len(full_inputs))
 
-    X = np.arange(40, 61, 1)  # number of nodes
-    Y = np.arange(0.00001, 0.00008, 0.00001)  # learning rates
+    X = np.arange(20, 31, 2)  # number of nodes
+    Y = np.arange(0.0001, 0.0011, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
-    for j in range(0, len(X)):
+    for j in range(0, len(Y)):
         futures.append(
-            pool.submit(process, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
+            pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
                         test_inputs,
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h3_accuracies_40-61_00001-00008.csv", accuracies, delimiter=",")
-    np.savetxt("h3_f1s_40-61_00001-00008.csv", f1s, delimiter=",")
+    np.savetxt("other_stocks_accuracies_10-21_0001-0009.csv", accuracies, delimiter=",")
+    np.savetxt("other_stocks_f1s_10-21_0001-0009.csv", f1s, delimiter=",")
+
