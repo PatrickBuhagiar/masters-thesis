@@ -4,12 +4,12 @@ from matplotlib import cm
 import csv
 import numpy as np
 
-X = np.arange(35, 45, 1)  # number of nodes
-Y = np.arange(0.00003, 0.00011, 0.00001)  # learning rates
+X = np.arange(45, 56, 1)  # number of nodes
+Y = np.arange(0.0005, 0.0016, 0.0001)  # learning rates
 
-accuracies = np.array(list(csv.reader(open("h2_accuracies_35-45_00003-00011.csv"), delimiter=","))).astype(
+accuracies = np.array(list(csv.reader(open("h2_accuracies_45-56_0005-0016.csv"), delimiter=","))).astype(
     "float")
-f1s = np.array(list(csv.reader(open("h2_f1s_35-45_00003-00011.csv"), delimiter=","))).astype("float")
+f1s = np.array(list(csv.reader(open("h2_f1s_45-56_0005-0016.csv"), delimiter=","))).astype("float")
 Y, X = np.meshgrid(Y, X)
 
 fig = plt.figure()
