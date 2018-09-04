@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h1_alternative.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h1_alternative.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,20 +60,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="h1.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h1.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="303">
                   <caret line="337" column="34" lean-forward="true" selection-start-line="337" selection-start-column="34" selection-end-line="337" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="base.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/pandas/core/indexes/base.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="226">
-                  <caret line="3063" selection-start-line="3063" selection-end-line="3063" />
                 </state>
               </provider>
             </entry>
@@ -123,8 +114,8 @@
           <file leaf-file-name="h1_alternative.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/h1_alternative.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="266">
-                  <caret line="652" column="14" selection-start-line="652" selection-start-column="14" selection-end-line="652" selection-end-column="14" />
+                <state relative-caret-position="187">
+                  <caret line="646" column="28" lean-forward="true" selection-start-line="646" selection-start-column="28" selection-end-line="646" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -417,6 +408,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.21120109" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -425,9 +417,9 @@
       <window_info anchor="bottom" id="Find" order="5" weight="0.32818073" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32580262" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.4979757" weight="0.3234245" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49865046" visible="true" weight="0.3472057" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49865046" weight="0.3472057" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49730095" weight="0.3198573" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49730095" visible="true" weight="0.3198573" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49865046" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -926,6 +918,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/pandas/core/indexes/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="3056" column="31" selection-start-line="3056" selection-start-column="31" selection-end-line="3056" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/h1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -933,17 +932,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../applications/Python36/Lib/site-packages/pandas/core/indexes/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="3063" selection-start-line="3063" selection-end-line="3063" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h1_alternative.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="652" column="14" selection-start-line="652" selection-start-column="14" selection-end-line="652" selection-end-column="14" />
+        <state relative-caret-position="187">
+          <caret line="646" column="28" lean-forward="true" selection-start-line="646" selection-start-column="28" selection-end-line="646" selection-end-column="28" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

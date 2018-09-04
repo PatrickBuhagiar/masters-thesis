@@ -643,8 +643,8 @@ if __name__ == '__main__':
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(full_inputs, output,
                                                                                                 len(full_inputs))
 
-    X = np.arange(10, 21, 1)  # number of nodes
-    Y = np.arange(0.0001, 0.0009, 0.0001)  # learning rates
+    X = np.arange(20, 31, 2)  # number of nodes
+    Y = np.arange(0.0001, 0.0011, 0.0001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(Y)):
