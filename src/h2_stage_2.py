@@ -470,8 +470,13 @@ if __name__ == '__main__':
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
-    X = np.arange(30, 60, 2)  # number of nodes
-    Y = np.arange(0.0001, 0.0031, 0.0002)  # learning rates
+
+    X = np.arange(35, 45, 1)  # number of nodes
+    Y = np.arange(0.00003, 0.00011, 0.00001)  # learning rates
+
+#    X = np.arange(30, 60, 2)  # number of nodes
+#    Y = np.arange(0.0001, 0.0031, 0.0002)  # learning rates
+
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
@@ -481,5 +486,10 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h2_accuracies_30-60_0001-0031.csv", accuracies, delimiter=",")
-    np.savetxt("h2_f1s_30-60_0001-0031.csv", f1s, delimiter=",")
+
+    np.savetxt("h2_accuracies_35-45_00003-00011.csv", accuracies, delimiter=",")
+    np.savetxt("h2_f1s_35-45_00003-00011.csv", f1s, delimiter=",")
+
+#   np.savetxt("h2_accuracies_30-60_0001-0031.csv", accuracies, delimiter=",")
+#   np.savetxt("h2_f1s_30-60_0001-0031.csv", f1s, delimiter=",")
+
