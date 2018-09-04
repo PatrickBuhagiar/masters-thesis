@@ -424,7 +424,7 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
         learning_rate = Y[i]
         acc = 0.0
         f1 = 0.0
-        for k in range(0, 5):
+        for k in range(0, 20):
             accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
                                            test_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
@@ -434,8 +434,8 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
                   FP, FN)
-        acc = acc / 5.0
-        f1 = f1 / 5.0
+        acc = acc / 20.0
+        f1 = f1 / 20.0
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
