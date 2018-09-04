@@ -424,7 +424,7 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
         learning_rate = Y[i]
         acc = 0.0
         f1 = 0.0
-        for k in range(0, 20):
+        for k in range(0, 5):
             accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
                                            test_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
@@ -434,8 +434,8 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
             print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
                   FP, FN)
-        acc = acc / 20.0
-        f1 = f1 / 20.0
+        acc = acc / 5.0
+        f1 = f1 / 5.0
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
@@ -470,8 +470,13 @@ if __name__ == '__main__':
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
                                                                                                 len(meta_inputs))
+
     X = np.arange(36, 56, 2)  # number of nodes
     Y = np.arange(0.00001, 0.00006, 0.00001)  # learning rates
+
+#    X = np.arange(30, 60, 2)  # number of nodes
+#    Y = np.arange(0.0001, 0.0031, 0.0002)  # learning rates
+
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
@@ -481,5 +486,10 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
+
     np.savetxt("h2_accuracies_36-56_00001-00006.csv", accuracies, delimiter=",")
     np.savetxt("h2_f1s_36-56_00001-00006.csv", f1s, delimiter=",")
+
+#   np.savetxt("h2_accuracies_30-60_0001-0031.csv", accuracies, delimiter=",")
+#   np.savetxt("h2_f1s_30-60_0001-0031.csv", f1s, delimiter=",")
+
