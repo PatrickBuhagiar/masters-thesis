@@ -623,12 +623,12 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
             f1 += (2 * precision * recall) / (precision + recall)
-            print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
+            print("learning rate", "%.7f" % learning_rate, "n_nodes", n_nodes, "iter", k, "f1",
                   (2 * precision * recall) / (precision + recall), "accuracy", (TP + TN) / (TP + TN + FP + FN), TP, TN,
                   FP, FN)
         acc = acc / 20.0
         f1 = f1 / 20.0
-        print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
+        print("learning rate", "%.7f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
         Z[j][i] = acc
@@ -661,7 +661,7 @@ if __name__ == '__main__':
                                                                                                 len(meta_inputs))
 
     X = np.arange(40, 61, 1)  # number of nodes
-    Y = np.arange(0.00001, 0.00008, 0.00001)  # learning rates
+    Y = np.arange(0.000005, 0.00005, 0.000005)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
@@ -671,5 +671,5 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
-    np.savetxt("h3_accuracies_40-61_00001-00008.csv", accuracies, delimiter=",")
-    np.savetxt("h3_f1s_40-61_00001-00008.csv", f1s, delimiter=",")
+    np.savetxt("h3_accuracies_40-61_000005-00005.csv", accuracies, delimiter=",")
+    np.savetxt("h3_f1s_40-61_000005-00005.csv", f1s, delimiter=",")
