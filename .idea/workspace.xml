@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/h3_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/result_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/result_plotter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="result_plotter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="result_plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+            <state relative-caret-position="119">
+              <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="30" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -40,15 +38,15 @@
         </entry>
       </file>
       <file leaf-file-name="h3_accuracies_40-61_00001-00008.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h3_accuracies_40-61_00001-00008.csv">
+        <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="663" column="8" selection-start-line="663" selection-start-column="8" selection-end-line="663" selection-end-column="47" />
+            <state relative-caret-position="269">
+              <caret line="666" column="30" lean-forward="true" selection-start-line="666" selection-start-column="30" selection-end-line="666" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -201,8 +199,8 @@
         <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
         <option value="$PROJECT_DIR$/src/h1_alternative.py" />
         <option value="$PROJECT_DIR$/src/h3_out/h3_f1s_36-56_00001-00005.csv" />
-        <option value="$PROJECT_DIR$/src/h3_stage_2.py" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
+        <option value="$PROJECT_DIR$/src/h3_stage_2.py" />
       </list>
     </option>
   </component>
@@ -250,16 +248,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\src\h3_out" />
+      <recent name="C:\dev\thesis\thesis\src\h2_out\correct" />
+      <recent name="C:\dev\thesis\thesis\src\h2_out" />
+      <recent name="C:\dev\thesis\thesis\src\only_other_stocks\correct" />
+      <recent name="C:\dev\thesis\thesis\src\base_out\correct" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev\thesis\thesis\data\macroeconomics" />
       <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\dev\thesis\thesis\src\h2_out\correct" />
-      <recent name="C:\dev\thesis\thesis\src\h2_out" />
-      <recent name="C:\dev\thesis\thesis\src\h3_out" />
-      <recent name="C:\dev\thesis\thesis\src\only_other_stocks\correct" />
-      <recent name="C:\dev\thesis\thesis\src\base_out\correct" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -403,10 +401,10 @@
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.3198573" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -878,7 +876,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_accuracies_40-61_00001-00008.csv">
+    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_36-56_00001-00005.csv">
@@ -895,20 +893,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="663" column="8" selection-start-line="663" selection-start-column="8" selection-end-line="663" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        <state relative-caret-position="119">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="30" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="666" column="30" lean-forward="true" selection-start-line="666" selection-start-column="30" selection-end-line="666" selection-end-column="30" />
         </state>
       </provider>
     </entry>

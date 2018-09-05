@@ -661,7 +661,7 @@ if __name__ == '__main__':
                                                                                                 len(meta_inputs))
 
     X = np.arange(40, 61, 1)  # number of nodes
-    Y = np.arange(0.000005, 0.00005, 0.000005)  # learning rates
+    Y = np.arange(0.000001, 0.00001, 0.000001)  # learning rates
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
     for j in range(0, len(X)):
