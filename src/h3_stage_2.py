@@ -1,7 +1,8 @@
-import pandas as pd
-import numpy as np
-import tensorflow as tf
 from concurrent.futures import ThreadPoolExecutor, wait
+
+import numpy as np
+import pandas as pd
+import tensorflow as tf
 
 # Concurrency stuff
 pool = ThreadPoolExecutor(20)
