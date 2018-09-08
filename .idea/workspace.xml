@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9788a21-b732-4e86-b9af-a72e3cf903c5" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/unparametric_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h2_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h2_stage_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_accuracies_40-61_000005-00005.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_out/correct/h3_accuracies_40-61_000005-00005.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_f1s_40-61_000005-00005.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_out/correct/h3_f1s_40-61_000005-00005.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/h3_out/h3_f1s_40-61_00001-00008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_out/h3_f1s_40-61_00001-00008.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/h3_stage_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/h3_stage_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/result_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/result_plotter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,97 +25,96 @@
     <favorites_list name="thesis" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="result_plotter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h3_accuracies_36-56_00001-00005.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_36-56_00001-00005.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h3_accuracies_40-61_00001-00008.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="666" column="30" lean-forward="true" selection-start-line="666" selection-start-column="30" selection-end-line="666" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base_wilcoxon_signed_rank_test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
-              <caret line="155" column="81" selection-start-line="155" selection-start-column="81" selection-end-line="155" selection-end-column="81" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5678">
-              <caret line="337" column="34" selection-start-line="337" selection-start-column="34" selection-end-line="337" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h2_alternative.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h2_alternative.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7208">
-              <caret line="427" column="47" selection-start-line="427" selection-start-column="47" selection-end-line="427" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h1_alternative.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h1_alternative.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10931">
-              <caret line="646" column="59" selection-start-line="645" selection-start-column="4" selection-end-line="646" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8245">
-              <caret line="488" selection-start-line="488" selection-end-line="488" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="result_plotter.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#0#30#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="unparametric_test.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/unparametric_test.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="h3_accuracies_40-61_00001-00008.csv" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="h3_f1s_40-61_00001-00008.csv" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/h3_out/h3_f1s_40-61_00001-00008.csv">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="187">
+                  <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/h1.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="166">
+                  <caret line="283" column="104" selection-start-line="283" selection-start-column="104" selection-end-line="283" selection-end-column="104" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="h1.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/h1.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="166">
+                  <caret line="318" column="48" selection-start-line="318" selection-start-column="48" selection-end-line="318" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="h2_stage_2.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2329">
+                  <caret line="418" column="27" lean-forward="true" selection-start-line="418" selection-start-column="27" selection-end-line="418" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#19#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="h3_stage_2.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="672">
+                  <caret line="606" column="18" selection-start-line="606" selection-start-column="18" selection-end-line="606" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -189,26 +198,27 @@
         <option value="$PROJECT_DIR$/src/only_macro_first_stage.py" />
         <option value="$PROJECT_DIR$/src/only_macro_second_stage.py" />
         <option value="$PROJECT_DIR$/src/wilcoxon_signed-rank_test.py" />
-        <option value="$PROJECT_DIR$/src/h1.py" />
         <option value="$PROJECT_DIR$/src/base.py" />
         <option value="$PROJECT_DIR$/src/h2_alternative.py" />
         <option value="$PROJECT_DIR$/src/base_out/correct/base_accuracies_5-11_0005-0021.csv" />
         <option value="$PROJECT_DIR$/src/h3_stage_1.py" />
         <option value="$PROJECT_DIR$/src/h2_stage_1.py" />
-        <option value="$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py" />
-        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
         <option value="$PROJECT_DIR$/src/h1_alternative.py" />
         <option value="$PROJECT_DIR$/src/h3_out/h3_f1s_36-56_00001-00005.csv" />
+        <option value="$PROJECT_DIR$/src/h3_out/h3_f1s_40-61_00001-00008.csv" />
         <option value="$PROJECT_DIR$/src/result_plotter.py" />
         <option value="$PROJECT_DIR$/src/h3_stage_2.py" />
+        <option value="$PROJECT_DIR$/src/h2_stage_2.py" />
+        <option value="$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py" />
+        <option value="$PROJECT_DIR$/src/h1.py" />
+        <option value="$PROJECT_DIR$/src/unparametric_test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1149" />
-    <option name="height" value="1455" />
+    <option name="x" value="1117" />
+    <option name="width" value="1148" />
+    <option name="height" value="1454" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -218,7 +228,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,16 +240,11 @@
               <item name="thesis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="thesis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="thesis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="h3_out" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,16 +252,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\data\macroeconomics" />
+      <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\thesis\thesis\src\h3_out\correct" />
       <recent name="C:\dev\thesis\thesis\src\h3_out" />
       <recent name="C:\dev\thesis\thesis\src\h2_out\correct" />
       <recent name="C:\dev\thesis\thesis\src\h2_out" />
       <recent name="C:\dev\thesis\thesis\src\only_other_stocks\correct" />
-      <recent name="C:\dev\thesis\thesis\src\base_out\correct" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\thesis\thesis\data\macroeconomics" />
-      <recent name="C:\dev\thesis\thesis\data\macroeconomics\GB" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -272,7 +276,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.result_plotter">
+  <component name="RunManager" selected="Python.base_wilcoxon_signed_rank_test">
     <configuration name="base_wilcoxon_signed_rank_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -285,7 +289,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py" />
+      <option name="SCRIPT_NAME" value="C:\dev\thesis\thesis\src\unparametric_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -327,6 +331,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="h3_stage_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="thesis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/h3_stage_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="result_plotter" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="thesis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -345,38 +367,20 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="script" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="thesis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/script.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list>
-      <item itemvalue="Python.script" />
       <item itemvalue="Python.data-analysis" />
       <item itemvalue="Python.result_plotter" />
       <item itemvalue="Python.base_wilcoxon_signed_rank_test" />
       <item itemvalue="Python.h1_alternative" />
+      <item itemvalue="Python.h3_stage_2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.result_plotter" />
-        <item itemvalue="Python.h1_alternative" />
         <item itemvalue="Python.base_wilcoxon_signed_rank_test" />
+        <item itemvalue="Python.result_plotter" />
+        <item itemvalue="Python.h3_stage_2" />
+        <item itemvalue="Python.h1_alternative" />
         <item itemvalue="Python.data-analysis" />
-        <item itemvalue="Python.script" />
       </list>
     </recent_temporary>
   </component>
@@ -395,16 +399,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1519" height="977" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.23481782" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.22672065" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.3277311" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" visible="true" weight="0.3198573" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
       <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -414,27 +418,26 @@
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32818073" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.19298245" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4974705" visible="true" weight="0.22672065" />
       <window_info id="Structure" order="2" sideWeight="0.5025295" side_tool="true" weight="0.14102565" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" weight="0.34839478" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49932525" visible="true" weight="0.34839478" />
+      <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" weight="0.3234245" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.3277311" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.29964328" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49865046" weight="0.3198573" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5013495" side_tool="true" weight="0.3198573" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32585597" />
-      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32821724" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="0" sideWeight="0.49865046" visible="true" weight="0.3234245" />
+      <window_info id="Favorites" order="0" sideWeight="0.50084317" side_tool="true" weight="0.14102565" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -500,7 +503,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="227" />
+      <option name="time" value="228" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -594,6 +597,31 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>np.append(Y, np.arange(0.00001, 0.00008, 0.00001))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.arange(0.00001, 0.00008, 0.00001)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.arange(0.00001, 0.00008, 0.0001)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate(Y, np.arange(0.00001, 0.00008, 0.0001))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.append(Y, np.arange(0.00001, 0.00008, 0.0001))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>full_inputs</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -613,52 +641,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>v is True</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>base_correct_predictions.flatten()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>(z == test_outputs.values)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>baseline_correct_predictions</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>base_correct_predictions</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/h3_models/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_5-40_0001-0022.csv" />
-    <entry file="file://$PROJECT_DIR$/src/h2_out/h2_accuracies_20-41_001-011_f1models.csv" />
-    <entry file="file://$PROJECT_DIR$/src/h2_models_alt/.gitkeep" />
-    <entry file="file://$PROJECT_DIR$/src/h3_models_alt/.gitkeep" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/838557750/numpy/core/multiarray.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59993">
-          <caret line="3529" column="8" selection-start-line="3529" selection-start-column="8" selection-end-line="3529" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_models_alt2/.gitkeep" />
-    <entry file="file://$PROJECT_DIR$/src/h2_models/.gitkeep">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h2_models/2000-07-01/2000-07-01.data-00000-of-00001">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-26" />
@@ -818,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base_wilcoxon_signed_rank_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="155" column="81" selection-start-line="155" selection-start-column="81" selection-end-line="155" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -839,13 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
           <caret line="3056" column="31" selection-start-line="3056" selection-start-column="31" selection-end-line="3056" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5678">
-          <caret line="337" column="34" selection-start-line="337" selection-start-column="34" selection-end-line="337" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -866,26 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8245">
-          <caret line="488" selection-start-line="488" selection-end-line="488" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_36-56_00001-00005.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_out/h3_f1s_36-56_00001-00005.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -893,20 +841,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
+    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_36-56_00001-00005.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_out/correct/h3_f1s_40-61_000005-00005.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meta_inputs.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_accuracies_40-61_00001-00008.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_out/h3_f1s_40-61_00001-00008.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/h3_stage_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="666" column="30" lean-forward="true" selection-start-line="666" selection-start-column="30" selection-end-line="666" selection-end-column="30" />
+        <state relative-caret-position="672">
+          <caret line="606" column="18" selection-start-line="606" selection-start-column="18" selection-end-line="606" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="283" column="104" selection-start-line="283" selection-start-column="104" selection-end-line="283" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h3_predictions.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_predictions.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h1_predictions.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base2_predictions.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base1_predictions.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/h2_stage_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2329">
+          <caret line="418" column="27" lean-forward="true" selection-start-line="418" selection-start-column="27" selection-end-line="418" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/unparametric_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/result_plotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

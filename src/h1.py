@@ -281,7 +281,7 @@ def prepare_data():
     return divide_into_training_testing(inputs, outputs, len(data))
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, getPredictions=False):
     feature_count = training_inputs.shape[1]
     label_count = training_outputs.shape[1]
     training_epochs = 3000
@@ -313,7 +313,10 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
             loss, _, acc = sess.run([cost, optimizer, accuracy],
                                     feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
-        return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        if getPredictions:
+            return sess.run([correct_pred, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        else:
+            return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
 def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):

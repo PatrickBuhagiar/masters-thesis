@@ -382,7 +382,7 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     # meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs):
+def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, getPredictions=False):
     tf.reset_default_graph()
     feature_count = training_inputs.shape[1]
     label_count = training_outputs.shape[1]
@@ -415,7 +415,10 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
             loss, _, acc = sess.run([cost, optimizer, accuracy],
                                     feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
-        return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        if getPredictions:
+            return sess.run([correct_pred, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        else:
+            return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
 
 
 def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
@@ -443,13 +446,7 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
         ZZ[j][i] = f1
 
 
-if __name__ == '__main__':
-    # Load the stock data that will be used for training and testing the meta model
-    start = pd.datetime(2013, 1, 1)
-    end = pd.datetime(2018, 1, 1)
-    ftse_data = load_data(start, end)
-    inputs, outputs, dates = prepare_data(ftse_data)
-
+def get_meta_inputs(inputs, dates, start, end):
     meta_inputs = pd.DataFrame()
     # load all stored models
     model_dates = get_model_names()
@@ -457,15 +454,22 @@ if __name__ == '__main__':
         model_predictions = get_model_predictions(date, inputs)
         meta_inputs[date + "_predictions"] = model_predictions[:, 0]
         print("processing model predictions for period", date)
-
     meta_inputs['ftse_1'] = inputs['ftse_1']
     meta_inputs['ftse_2'] = inputs['ftse_2']
     meta_inputs['ftse_3'] = inputs['ftse_3']
-    # meta_inputs['ftse_4'] = inputs['ftse_4']
-    # meta_inputs['ftse_5'] = inputs['ftse_5']
-
     # Load all macroeconomic data
     prepare_macroeconomic_data(start, end, meta_inputs, dates)
+    return meta_inputs
+
+
+if __name__ == '__main__':
+    # Load the stock data that will be used for training and testing the meta model
+    start = pd.datetime(2013, 1, 1)
+    end = pd.datetime(2018, 1, 1)
+    ftse_data = load_data(start, end)
+    inputs, outputs, dates = prepare_data(ftse_data)
+
+    meta_inputs = get_meta_inputs(inputs, dates)
 
     # split into training and testing
     test_outputs, test_inputs, training_outputs, training_inputs = divide_into_training_testing(meta_inputs, outputs,
