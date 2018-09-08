@@ -160,7 +160,7 @@ def get_h1_predictions(test_outputs, test_inputs, training_outputs, training_inp
     h1_correct_predictions = []
     for k in range(0, 20):
         correct_predictions, TP, TN, FP, FN = h1.run(learning_rate, n_nodes, training_inputs, training_outputs,
-                                                     test_inputs, test_outputs, getPredictions=True)
+                                                     test_inputs, test_outputs, get_predictions=True)
 
         accuracy = (TP + TN) / (TP + TN + FP + FN)
         precision = TP / (TP + FP)
@@ -212,7 +212,7 @@ def get_h3_predictions(test_outputs, test_inputs, training_outputs, training_inp
     h3_correct_predictions = []
     for k in range(0, 20):
         correct_predictions, TP, TN, FP, FN = h3_stage_2.run(learning_rate, n_nodes, training_inputs, training_outputs,
-                                                             test_inputs, test_outputs, getPredictions=True)
+                                                             test_inputs, test_outputs, get_predictions=True)
 
         accuracy = (TP + TN) / (TP + TN + FP + FN)
         precision = TP / (TP + FP)

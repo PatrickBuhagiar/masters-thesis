@@ -1,7 +1,8 @@
+from concurrent.futures import ThreadPoolExecutor, wait
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from concurrent.futures import ThreadPoolExecutor, wait
 
 # global variables
 start = pd.datetime(2013, 1, 1)
@@ -22,26 +23,26 @@ def divide_into_training_testing(inputs, outputs, n):
     :return: the inputs and outputs of both the training and testing data
     """
     training_set_size = int(n * 0.8)  # 80/20 sep of training/testing
-    training_inputs = inputs[:training_set_size]
-    training_outputs = outputs[:training_set_size]
-    test_inputs = inputs[training_set_size:]
-    test_outputs = outputs[training_set_size:]
-    return test_outputs, test_inputs, training_outputs, training_inputs
+    trn_inputs = inputs[:training_set_size]
+    trn_outputs = outputs[:training_set_size]
+    tst_inputs = inputs[training_set_size:]
+    tst_outputs = outputs[training_set_size:]
+    return tst_outputs, tst_inputs, trn_outputs, trn_inputs
 
 
-def extract_index(filename, start, end, date_parse, dropna=True):
+def extract_index(filename, start_date, end_date, date_parse, dropna=True):
     """
     Extracts the index from a csv file and filters base_out into a date range.
     :param  filename: The name of the csv file
-    :param     start: The start date
-    :param       end: the end date
+    :param     start_date: The start date
+    :param       end_date: the end date
     :param date_parse: the type of date parsing
     :param dropna: drop any nas
     :return: The indices as a time series
     """
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
     # Fill missing dates and values
-    all_days = pd.date_range(start, end, freq='D')
+    all_days = pd.date_range(start_date, end_date, freq='D')
     data = data.reindex(all_days)
     ts = data['Close']
     if dropna:
@@ -50,6 +51,10 @@ def extract_index(filename, start, end, date_parse, dropna=True):
 
 
 def prepare_data():
+    """
+    Loads the data, preprocesses it and prepares it for the feed forward network
+    :return: training and testing inputs and outputs
+    """
     dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
     dateparse2 = lambda dates: pd.datetime.strptime(dates, '%d/%m/%Y')
     dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
@@ -281,9 +286,20 @@ def prepare_data():
     return divide_into_training_testing(inputs, outputs, len(data))
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, getPredictions=False):
-    feature_count = training_inputs.shape[1]
-    label_count = training_outputs.shape[1]
+def run(lr_rate, n_nodes, trn_inputs, trn_outputs, tst_inputs, tst_outputs, get_predictions=False):
+    """
+      Run the model with given parameters
+      :param get_predictions: If true, return predictions instead of just accuracy
+      :param lr_rate: learning rate
+      :param n_nodes: nmber of hidden nodes
+      :param trn_inputs: training inputs
+      :param trn_outputs: training outputs
+      :param tst_inputs: testing inputs
+      :param tst_outputs: testing outputs
+      :return: accuracy, true positives, true negatives, false positives and false negatives
+      """
+    feature_count = trn_inputs.shape[1]
+    label_count = trn_outputs.shape[1]
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
@@ -296,7 +312,7 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
     h1 = tf.layers.dense(h0, label_count, activation=None)
     cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(labels=Y, logits=h1)
     cost = tf.reduce_mean(cross_entropy)
-    optimizer = tf.train.AdamOptimizer(learning_rate=learn_rate).minimize(cost)
+    optimizer = tf.train.AdamOptimizer(learning_rate=lr_rate).minimize(cost)
     predicted = tf.nn.sigmoid(h1)
     correct_pred = tf.equal(tf.round(predicted), Y)
     accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
@@ -309,25 +325,39 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         sess.run(tf.global_variables_initializer())
 
         for step in range(training_epochs + 1):
-            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            sess.run(optimizer, feed_dict={X: trn_inputs, Y: trn_outputs, keep_prob: 0.8})
             loss, _, acc = sess.run([cost, optimizer, accuracy],
-                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+                                    feed_dict={X: trn_inputs, Y: trn_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
-        if getPredictions:
-            return sess.run([correct_pred, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        if get_predictions:
+            return sess.run([correct_pred, t_p, t_n, f_p, f_n], feed_dict={X: tst_inputs, Y: tst_outputs, keep_prob: 1})
         else:
-            return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+            return sess.run([accuracy, t_p, t_n, f_p, f_n], feed_dict={X: tst_inputs, Y: tst_outputs, keep_prob: 1})
 
 
-def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
-    learning_rate = Y[j]
-    for i in range(0, len(X)):
-        n_nodes = X[i]
+def process_with_learning_rate(j, hidden_nodes_range, lr_rates, acc_matrix, f1_matrix, trn_inputs, trn_outputs,
+                               tst_inputs, tst_outputs):
+    """
+    process with learning rate. this calls the run method
+    :param j: for loop index
+    :param hidden_nodes_range: range of number of hidden nodes to test with
+    :param lr_rates: range of learning rates to test with
+    :param acc_matrix: where final accuracy results are stored
+    :param f1_matrix: where final f1 scores results are stored
+    :param trn_inputs: training inputs
+    :param trn_outputs: training outputs
+    :param tst_inputs: testing inputs
+    :param tst_outputs: testing outputs
+    :return:
+    """
+    learning_rate = lr_rates[j]
+    for i in range(0, len(hidden_nodes_range)):
+        n_nodes = hidden_nodes_range[i]
         acc = 0.0
         f1 = 0.0
         for k in range(0, 20):
-            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
-                                           test_outputs)
+            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, trn_inputs, trn_outputs, tst_inputs,
+                                           tst_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
@@ -340,16 +370,21 @@ def process_with_learning_rate(j, X, Y, Z, ZZ, training_inputs, training_outputs
         print("learning rate", "%.5f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
-        Z[i][j] = acc
-        ZZ[i][j] = f1
+        acc_matrix[i][j] = acc
+        f1_matrix[i][j] = f1
 
 
 if __name__ == '__main__':
+    # get inputs
     test_outputs, test_inputs, training_outputs, training_inputs = prepare_data()
     X = np.arange(10, 21, 1)  # number of nodes
     Y = np.arange(0.0001, 0.0009, 0.0001)  # learning rates
+
+    # result matrices
     accuracies = np.ones([len(X), len(Y)])
     f1s = np.ones([len(X), len(Y)])
+
+    # iterate over different combinations of parameters
     for j in range(0, len(Y)):
         futures.append(
             pool.submit(process_with_learning_rate, j, X, Y, accuracies, f1s, training_inputs, training_outputs,
@@ -357,6 +392,6 @@ if __name__ == '__main__':
                         test_outputs))
 
     wait(futures)
+    # store results
     np.savetxt("other_stocks_accuracies_10-21_0001-0009.csv", accuracies, delimiter=",")
     np.savetxt("other_stocks_f1s_10-21_0001-0009.csv", f1s, delimiter=",")
-

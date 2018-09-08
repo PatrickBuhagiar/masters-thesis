@@ -294,14 +294,14 @@ def get_lagged_macroeconomic_data(data, date: pd.datetime, type='Q'):
         return [t_0, t_1, t_2, t_3]
 
 
-def prepare_macroeconomic_data(start, end, meta_inputs, dates):
-    trade_balance_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv", 90, start, end)
-    gdp_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_GDP.csv", 90, start, end)
-    inflation_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_INFLATION.csv", 22, start, end)
+def prepare_macroeconomic_data(start_date, end_date, m_inputs, model_dates):
+    trade_balance_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_BALANCE_OF_TRADE.csv", 90, start_date, end_date)
+    gdp_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_GDP.csv", 90, start_date, end_date)
+    inflation_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_INFLATION.csv", 22, start_date, end_date)
     interest_data = extract_macroeconomic_data("../data/macroeconomics/GB/GB_INTRST.csv", 1,
-                                               start - pd.DateOffset(years=1),
-                                               end, 'D')
-    unemployment_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_UNEMPLOYMENT.csv", 60, start, end)
+                                               start_date - pd.DateOffset(years=1),
+                                               end_date, 'D')
+    unemployment_data = load_macroeconomic_data("../data/macroeconomics/GB/GB_UNEMPLOYMENT.csv", 60, start_date, end_date)
     tbd_0 = []
     tbd_1 = []
     tbd_2 = []
@@ -322,7 +322,7 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     uem_1 = []
     uem_2 = []
     uem_3 = []
-    for date in dates:
+    for date in model_dates:
         tbd = get_lagged_macroeconomic_data(trade_balance_data, date)
         tbd_0.append(tbd[0])
         tbd_1.append(tbd[1])
@@ -352,33 +352,33 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
         uem_1.append(uem[1])
         uem_2.append(uem[2])
         uem_3.append(uem[3])
-    meta_inputs['trade_balance_data_0'] = [
+    m_inputs['trade_balance_data_0'] = [
         (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
         for x in tbd_0]
-    meta_inputs['trade_balance_data_1'] = [
+    m_inputs['trade_balance_data_1'] = [
         (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
         for x in tbd_1]
-    meta_inputs['trade_balance_data_2'] = [
+    m_inputs['trade_balance_data_2'] = [
         (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
         for x in tbd_2]
     # meta_inputs['trade_balance_data_3'] = [
     #     (x - min(trade_balance_data.values())) / (max(trade_balance_data.values()) - min(trade_balance_data.values()))
     #     for x in tbd_3]
-    meta_inputs['gdp_data_0'] = [x / max(gdp_data.values()) for x in gdp_0]
-    meta_inputs['gdp_data_1'] = [x / max(gdp_data.values()) for x in gdp_1]
-    meta_inputs['gdp_data_2'] = [x / max(gdp_data.values()) for x in gdp_2]
+    m_inputs['gdp_data_0'] = [x / max(gdp_data.values()) for x in gdp_0]
+    m_inputs['gdp_data_1'] = [x / max(gdp_data.values()) for x in gdp_1]
+    m_inputs['gdp_data_2'] = [x / max(gdp_data.values()) for x in gdp_2]
     # meta_inputs['gdp_data_3'] = [x / max(gdp_data.values()) for x in gdp_3]
-    meta_inputs['inflation_data_0'] = [x / max(inflation_data.values()) for x in inf_0]
-    meta_inputs['inflation_data_1'] = [x / max(inflation_data.values()) for x in inf_1]
-    meta_inputs['inflation_data_2'] = [x / max(inflation_data.values()) for x in inf_2]
+    m_inputs['inflation_data_0'] = [x / max(inflation_data.values()) for x in inf_0]
+    m_inputs['inflation_data_1'] = [x / max(inflation_data.values()) for x in inf_1]
+    m_inputs['inflation_data_2'] = [x / max(inflation_data.values()) for x in inf_2]
     # meta_inputs['inflation_data_3'] = [x / max(inflation_data.values()) for x in inf_3]
-    meta_inputs['interest_data_0'] = [x / max(interest_data.values) for x in int_0]
-    meta_inputs['interest_data_1'] = [x / max(interest_data.values) for x in int_1]
-    meta_inputs['interest_data_2'] = [x / max(interest_data.values) for x in int_2]
+    m_inputs['interest_data_0'] = [x / max(interest_data.values) for x in int_0]
+    m_inputs['interest_data_1'] = [x / max(interest_data.values) for x in int_1]
+    m_inputs['interest_data_2'] = [x / max(interest_data.values) for x in int_2]
     # meta_inputs['interest_data_3'] = [x / max(interest_data.values) for x in int_3]
-    meta_inputs['unemployment_data_0'] = [x / max(unemployment_data.values()) for x in uem_0]
-    meta_inputs['unemployment_data_1'] = [x / max(unemployment_data.values()) for x in uem_1]
-    meta_inputs['unemployment_data_2'] = [x / max(unemployment_data.values()) for x in uem_2]
+    m_inputs['unemployment_data_0'] = [x / max(unemployment_data.values()) for x in uem_0]
+    m_inputs['unemployment_data_1'] = [x / max(unemployment_data.values()) for x in uem_1]
+    m_inputs['unemployment_data_2'] = [x / max(unemployment_data.values()) for x in uem_2]
     # meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 

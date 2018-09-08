@@ -1,16 +1,36 @@
 import matplotlib.pylab as plt
 import pandas as pd
 from pandas import Series
-import numpy as np
 
 start = pd.datetime(1958, 1, 1)
 end = pd.datetime(2018, 1, 1)
 
-from toolbox import convert_to_date, extract_index
-
 dateparse1 = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
 data = pd.read_csv("data/macroeconomics/US_GDP.csv", index_col='Date', date_parser=dateparse1)
 d = {'Date': [], 'Value': []}
+
+
+def extract_index(filename, start, end, date_parse, dropna=True):
+    """
+    Extracts the index from a csv file and filters base_out into a date range.
+
+    :param  filename: The name of the csv file
+    :param     start: The start date
+    :param       end: the end date
+    :param date_parse: the type of date parsing
+    :param dropna: drop any nas
+
+    :return: The indices as a time series
+    """
+    data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
+    # Fill missing dates and values
+    all_days = pd.date_range(start, end, freq='D')
+    data = data.reindex(all_days)
+    ts = data['Close']
+    if dropna:
+        ts = ts.dropna()
+    return ts
+
 
 for index, row in data.iterrows():
     d['Date'].append(index)
@@ -21,6 +41,11 @@ ts_SP = extract_index('data/indices/^GSPC.csv', start, end, dateparse2)
 
 
 def convert_to_quarterly(ts: Series):
+    """
+    Convert time series to quarterly data
+    :param ts:
+    :return:
+    """
     months = [1, 4, 7, 10]
     d = {'Date': [], 'Value': []}
     for row in ts.iteritems():
@@ -30,19 +55,24 @@ def convert_to_quarterly(ts: Series):
     return pd.DataFrame(d)
 
 
-def log(ts: pd.DataFrame):
+def normalise(ts: pd.DataFrame):
+    """
+    normalise the time series
+    :param ts:
+    :return:
+    """
     for index, row in ts.iterrows():
         row.Value = row.Value / max(ts.values)
 
 
 sp = convert_to_quarterly(ts_SP)
 sp = sp.set_index('Date')
-log(sp)
+normalise(sp)
 
 ts = pd.DataFrame(d)
 ts = ts.set_index('Date')
 ts = ts[pd.datetime(1958, 1, 1):]
-log(ts)
+normalise(ts)
 
 plt.plot(ts, label="U.S. GDP")
 plt.plot(sp, label="S&P 500")

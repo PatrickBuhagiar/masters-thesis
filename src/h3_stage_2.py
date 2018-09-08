@@ -9,13 +9,27 @@ futures = []
 
 
 def stringify(data: []):
+    """
+    convert data to string
+    :param data: data
+    :return:
+    """
     return data.__str__()
 
 
-def extract_index(filename, start, end, date_parse, dropna=True):
+def extract_index(filename, start_date, end_date, date_parse, dropna=True):
+    """
+    extract the index
+    :param filename:
+    :param start_date:
+    :param end_date:
+    :param date_parse:
+    :param dropna:
+    :return:
+    """
     data = pd.read_csv(filename, parse_dates=['Date'], index_col='Date', date_parser=date_parse)
     # Fill missing dates and values
-    all_days = pd.date_range(start, end, freq='D')
+    all_days = pd.date_range(start_date, end_date, freq='D')
     data = data.reindex(all_days)
     ts = data['Close']
     if dropna:
@@ -23,24 +37,30 @@ def extract_index(filename, start, end, date_parse, dropna=True):
     return ts
 
 
-def prepare_data(start, end):
+def prepare_data(start_date, end_date):
+    """
+    prepare the data for feed forward network
+    :param start_date:
+    :param end_date:
+    :return:
+    """
     dateparse = lambda dates: pd.datetime.strptime(dates, '%Y-%m-%d')
     dateparse2 = lambda dates: pd.datetime.strptime(dates, '%d/%m/%Y')
     dateparse3 = lambda dates: pd.datetime.strptime(dates, '%m/%d/%Y')
 
     # Prepare FTSE
-    ftse_data = extract_index('../data/indices/^FTSE.csv', start, end, dateparse3)
+    ftse_data = extract_index('../data/indices/^FTSE.csv', start_date, end_date, dateparse3)
     ftse_normalised = ftse_data / max(ftse_data)
     ftse_log = np.log(ftse_normalised / ftse_normalised.shift())
     ftse_log = ftse_log.dropna()
 
     # Prepare other stocks
-    cac_data = extract_index('../data/indices/^FCHI.csv', start, end, dateparse)
-    dax_data = extract_index('../data/indices/^GDAXI.csv', start, end, dateparse)
-    sp500_data = extract_index('../data/indices/^GSPC.csv', start, end, dateparse2)
-    n225_data = extract_index('../data/indices/^N225.csv', start, end, dateparse)
-    stoxx_data = extract_index('../data/indices/^STOXX50E.csv', start, end, dateparse2)
-    hkse_data = extract_index('../data/indices/^HSI.csv', start, end, dateparse)
+    cac_data = extract_index('../data/indices/^FCHI.csv', start_date, end_date, dateparse)
+    dax_data = extract_index('../data/indices/^GDAXI.csv', start_date, end_date, dateparse)
+    sp500_data = extract_index('../data/indices/^GSPC.csv', start_date, end_date, dateparse2)
+    n225_data = extract_index('../data/indices/^N225.csv', start_date, end_date, dateparse)
+    stoxx_data = extract_index('../data/indices/^STOXX50E.csv', start_date, end_date, dateparse2)
+    hkse_data = extract_index('../data/indices/^HSI.csv', start_date, end_date, dateparse)
 
     cac_normalised = cac_data / max(cac_data)
     dax_normalised = dax_data / max(dax_data)
@@ -259,6 +279,10 @@ def prepare_data(start, end):
 
 
 def get_model_names():
+    """
+    get the names of the models, i.e. the starting date of the period it covers
+    :return:
+    """
     start_years = np.arange(2000, 2008, 1)
     start_dates = []
     file_names = []
@@ -288,7 +312,13 @@ def divide_into_training_testing(inputs, outputs, n):
     return test_outputs, test_inputs, training_outputs, training_inputs
 
 
-def get_model_predictions(filename, inputs):
+def get_model_predictions(filename, input):
+    """
+    The the predictions from the individual trained models
+    :param filename:
+    :param input:
+    :return:
+    """
     tf.reset_default_graph()
     # Load model and variables
     with tf.Session() as sess:
@@ -299,7 +329,7 @@ def get_model_predictions(filename, inputs):
         X = graph.get_tensor_by_name("X_" + name + ":0")
         keep_prob = graph.get_tensor_by_name("keep_prob_" + name + ":0")
         feed_dict = {
-            X: inputs.values,
+            X: input.values,
             keep_prob: 1
         }
 
@@ -574,10 +604,21 @@ def prepare_macroeconomic_data(start, end, meta_inputs, dates):
     # meta_inputs['unemployment_data_3'] = [x / max(unemployment_data.values()) for x in uem_3]
 
 
-def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, test_outputs, getPredictions=False):
+def run(learn_rate, n_nodes, trn_inputs, trn_outputs, tst_inputs, tst_outputs, get_predictions=False):
+    """
+    Run with given parameters
+    :param learn_rate:
+    :param n_nodes:
+    :param trn_inputs:
+    :param trn_outputs:
+    :param tst_inputs:
+    :param tst_outputs:
+    :param get_predictions:
+    :return:
+    """
     tf.reset_default_graph()
-    feature_count = training_inputs.shape[1]
-    label_count = training_outputs.shape[1]
+    feature_count = trn_inputs.shape[1]
+    label_count = trn_outputs.shape[1]
     training_epochs = 3000
 
     cost_history = np.empty(shape=[1], dtype=float)
@@ -603,26 +644,39 @@ def run(learn_rate, n_nodes, training_inputs, training_outputs, test_inputs, tes
         sess.run(tf.global_variables_initializer())
 
         for step in range(training_epochs + 1):
-            sess.run(optimizer, feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+            sess.run(optimizer, feed_dict={X: trn_inputs, Y: trn_outputs, keep_prob: 0.8})
             loss, _, acc = sess.run([cost, optimizer, accuracy],
-                                    feed_dict={X: training_inputs, Y: training_outputs, keep_prob: 0.8})
+                                    feed_dict={X: trn_inputs, Y: trn_outputs, keep_prob: 0.8})
             cost_history = np.append(cost_history, acc)
 
-        if getPredictions:
-            return sess.run([correct_pred, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+        if get_predictions:
+            return sess.run([correct_pred, TP, TN, FP, FN], feed_dict={X: tst_inputs, Y: tst_outputs, keep_prob: 1})
         else:
-            return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: test_inputs, Y: test_outputs, keep_prob: 1})
+            return sess.run([accuracy, TP, TN, FP, FN], feed_dict={X: tst_inputs, Y: tst_outputs, keep_prob: 1})
 
 
-def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test_outputs):
-    n_nodes = X[j]
-    for i in range(0, len(Y)):
-        learning_rate = Y[i]
+def process(j, nodes, lr_rates, accuracy_matrix, F1_score_matrix, trn_inputs, trn_outputs, tst_inputs, tst_outputs):
+    """
+
+    :param j:
+    :param nodes: range of hidden nodes
+    :param lr_rates: range of learning rates
+    :param accuracy_matrix: accuracy results
+    :param F1_score_matrix: f1 results
+    :param trn_inputs: training inputs
+    :param trn_outputs: training outputs
+    :param tst_inputs: test inputs
+    :param tst_outputs: test outputs
+    :return:
+    """
+    n_nodes = nodes[j]
+    for i in range(0, len(lr_rates)):
+        learning_rate = lr_rates[i]
         acc = 0.0
         f1 = 0.0
         for k in range(0, 20):
-            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, training_inputs, training_outputs, test_inputs,
-                                           test_outputs)
+            accuracy, TP, TN, FP, FN = run(learning_rate, n_nodes, trn_inputs, trn_outputs, tst_inputs,
+                                           tst_outputs)
             acc += (TP + TN) / (TP + TN + FP + FN)
             precision = TP / (TP + FP)
             recall = TP / (TP + FN)
@@ -635,8 +689,8 @@ def process(j, X, Y, Z, ZZ, training_inputs, training_outputs, test_inputs, test
         print("learning rate", "%.7f" % learning_rate, "n_nodes", n_nodes, "TOTAL", "f1",
               f1, "accuracy", acc)
 
-        Z[j][i] = acc
-        ZZ[j][i] = f1
+        accuracy_matrix[j][i] = acc
+        F1_score_matrix[j][i] = f1
 
 
 def get_meta_inputs(inputs, dates, start, end):
